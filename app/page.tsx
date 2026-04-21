@@ -1,65 +1,213 @@
-import Image from "next/image";
+ "use client"
+import Pic1 from '@/public/pic1Home.png'
+import { FileQuestionMark } from 'lucide-react'
+import Link from "next/link"
 
-export default function Home() {
+const LandingPage = () => {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="bg-black text-white min-h-screen overflow-x-hidden">
+
+      {/* Glow blobs */}
+      <div className="fixed top-0 right-0 w-96 h-96 bg-purple-500 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+      <div className="fixed bottom-0 left-0 w-80 h-80 bg-pink-500 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+
+      <nav className="flex items-center justify-between px-10 py-5 border-b border-gray-800">
+        <h1 className="text-xl font-semibold text-purple-400">Aether</h1>
+        <div className="flex items-center gap-6 text-sm text-gray-400">
+          <Link href="#how" className="hover:text-white transition-colors text-[20px] flex gap-2">How it works <span><FileQuestionMark></FileQuestionMark></span></Link>
+        </div>
+        <div className="flex items-center gap-3">
+          <Link href="/auth/login">
+            <button className="text-sm text-gray-400 hover:text-white transition-colors">
+              Sign In
+            </button>
+          </Link>
+          <Link href="/auth/register">
+            <button className="px-4 py-2 rounded-full bg-gradient-to-r from-purple-400 to-pink-300 text-black text-sm font-semibold">
+              Get Started
+            </button>
+          </Link>
+        </div>
+      </nav>
+
+
+      <section className="flex flex-col items-center text-center px-6 pt-24 pb-20">
+        <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">
+          The Future of Professional Nexus
+        </p>
+        <h2 className="text-5xl font-semibold leading-tight max-w-2xl mb-6">
+          Navigate the Future of
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300">
+            Professional Excellence
+          </span>
+        </h2>
+        <p className="text-sm text-gray-400 max-w-md mb-8 leading-relaxed">
+          Aether connects candidates and organizations in a smarter way. AI-powered matching, skill gap analysis, and real career growth — all in one place.
+        </p>
+        <div className="flex items-center gap-3">
+          <Link href="/auth/register">
+            <button className="px-6 py-3 rounded-full bg-gradient-to-r from-purple-400 to-pink-300 text-black font-semibold text-sm">
+              Get Started
+            </button>
+          </Link>
+          <Link href="#features">
+            <button className="px-6 py-3 rounded-full bg-gray-800 text-sm text-gray-300 hover:bg-gray-700 transition-colors">
+              Learn More
+            </button>
+          </Link>
+        </div>
+
+        
+        <img src={Pic1.src} className="w-60" />
+        <div className="mt-16 flex gap-10 text-center">
+          <div>
+            <p className="text-2xl font-semibold text-white">12k+</p>
+            <p className="text-xs text-gray-500 mt-1">Candidates</p>
+          </div>
+          <div className="border-l border-gray-800"></div>
+          <div>
+            <p className="text-2xl font-semibold text-white">340+</p>
+            <p className="text-xs text-gray-500 mt-1">Organizations</p>
+          </div>
+          <div className="border-l border-gray-800"></div>
+          <div>
+            <p className="text-2xl font-semibold text-white">98%</p>
+            <p className="text-xs text-gray-500 mt-1">Match Rate</p>
+          </div>
+        </div>
+      </section>
+
+   
+      <section  className="px-10 py-20">
+        <p className="text-xs text-gray-500 uppercase tracking-widest text-center mb-2">What we offer</p>
+        <h3 className="text-2xl font-semibold text-center mb-12">Everything you need to grow</h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+
+          <div className="bg-[#111] rounded-3xl p-6 shadow-2xl border border-gray-800">
+            <div className="w-9 h-9 rounded-xl bg-purple-500 bg-opacity-20 flex items-center justify-center mb-4">
+              <p>1</p>
+            </div>
+            <h4 className="text-sm font-semibold mb-2">AI-Driven Career Paths</h4>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Our AI analyzes your skills and experience to map out the most efficient path to your dream role.
+            </p>
+          </div>
+
+          <div className="bg-[#111] rounded-3xl p-6 shadow-2xl border border-gray-800">
+            <div className="w-9 h-9 rounded-xl bg-pink-500 bg-opacity-20 flex items-center justify-center mb-4">
+              <p>2</p>
+            </div>
+            <h4 className="text-sm font-semibold mb-2">Skill Gap Analysis</h4>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Know exactly what's missing between you and your target job. No guessing, just clear actionable steps.
+            </p>
+          </div>
+
+          <div className="bg-[#111] rounded-3xl p-6 shadow-2xl border border-gray-800">
+            <div className="w-9 h-9 rounded-xl bg-purple-500 bg-opacity-20 flex items-center justify-center mb-4">
+              <p>3</p>
+            </div>
+            <h4 className="text-sm font-semibold mb-2">Smart Matching</h4>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Organizations find the right candidates instantly. Candidates find roles that actually fit them.
+            </p>
+          </div>
+
+          <div className="bg-[#111] rounded-3xl p-6 shadow-2xl border border-gray-800">
+            <div className="w-9 h-9 rounded-xl bg-pink-500 bg-opacity-20 flex items-center justify-center mb-4">
+             <p>4</p>
+            </div>
+            <h4 className="text-sm font-semibold mb-2">AI Cover Letters</h4>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Generate tailored cover letters for any job in seconds. Professional, personal, and ready to send.
+            </p>
+          </div>
+
+          <div className="bg-[#111] rounded-3xl p-6 shadow-2xl border border-gray-800">
+            <div className="w-9 h-9 rounded-xl bg-purple-500 bg-opacity-20 flex items-center justify-center mb-4">
+             <p>5</p>
+            </div>
+            <h4 className="text-sm font-semibold mb-2">CV Analysis</h4>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Upload your CV and get instant feedback on how to improve it for the roles you're targeting.
+            </p>
+          </div>
+
+          <div className="bg-[#111] rounded-3xl p-6 shadow-2xl border border-gray-800">
+            <div className="w-9 h-9 rounded-xl bg-pink-500 bg-opacity-20 flex items-center justify-center mb-4">
+              <p>6</p>
+            </div>
+            <h4 className="text-sm font-semibold mb-2">Professional Messaging</h4>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Draft outreach messages, follow-ups, and replies that actually get responses.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+
+      <section id="how" className="px-10 py-20 border-t border-gray-800">
+        <p className="text-xs text-gray-500 uppercase tracking-widest text-center mb-2">Simple process</p>
+        <h3 className="text-2xl font-semibold text-center mb-12">How Aether works</h3>
+
+        <div className="flex flex-col md:flex-row gap-6 max-w-4xl mx-auto">
+          <div className="flex-1 bg-[#111] rounded-3xl p-6 border border-gray-800 text-center">
+            <p className="text-3xl font-semibold text-purple-400 mb-3">01</p>
+            <h4 className="text-sm font-semibold mb-2">Create your account</h4>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Sign up as a candidate or organization. Takes less than a minute.
+            </p>
+          </div>
+          <div className="flex-1 bg-[#111] rounded-3xl p-6 border border-gray-800 text-center">
+            <p className="text-3xl font-semibold text-purple-400 mb-3">02</p>
+            <h4 className="text-sm font-semibold mb-2">Build your profile</h4>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Upload your CV, add your skills, and let Aether understand what you bring to the table.
+            </p>
+          </div>
+          <div className="flex-1 bg-[#111] rounded-3xl p-6 border border-gray-800 text-center">
+            <p className="text-3xl font-semibold text-purple-400 mb-3">03</p>
+            <h4 className="text-sm font-semibold mb-2">Get matched</h4>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Our AI does the heavy lifting. Find the right jobs or candidates without the noise.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-10 py-20">
+        <div className="bg-[#111] rounded-3xl p-12 shadow-2xl border border-gray-800 max-w-3xl mx-auto text-center relative overflow-hidden">
+          <h3 className="text-2xl font-semibold mb-3">
+            Ready to redefine your professional horizon?
+          </h3>
+          <p className="text-sm text-gray-400 mb-8 max-w-md mx-auto">
+            Join thousands of professionals and organizations already using Aether to build better careers.
           </p>
+          <div className="flex justify-center gap-3">
+            <Link href="/auth/register">
+              <button className="px-6 py-3 rounded-full bg-gradient-to-r from-purple-400 to-pink-300 text-black font-semibold text-sm">
+                Get Started
+              </button>
+            </Link>
+            <Link href="/auth/login">
+              <button className="px-6 py-3 rounded-full bg-gray-800 text-sm text-gray-300 hover:bg-gray-700 transition-colors">
+                Sign In
+              </button>
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
+
+      <footer className="px-10 py-8 border-t border-gray-800 flex items-center justify-between">
+        <p className="text-purple-400 font-semibold">Aether</p>
+        <p className="text-xs text-gray-500">THE FUTURE OF PROFESSIONAL NEXUS</p>
+        <p className="text-xs text-gray-600">@ 2026 Aether. All rights reserved.</p>
+      </footer>
+
     </div>
-  );
+  )
 }
+
+export default LandingPage
