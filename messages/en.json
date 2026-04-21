@@ -516,7 +516,8 @@
       "intermediate": "Intermediate",
       "summaryTitle": "Write a summary to highlight your personality or work experience",
       "summaryDescription": "Members who include a summary receive up to 3.9 times more profile views.",
-      "addSummary": "Add a summary"
+      "addSummary": "Add a summary",
+       "connect": "Connect"
     },
     "analytics": {
       "title": "Analytics",
@@ -591,9 +592,6 @@
       "deletePhoto": "Delete Current Photo",
       "cancel": "Cancel",
       "save": "Save Changes"
-    },
-    "suggested": {
-      "connect": "Connect"
     }
   }
 }

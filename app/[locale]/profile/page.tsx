@@ -54,15 +54,14 @@ export default function ProfilePage() {
   const userId = user?.id || authUser?.id; // fallback to authUser if /me fails
 
   // Get the user's profile firstName, lastName, headline, photo, etc.
-  const { data: userProfile } = useQuery({
-    queryKey: ["userProfile", userId],
-    queryFn: async () => {
-      const { data } = await axios.get(`${API_BASE}/api/UserProfile/by-user/${userId}`, authHeaders);
-      return data;
-    },
-    enabled: !!userId,
-  });
-
+const { data: userProfile } = useQuery({
+  queryKey: ["userProfile", userId],
+  queryFn: async () => {
+    const { data } = await axios.get(`${API_BASE}/api/UserProfile/by-user/${userId}`, authHeaders);
+    return data?.data || data;   
+  },
+  enabled: !!userId,
+});
   const profileId = userProfile?.id; // needed for profile specific endpoints
 
   // Work experience entries
@@ -166,44 +165,35 @@ export default function ProfilePage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const updateProfile = useMutation({
-    mutationFn: async () => {
-      const payload = new FormData();
-      payload.append("firstName", formData.firstName);
-      payload.append("lastName", formData.lastName);
-      payload.append("headline", formData.headline);
-      payload.append("location", formData.location);
-      payload.append("aboutMe", formData.aboutMe);
-
-      if (selectedFile) {
-        payload.append("photo", selectedFile);
-      }
-
-      return axios.put(
-        `${API_BASE}/api/UserProfile/${profileId}`,
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          },
-        }
-      );
-    },
-    onSuccess: () => {
-      // After successful update, refetch profile data and close the modal
-      queryClient.invalidateQueries({ queryKey: ["userProfile", userId] });
-      setEditOpen(false);
-    },
-  });
+  mutationFn: async () => {
+    if (!profileId) throw new Error("Profile ID missing"); // 👈 add this check
+    const payload = new FormData();
+    payload.append("firstName", formData.firstName);
+    payload.append("lastName", formData.lastName);
+    payload.append("headline", formData.headline);
+    payload.append("location", formData.location);
+    payload.append("aboutMe", formData.aboutMe);
+    if (selectedFile) payload.append("photo", selectedFile);
+    return axios.put(`${API_BASE}/api/UserProfile/${profileId}`, payload, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ["userProfile", userId] });
+    setEditOpen(false);
+  },
+});
 
   // Delete profile photo separately
-  const deleteProfilePhoto = useMutation({
-    mutationFn: async () => {
-      return axios.delete(`${API_BASE}/api/UserProfile/${profileId}/photo`, authHeaders);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["userProfile", userId] });
-    },
-  });
+ const deleteProfilePhoto = useMutation({
+  mutationFn: async () => {
+    if (!profileId) throw new Error("Profile ID missing");
+    return axios.delete(`${API_BASE}/api/UserProfile/${profileId}/photo`, authHeaders);
+  },
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ["userProfile", userId] });
+  },
+});
 
   // Sync form data when userProfile loads (so the edit modal shows current values)
   useEffect(() => {
