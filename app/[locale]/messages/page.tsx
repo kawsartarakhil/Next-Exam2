@@ -29,6 +29,8 @@ import {
   Paperclip,
 } from "lucide-react";
 import { useAuthStore } from "@/src/authStore/page";
+import { useTranslations } from "next-intl";
+import LocaleSwitcher from "@/src/components/localeSwitcher";
 
 const API_BASE = "";
 
@@ -65,20 +67,21 @@ const formatDate = (iso: string) =>
 type Toast = { id: number; message: string; type: "error" | "success" };
 
 function ToastContainer({ toasts, onDismiss }: { toasts: Toast[]; onDismiss: (id: number) => void }) {
+  const t = useTranslations("messaging");
   return (
     <div className="fixed bottom-6 right-6 z-[200] flex flex-col gap-2 pointer-events-none">
-      {toasts.map((t) => (
+      {toasts.map((tObj) => (
         <div
-          key={t.id}
+          key={tObj.id}
           className={`flex items-center gap-3 px-4 py-3 rounded-xl shadow-xl border text-sm font-medium pointer-events-auto transition-all animate-fade-in
-            ${t.type === "error"
+            ${tObj.type === "error"
               ? "bg-red-950 border-red-500/30 text-red-300"
               : "bg-green-950 border-green-500/30 text-green-300"
             }`}
         >
           <AlertCircle size={15} />
-          {t.message}
-          <button onClick={() => onDismiss(t.id)} className="ml-2 opacity-60 hover:opacity-100">
+          {tObj.message}
+          <button onClick={() => onDismiss(tObj.id)} className="ml-2 opacity-60 hover:opacity-100">
             <X size={13} />
           </button>
         </div>
@@ -160,6 +163,7 @@ function NewConversationModal({
   onClose: () => void;
   onCreated: (conversationId: number) => void;
 }) {
+  const t = useTranslations("messaging");
   const [search, setSearch] = useState("");
   const [selectedUser, setSelectedUser] = useState<any>(null);
   const { addToast } = useToast();
@@ -194,14 +198,14 @@ function NewConversationModal({
       onCreated(data?.id || data?.data?.id);
       onClose();
     },
-    onError: () => addToast("Could not start conversation. Try again.", "error"),
+    onError: () => addToast(t("newConv.error"), "error"),
   });
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
       <div className="bg-[#15161a] border border-white/10 rounded-2xl w-full max-w-md shadow-2xl mx-4">
         <div className="flex items-center justify-between px-5 py-4 border-b border-white/5">
-          <h3 className="text-base font-bold">New Message</h3>
+          <h3 className="text-base font-bold">{t("newConv.title")}</h3>
           <button onClick={onClose} className="p-1.5 hover:bg-white/10 rounded-full transition-colors">
             <X size={16} />
           </button>
@@ -213,7 +217,7 @@ function NewConversationModal({
             <input
               autoFocus
               type="text"
-              placeholder="Search by name or email…"
+              placeholder={t("newConv.searchPlaceholder")}
               value={search}
               onChange={(e) => { setSearch(e.target.value); setSelectedUser(null); }}
               className="w-full bg-[#1f2029] rounded-xl h-10 pl-10 pr-4 text-sm outline-none border border-transparent focus:border-purple-500/40 text-slate-200"
@@ -224,11 +228,11 @@ function NewConversationModal({
           </div>
 
           {search.trim().length < 2 && (
-            <p className="text-xs text-slate-500 text-center py-4">Type at least 2 characters to search</p>
+            <p className="text-xs text-slate-500 text-center py-4">{t("newConv.minChars")}</p>
           )}
 
           {search.trim().length >= 2 && !isFetching && users.length === 0 && (
-            <p className="text-xs text-slate-500 text-center py-4">No users found for "{search}"</p>
+            <p className="text-xs text-slate-500 text-center py-4">{t("newConv.noUsers", { search })}</p>
           )}
 
           <div className="space-y-1 max-h-56 overflow-y-auto custom-scrollbar">
@@ -267,7 +271,7 @@ function NewConversationModal({
             className="w-full py-2.5 bg-purple-600 hover:bg-purple-500 disabled:bg-slate-700 disabled:cursor-not-allowed text-white rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-purple-500/20"
           >
             {isPending ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />}
-            {isPending ? "Starting…" : "Start Conversation"}
+            {isPending ? t("newConv.starting") : t("newConv.start")}
           </button>
         </div>
       </div>
@@ -277,6 +281,7 @@ function NewConversationModal({
 
 
 export default function MessagingPage() {
+  const t = useTranslations("messaging");
   const { token, user: authUser } = useAuthStore();
   const queryClient = useQueryClient();
   const searchParams = useSearchParams();
@@ -388,7 +393,7 @@ export default function MessagingPage() {
       queryClient.invalidateQueries({ queryKey: ["messages", selectedConversationId] });
       queryClient.invalidateQueries({ queryKey: ["conversations"] });
     },
-    onError: () => addToast("Failed to send message. Please try again.", "error"),
+    onError: () => addToast(t("sendError"), "error"),
   });
 
   //  Auto‑scroll to bottom when new messages arrive 
@@ -439,7 +444,7 @@ export default function MessagingPage() {
     const file = e.target.files?.[0];
     if (!file) return;
     if (file.size > 10 * 1024 * 1024) {
-      addToast("File too large. Maximum size is 10 MB.", "error");
+      addToast(t("fileTooLarge"), "error");
       return;
     }
     setAttachedFile(file);
@@ -469,25 +474,26 @@ export default function MessagingPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-purple-400 transition-colors" />
               <input
                 type="text"
-                placeholder="Search Aether"
+                placeholder={t("nav.searchPlaceholder")}
                 className="bg-[#1f2029] rounded w-64 h-8 pl-10 pr-4 text-sm focus:w-80 transition-all outline-none border border-transparent focus:border-purple-500/30 font-medium text-slate-200"
               />
             </div>
           </div>
 
           <div className="flex items-center gap-1 sm:gap-6 h-full text-slate-500">
-            <NavItem icon={<Home size={22} />} label="Home" href="/feed" />
-            <NavItem icon={<Users size={22} />} label="Network" href="/network" />
-            <NavItem icon={<Briefcase size={22} />} label="Jobs" href="/job" />
-            <NavItem icon={<MessageSquare size={22} />} label="Messaging" active href="/messages" />
-            <NavItem icon={<Bell size={22} />} label="Notifications" href="/notifications" />
+            <NavItem icon={<Home size={22} />} label={t("nav.home")} href="/feed" />
+            <NavItem icon={<Users size={22} />} label={t("nav.network")} href="/network" />
+            <NavItem icon={<Briefcase size={22} />} label={t("nav.jobs")} href="/job" />
+            <NavItem icon={<MessageSquare size={22} />} label={t("nav.messaging")} active href="/messages" />
+            <NavItem icon={<Bell size={22} />} label={t("nav.notifications")} href="/notifications" />
             <div className="h-full border-l border-white/5 mx-2 hidden sm:block" />
+             <LocaleSwitcher/>
             <div className="flex flex-col items-center justify-center cursor-pointer group">
               <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold">
                 ME
               </div>
               <span className="text-[11px] flex items-center mt-0.5">
-                Me <ChevronDown className="w-3 h-3 ml-0.5" />
+                {t("nav.me")} <ChevronDown className="w-3 h-3 ml-0.5" />
               </span>
             </div>
           </div>
@@ -498,7 +504,7 @@ export default function MessagingPage() {
         {/*  Sidebar (conversation list)  */}
         <aside className="w-[380px] border-r border-white/5 flex flex-col shrink-0">
           <div className="p-4 border-b border-white/5 flex items-center justify-between">
-            <h2 className="text-xl font-bold">Messaging</h2>
+            <h2 className="text-xl font-bold">{t("sidebar.title")}</h2>
             <div className="flex gap-2">
               <button className="p-2 hover:bg-white/5 rounded-full transition-colors">
                 <MoreHorizontal size={20} />
@@ -506,7 +512,7 @@ export default function MessagingPage() {
               <button
                 onClick={() => setShowNewConvModal(true)}
                 className="p-2 hover:bg-white/5 rounded-full transition-colors text-purple-400 hover:text-purple-300"
-                title="New conversation"
+                title={t("sidebar.newConversation")}
               >
                 <Edit size={20} />
               </button>
@@ -518,7 +524,7 @@ export default function MessagingPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
               <input
                 type="text"
-                placeholder="Search messages"
+                placeholder={t("sidebar.searchPlaceholder")}
                 value={conversationSearch}
                 onChange={(e) => setConversationSearch(e.target.value)}
                 className="w-full bg-[#1f2029] rounded h-9 pl-10 pr-4 text-sm outline-none border border-transparent focus:border-purple-500/30"
@@ -542,8 +548,8 @@ export default function MessagingPage() {
             ) : filteredConversations.length === 0 ? (
               <div className="p-8 text-center text-slate-500 text-sm">
                 {conversationSearch
-                  ? `No conversations matching "${conversationSearch}"`
-                  : "No conversations yet. Connect with someone from the network!"}
+                  ? t("sidebar.noResults", { query: conversationSearch })
+                  : t("sidebar.empty")}
               </div>
             ) : (
               filteredConversations.map((conv: any) => (
@@ -568,8 +574,8 @@ export default function MessagingPage() {
                 myId={myId}
                 token={token}
                 conversations={conversations}
-                onVideoCall={() => addToast("Video calls coming soon.", "success")}
-                onVoiceCall={() => addToast("Voice calls coming soon.", "success")}
+                onVideoCall={() => addToast(t("comingSoon"), "success")}
+                onVoiceCall={() => addToast(t("comingSoon"), "success")}
               />
 
               <div
@@ -583,7 +589,7 @@ export default function MessagingPage() {
                 ) : messages.length === 0 ? (
                   <div className="h-full flex flex-col items-center justify-center text-slate-500 space-y-2 opacity-50">
                     <MessageSquare size={48} strokeWidth={1} />
-                    <p className="text-sm">No messages yet. Say hello!</p>
+                    <p className="text-sm">{t("chat.empty")}</p>
                   </div>
                 ) : (
                   messages.map((msg: any, idx: number) => {
@@ -668,7 +674,7 @@ export default function MessagingPage() {
                       value={messageText}
                       onChange={handleTextChange}
                       onKeyDown={handleKeyDown}
-                      placeholder="Write a message… (Enter to send, Shift+Enter for new line)"
+                      placeholder={t("composer.placeholder")}
                       rows={1}
                       className="w-full bg-transparent border-none outline-none resize-none text-[13px] px-2 py-1 text-slate-200 placeholder-slate-600 max-h-[120px] overflow-y-auto custom-scrollbar"
                     />
@@ -676,17 +682,17 @@ export default function MessagingPage() {
                       <div className="flex gap-1">
                         <AttachmentIcon
                           icon={<Plus size={16} />}
-                          title="Attach file"
+                          title={t("composer.attachFile")}
                           onClick={() => fileInputRef.current?.click()}
                         />
                         <AttachmentIcon
                           icon={<ImageIcon size={16} />}
-                          title="Attach image"
+                          title={t("composer.attachImage")}
                           onClick={() => fileInputRef.current?.click()}
                         />
                         <AttachmentIcon
                           icon={<Smile size={16} />}
-                          title="Emoji"
+                          title={t("composer.emoji")}
                           onClick={() => setShowEmojiPicker((v) => !v)}
                           active={showEmojiPicker}
                         />
@@ -732,16 +738,15 @@ export default function MessagingPage() {
               <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center mb-6">
                 <MessageSquare size={40} className="text-purple-400" />
               </div>
-              <h3 className="text-lg font-bold mb-2">Select a transmission to begin</h3>
+              <h3 className="text-lg font-bold mb-2">{t("emptyState.title")}</h3>
               <p className="max-w-xs text-sm leading-relaxed">
-                Choose one of your active conversations from the sidebar or{" "}
+                {t("emptyState.description")}{" "}
                 <button
                   onClick={() => setShowNewConvModal(true)}
                   className="text-purple-400 hover:underline"
                 >
-                  start a new one
+                  {t("emptyState.startNew")}
                 </button>
-                .
               </p>
             </div>
           )}
@@ -750,7 +755,7 @@ export default function MessagingPage() {
         <aside className="w-[300px] hidden xl:block p-4 space-y-4">
           <div className="bg-[#1a1b21] rounded-xl border border-white/5 p-4 text-center">
             <p className="text-[11px] text-slate-500 uppercase tracking-widest mb-3">
-              Community Insights
+              {t("rightSidebar.title")}
             </p>
             <div className="flex justify-center -space-x-3 mb-4">
               {[1, 2, 3].map((i) => (
@@ -766,20 +771,20 @@ export default function MessagingPage() {
               </div>
             </div>
             <p className="text-xs text-slate-400 mb-4 px-2">
-              See which connections are also using Aether Messaging Pro.
+              {t("rightSidebar.description")}
             </p>
             <button className="w-full py-1.5 border border-purple-400 text-purple-400 hover:bg-purple-400/10 rounded-full text-xs font-bold transition-all">
-              Try for free
+              {t("rightSidebar.tryFree")}
             </button>
           </div>
 
           <div className="text-[11px] text-gray-600 font-bold px-4 space-y-1">
             <div className="flex justify-center gap-3">
-              <a href="#" className="hover:text-purple-400">About</a>
-              <a href="#" className="hover:text-purple-400">Help Center</a>
-              <a href="#" className="hover:text-purple-400">Privacy</a>
+              <a href="#" className="hover:text-purple-400">{t("footer.about")}</a>
+              <a href="#" className="hover:text-purple-400">{t("footer.helpCenter")}</a>
+              <a href="#" className="hover:text-purple-400">{t("footer.privacy")}</a>
             </div>
-            <p className="text-center">Aether Corporation © 2026</p>
+            <p className="text-center">{t("footer.copyright")}</p>
           </div>
         </aside>
       </div>
@@ -832,6 +837,7 @@ function NavItem({ icon, label, active = false, href = "#" }: any) {
 
 // A single conversation item in the sidebar – shows avatar, name, last message, unread badge
 function ConversationItem({ conversation, myId, token, isActive, onClick }: any) {
+  const t = useTranslations("messaging");
   const otherUserId =
     conversation.user1Id === myId ? conversation.user2Id : conversation.user1Id;
 
@@ -893,7 +899,7 @@ function ConversationItem({ conversation, myId, token, isActive, onClick }: any)
         </div>
         <div className="flex items-center gap-1">
           <p className="text-xs text-slate-500 truncate leading-tight mt-0.5 flex-1">
-            {conversation.lastMessagePreview || "No messages yet."}
+            {conversation.lastMessagePreview || t("conversation.noMessages")}
           </p>
           {hasUnread && (
             <span className="shrink-0 min-w-[18px] h-[18px] bg-purple-500 rounded-full flex items-center justify-center text-[10px] font-bold text-white px-1">
@@ -908,6 +914,7 @@ function ConversationItem({ conversation, myId, token, isActive, onClick }: any)
 
 // Header of the chat area  shows other user's name, headline, and call/info buttons
 function ChatHeader({ conversationId, myId, token, conversations, onVideoCall, onVoiceCall }: any) {
+  const t = useTranslations("messaging");
   const conversation = conversations.find((c: any) => c.id === conversationId);
   const otherUserId =
     conversation?.user1Id === myId ? conversation?.user2Id : conversation?.user1Id;
@@ -920,7 +927,7 @@ function ChatHeader({ conversationId, myId, token, conversations, onVideoCall, o
 
   const name = otherUser ? (otherUser.fullName || `${otherUser.firstName || ""} ${otherUser.lastName || ""}`.trim() || "User") : "User";
   const avatar = getAvatarUrl(otherUser?.photoUrl);
-  const headline = otherUser?.headline || otherUser?.aboutMe || "Aether Network Member";
+  const headline = otherUser?.headline || otherUser?.aboutMe || t("chat.defaultHeadline");
 
   return (
     <div className="h-16 border-b border-white/5 px-6 flex items-center justify-between shrink-0 bg-[#0a0a0c]/80 backdrop-blur-md z-10 sticky top-0">
@@ -944,20 +951,20 @@ function ChatHeader({ conversationId, myId, token, conversations, onVideoCall, o
         <button
           onClick={onVideoCall}
           className="p-2 hover:text-white hover:bg-white/5 rounded-full transition-all"
-          title="Video call"
+          title={t("chat.videoCall")}
         >
           <Video size={18} />
         </button>
         <button
           onClick={onVoiceCall}
           className="p-2 hover:text-white hover:bg-white/5 rounded-full transition-all"
-          title="Voice call"
+          title={t("chat.voiceCall")}
         >
           <Phone size={18} />
         </button>
         <button
           className="p-2 hover:text-white hover:bg-white/5 rounded-full transition-all"
-          title="Conversation info"
+          title={t("chat.info")}
         >
           <Info size={18} />
         </button>

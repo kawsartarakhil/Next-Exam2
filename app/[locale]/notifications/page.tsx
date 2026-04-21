@@ -24,10 +24,13 @@ import {
   Settings
 } from 'lucide-react';
 import { useAuthStore } from "@/src/authStore/page";
+import { useTranslations } from "next-intl";
+import LocaleSwitcher from "@/src/components/localeSwitcher";
 
 const API_BASE = "";
 
 export default function NotificationsPage() {
+  const t = useTranslations("notifications");
   const { token, user: authUser } = useAuthStore() ;
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState("All"); // Not yet used for filtering  placeholder for future feature
@@ -110,26 +113,26 @@ export default function NotificationsPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-purple-400 transition-colors" />
               <input 
                 type="text" 
-                placeholder="Search Aether" 
+                placeholder={t("nav.searchPlaceholder")} 
                 className="bg-[#1f2029] rounded w-64 h-8 pl-10 pr-4 text-sm focus:w-80 transition-all outline-none border border-transparent focus:border-purple-500/30 font-medium text-slate-200"
               />
             </div>
           </div>
 
           <div className="flex items-center gap-1 sm:gap-6 h-full text-slate-500">
-            <NavItem icon={<Home size={22} />} label="Home" href="/feed" />
-            <NavItem icon={<Users size={22} />} label="Network" href="/network" />
-            <NavItem icon={<Briefcase size={22} />} label="Jobs" href="/job" />
-            <NavItem icon={<MessageSquare size={22} />} label="Messaging" href="/messages" />
-            <NavItem icon={<Bell size={22} />} label="Notifications" active href="/notifications" />
+            <NavItem icon={<Home size={22} />} label={t("nav.home")} href="/feed" />
+            <NavItem icon={<Users size={22} />} label={t("nav.network")} href="/network" />
+            <NavItem icon={<Briefcase size={22} />} label={t("nav.jobs")} href="/job" />
+            <NavItem icon={<MessageSquare size={22} />} label={t("nav.messaging")} href="/messages" />
+            <NavItem icon={<Bell size={22} />} label={t("nav.notifications")} active href="/notifications" />
             
             <div className="h-full border-l border-white/5 mx-2 hidden sm:block" />
-
+            <LocaleSwitcher/>
             <div className="flex flex-col items-center justify-center cursor-pointer group px-2 h-full border-b-2 border-transparent">
                <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold uppercase tracking-tighter text-white">
                  {myInitials}
                </div>
-               <span className="text-[11px] flex items-center mt-0.5 whitespace-nowrap text-slate-500 group-hover:text-white">Me <ChevronDown className="w-3 h-3 ml-0.5" /></span>
+               <span className="text-[11px] flex items-center mt-0.5 whitespace-nowrap text-slate-500 group-hover:text-white">{t("nav.me")} <ChevronDown className="w-3 h-3 ml-0.5" /></span>
             </div>
           </div>
         </div>
@@ -142,22 +145,22 @@ export default function NotificationsPage() {
               <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full mx-auto mb-3 flex items-center justify-center font-black text-white shadow-lg shadow-purple-500/20">
                 {myInitials}
               </div>
-              <h3 className="font-bold text-sm text-white">Alert Controls</h3>
-              <p className="text-[11px] text-slate-500 mt-1 mb-4 leading-relaxed">Customize your neural transmission stream.</p>
+              <h3 className="font-bold text-sm text-white">{t("sidebar.alertControls")}</h3>
+              <p className="text-[11px] text-slate-500 mt-1 mb-4 leading-relaxed">{t("sidebar.alertSubtitle")}</p>
               <button className="flex items-center justify-center gap-2 w-full py-2 bg-purple-600/10 border border-purple-500/20 text-purple-400 rounded-lg text-xs font-bold hover:bg-purple-600/20 transition-all">
-                <Settings size={14} /> Preferences
+                <Settings size={14} /> {t("sidebar.preferences")}
               </button>
            </div>
            
            <nav className="space-y-1">
-              <SidebarLink label="All Streams" active={activeTab === "All"} onClick={() => setActiveTab("All")} />
-              <SidebarLink label="Unread Flux" active={activeTab === "Unread"} onClick={() => setActiveTab("Unread")} />
-              <SidebarLink label="Neural Mentions" active={activeTab === "Mentions"} onClick={() => setActiveTab("Mentions")} />
+              <SidebarLink label={t("sidebar.allStreams")} active={activeTab === "All"} onClick={() => setActiveTab("All")} />
+              <SidebarLink label={t("sidebar.unreadFlux")} active={activeTab === "Unread"} onClick={() => setActiveTab("Unread")} />
+              <SidebarLink label={t("sidebar.neuralMentions")} active={activeTab === "Mentions"} onClick={() => setActiveTab("Mentions")} />
            </nav>
 
            <div className="mt-auto pt-6 text-center opacity-30">
               <Sparkles size={24} className="mx-auto text-purple-400 mb-2" />
-              <p className="text-[9px] uppercase font-black tracking-[0.3em] text-slate-400">Aether Core v4.0</p>
+              <p className="text-[9px] uppercase font-black tracking-[0.3em] text-slate-400">{t("sidebar.coreVersion")}</p>
            </div>
         </aside>
 
@@ -165,8 +168,8 @@ export default function NotificationsPage() {
            <div className="max-w-xl mx-auto">
               <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/5">
                  <div>
-                    <h2 className="text-2xl font-bold text-white tracking-tight">Transmissions</h2>
-                    <p className="text-xs text-slate-500 mt-1 font-medium">Real-time pulses from your neural network.</p>
+                    <h2 className="text-2xl font-bold text-white tracking-tight">{t("main.title")}</h2>
+                    <p className="text-xs text-slate-500 mt-1 font-medium">{t("main.subtitle")}</p>
                  </div>
                  <div className="flex items-center gap-4">
                     {/* Show Mark read button only if there is at least one unread notification */}
@@ -176,7 +179,7 @@ export default function NotificationsPage() {
                         className="text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1.5"
                       >
                         <CheckCircle2 size={14} />
-                        Mark read
+                        {t("main.markRead")}
                       </button>
                     )}
                  </div>
@@ -186,15 +189,15 @@ export default function NotificationsPage() {
                  {isLoading ? (
                    <div className="flex flex-col items-center justify-center py-20 gap-4">
                       <div className="w-10 h-10 border-2 border-purple-500 border-t-transparent rounded-full animate-spin shadow-lg shadow-purple-500/20" />
-                      <p className="text-xs font-bold text-slate-600 uppercase tracking-widest animate-pulse">Syncing...</p>
+                      <p className="text-xs font-bold text-slate-600 uppercase tracking-widest animate-pulse">{t("main.syncing")}</p>
                    </div>
                  ) : notifications.length === 0 ? (
                    // Empty state  no notifications
                    <div className="bg-[#15161a] border border-white/5 rounded-3xl p-16 text-center shadow-2xl relative overflow-hidden group">
                       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                       <Sparkles size={56} className="mx-auto mb-6 text-purple-500/20 group-hover:scale-110 transition-transform duration-500" />
-                      <h4 className="text-lg font-bold text-slate-400 mb-2">The void is silent</h4>
-                      <p className="text-sm text-slate-600 max-w-[240px] mx-auto leading-relaxed italic">No new transmissions detected in this coordinate of the Aether.</p>
+                      <h4 className="text-lg font-bold text-slate-400 mb-2">{t("empty.title")}</h4>
+                      <p className="text-sm text-slate-600 max-w-[240px] mx-auto leading-relaxed italic">{t("empty.message")}</p>
                    </div>
                  ) : (
                    // Render each notification
@@ -216,7 +219,7 @@ export default function NotificationsPage() {
                       <Sparkles size={20} className="text-purple-400" />
                       <div className="h-px w-12 bg-white/10" />
                    </div>
-                   <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">Sequence Terminated</p>
+                   <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">{t("main.sequenceTerminated")}</p>
                 </div>
               )}
            </div>
@@ -224,14 +227,14 @@ export default function NotificationsPage() {
 
         <aside className="w-[300px] border-l border-white/5 hidden xl:flex flex-col shrink-0 bg-[#0a0a0c] p-6 space-y-6">
            <div className="bg-gradient-to-br from-[#1a1b21] to-[#15161a] rounded-2xl border border-white/5 p-5 shadow-xl">
-              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Neural Trends</h3>
+              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">{t("rightSidebar.neuralTrends")}</h3>
               <div className="space-y-4">
                  <TrendItem label="#QuantumComputing" count="2.4k" />
                  <TrendItem label="#AetherDesign" count="1.1k" />
                  <TrendItem label="#NeuralArt" count="940" />
               </div>
               <button className="w-full mt-6 py-2 text-[11px] font-bold text-slate-500 hover:text-white transition-colors border-t border-white/5 pt-4">
-                 View sector insights
+                 {t("rightSidebar.viewInsights")}
               </button>
            </div>
 
@@ -239,10 +242,10 @@ export default function NotificationsPage() {
               <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-30 transition-opacity">
                  <ShoppingBag size={48} />
               </div>
-              <h3 className="text-sm font-bold text-white mb-2 relative z-10">Job flux detected</h3>
-              <p className="text-[11px] text-slate-400 leading-relaxed mb-4 relative z-10">Neural matching has identified 4 new high-priority ventures in your sector.</p>
+              <h3 className="text-sm font-bold text-white mb-2 relative z-10">{t("rightSidebar.jobFluxTitle")}</h3>
+              <p className="text-[11px] text-slate-400 leading-relaxed mb-4 relative z-10">{t("rightSidebar.jobFluxMessage")}</p>
               <Link href="/job" className="block text-center py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-xs font-bold text-white shadow-lg shadow-purple-900/20 active:scale-95 transition-all">
-                Explore Ventures
+                {t("rightSidebar.exploreVentures")}
               </Link>
            </div>
         </aside>
@@ -288,16 +291,18 @@ function SidebarLink({ label, active, onClick }: any) {
 
 // A trending topic item in the right sidebar
 function TrendItem({ label, count }: any) {
+  const t = useTranslations("notifications");
   return (
     <div className="group cursor-pointer">
        <h4 className="text-[13px] font-bold text-slate-300 group-hover:text-purple-400 transition-colors">{label}</h4>
-       <p className="text-[10px] text-slate-600 font-medium">{count} visionaries discussing</p>
+       <p className="text-[10px] text-slate-600 font-medium">{count} {t("trendItem.visionariesDiscussing")}</p>
     </div>
   );
 }
 
 // A single notification card  shows icon, title, message, time, and hover actions
 function NotificationItem({ notif, onRead, onDelete }: any) {
+  const t = useTranslations("notifications");
   // Map notification type to a specific icon
   const getIcon = (type: string) => {
     switch (type) {
@@ -327,15 +332,15 @@ function NotificationItem({ notif, onRead, onDelete }: any) {
                <Calendar size={10} />
                {new Date(notif.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
              </span>
-             {!notif.isRead && <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 shadow-purple-500/20">Active Pulse</span>}
+             {!notif.isRead && <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 shadow-purple-500/20">{t("notification.activePulse")}</span>}
           </div>
        </div>
 
        <div className="absolute top-1/2 -translate-y-1/2 right-4 flex flex-col gap-3 opacity-0 group-hover:opacity-100 transition-all translate-x-4 group-hover:translate-x-0 duration-300">
-          <button onClick={onRead} title="Mark as read" className="p-2.5 bg-[#0a0a0c] hover:bg-green-500/10 rounded-xl text-slate-600 hover:text-green-400 transition-all border border-white/5 active:scale-90 shadow-lg">
+          <button onClick={onRead} title={t("notification.markAsRead")} className="p-2.5 bg-[#0a0a0c] hover:bg-green-500/10 rounded-xl text-slate-600 hover:text-green-400 transition-all border border-white/5 active:scale-90 shadow-lg">
             <CheckCircle2 size={16} />
           </button>
-          <button onClick={onDelete} title="Delete notification" className="p-2.5 bg-[#0a0a0c] hover:bg-red-500/10 rounded-xl text-slate-600 hover:text-red-400 transition-all border border-white/5 active:scale-90 shadow-lg">
+          <button onClick={onDelete} title={t("notification.delete")} className="p-2.5 bg-[#0a0a0c] hover:bg-red-500/10 rounded-xl text-slate-600 hover:text-red-400 transition-all border border-white/5 active:scale-90 shadow-lg">
             <Trash2 size={16} />
           </button>
        </div>

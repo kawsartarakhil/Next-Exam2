@@ -25,6 +25,8 @@ import {
 } from 'lucide-react';
 import { useAuthStore } from "@/src/authStore/page";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import LocaleSwitcher from "@/src/components/localeSwitcher";
 
 // Helper to fetch a user's profile by userId – used in pending requests, suggestions, and connections
 const fetchProfile = async (userId: number, token: string) => {
@@ -42,6 +44,7 @@ const fetchProfile = async (userId: number, token: string) => {
 };
 
 export default function NetworkPage() {
+  const t = useTranslations("network");
   const { token, user: authUser } = useAuthStore();
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -185,26 +188,26 @@ export default function NetworkPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-purple-400 transition-colors" />
               <input 
                 type="text" 
-                placeholder="Search Aether" 
+                placeholder={t("nav.searchPlaceholder")} 
                 className="bg-[#1f2029] rounded w-64 h-8 pl-10 pr-4 text-sm focus:w-80 transition-all outline-none border border-transparent focus:border-purple-500/30 font-medium text-slate-200"
               />
             </div>
           </div>
 
           <div className="flex items-center gap-1 sm:gap-6 h-full text-slate-500">
-            <NavItem icon={<Home size={22} />} label="Home" href="/feed" />
-            <NavItem icon={<Users size={22} />} label="Network" active href="/network" />
-            <NavItem icon={<Briefcase size={22} />} label="Jobs" />
-            <NavItem icon={<MessageSquare size={22} />} label="Messaging" href="/messages" />
-            <NavItem icon={<Bell size={22} />} label="Notifications" />
+            <NavItem icon={<Home size={22} />} label={t("nav.home")} href="/feed" />
+            <NavItem icon={<Users size={22} />} label={t("nav.network")} active href="/network" />
+            <NavItem icon={<Briefcase size={22} />} label={t("nav.jobs")} href="/job" />
+            <NavItem icon={<MessageSquare size={22} />} label={t("nav.messaging")} href="/messages" />
+            <NavItem icon={<Bell size={22} />} label={t("nav.notifications")} href="/notifications" />
             
             <div className="h-full border-l border-white/5 mx-2 hidden sm:block" />
-
+<LocaleSwitcher/>
             <div className="flex flex-col items-center justify-center cursor-pointer group px-2 h-full border-b-2 border-transparent">
               <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold uppercase tracking-tighter text-white">
                 {myInitials}
               </div>
-              <span className="text-[11px] flex items-center mt-0.5 whitespace-nowrap text-slate-500 group-hover:text-white">Me <ChevronDown className="w-3 h-3 ml-0.5" /></span>
+              <span className="text-[11px] flex items-center mt-0.5 whitespace-nowrap text-slate-500 group-hover:text-white">{t("nav.me")} <ChevronDown className="w-3 h-3 ml-0.5" /></span>
             </div>
           </div>
         </div>
@@ -214,24 +217,24 @@ export default function NetworkPage() {
         
         <aside className="w-[300px] border-r border-white/5 hidden lg:flex flex-col shrink-0 bg-[#15161a]">
           <div className="p-4 border-b border-white/5 font-bold">
-            Manage my network
+            {t("sidebar.manageNetwork")}
           </div>
           <div className="flex-1 overflow-y-auto custom-scrollbar">
-            <SidebarItem icon={<Users size={18} />} label="Connections" count={myConnections.length} />
-            <SidebarItem icon={<Mail size={18} />} label="Pending" count={pendingRequests.length} />
-            <SidebarItem icon={<User size={18} />} label="Following" count={0} />
-            <SidebarItem icon={<Briefcase size={18} />} label="Pages" count={0} />
+            <SidebarItem icon={<Users size={18} />} label={t("sidebar.connections")} count={myConnections.length} />
+            <SidebarItem icon={<Mail size={18} />} label={t("sidebar.pending")} count={pendingRequests.length} />
+            <SidebarItem icon={<User size={18} />} label={t("sidebar.following")} count={0} />
+            <SidebarItem icon={<Briefcase size={18} />} label={t("sidebar.pages")} count={0} />
             <div className="p-6">
               <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-xl p-4 border border-purple-500/20">
-                <p className="text-xs text-slate-400 leading-relaxed italic">"The void is vast, but our network is the bridge."</p>
+                <p className="text-xs text-slate-400 leading-relaxed italic">{t("sidebar.quote")}</p>
               </div>
             </div>
           </div>
           <div className="p-4 border-t border-white/5 text-[11px] text-slate-600 flex flex-wrap gap-x-3 gap-y-1">
-            <a href="#" className="hover:text-purple-400">About</a>
-            <a href="#" className="hover:text-purple-400">Privacy</a>
-            <a href="#" className="hover:text-purple-400">Terms</a>
-            <span className="w-full mt-2">Aether Corp © 2026</span>
+            <a href="#" className="hover:text-purple-400">{t("footer.about")}</a>
+            <a href="#" className="hover:text-purple-400">{t("footer.privacy")}</a>
+            <a href="#" className="hover:text-purple-400">{t("footer.terms")}</a>
+            <span className="w-full mt-2">{t("footer.copyright")}</span>
           </div>
         </aside>
 
@@ -242,8 +245,8 @@ export default function NetworkPage() {
             {pendingRequests.length > 0 && (
               <div className="bg-[#15161a] border border-white/5 rounded-xl overflow-hidden shadow-xl">
                 <div className="p-4 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
-                  <h3 className="font-bold">Pending Invitations</h3>
-                  <button className="text-xs font-bold text-slate-500 hover:text-purple-400 transition-colors">Manage</button>
+                  <h3 className="font-bold">{t("pending.title")}</h3>
+                  <button className="text-xs font-bold text-slate-500 hover:text-purple-400 transition-colors">{t("pending.manage")}</button>
                 </div>
                 <div className="divide-y divide-white/5">
                   {pendingRequests.map((req: any) => (
@@ -263,8 +266,8 @@ export default function NetworkPage() {
             <div className="bg-[#15161a] border border-white/5 rounded-xl shadow-xl p-6">
               <div className="flex justify-between items-end mb-6">
                 <div>
-                  <h2 className="text-xl font-bold">Discover new visionaries</h2>
-                  <p className="text-xs text-slate-500 mt-1">Based on your shared mission in the Aether void.</p>
+                  <h2 className="text-xl font-bold">{t("discover.title")}</h2>
+                  <p className="text-xs text-slate-500 mt-1">{t("discover.subtitle")}</p>
                 </div>
                 <div className="relative group w-64 hidden sm:block">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-600" />
@@ -272,7 +275,7 @@ export default function NetworkPage() {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search members..."
+                    placeholder={t("discover.searchPlaceholder")}
                     className="w-full bg-[#1f2029] rounded-lg pl-9 pr-4 py-1.5 text-xs outline-none focus:ring-1 ring-purple-500/30 transition-all"
                   />
                 </div>
@@ -289,7 +292,7 @@ export default function NetworkPage() {
                 ))}
                 {paginatedSuggestions.length === 0 && (
                   <div className="col-span-full py-12 text-center text-slate-600 italic">
-                    No new members found in the immediate sector.
+                    {t("discover.empty")}
                   </div>
                 )}
               </div>
@@ -297,7 +300,7 @@ export default function NetworkPage() {
 
             <div className="bg-[#15161a] border border-white/5 rounded-xl shadow-xl p-6">
               <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                Your Flux Connections
+                {t("connections.title")}
                 <span className="text-xs bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full">{myConnections.length}</span>
               </h2>
               <div className="divide-y divide-white/5">
@@ -312,7 +315,7 @@ export default function NetworkPage() {
                 ))}
                 {myConnections.length === 0 && (
                   <div className="py-8 text-center text-slate-500">
-                    You haven't established any neural links yet.
+                    {t("connections.empty")}
                   </div>
                 )}
               </div>
@@ -324,21 +327,21 @@ export default function NetworkPage() {
                 onClick={() => setPage((p) => Math.max(p - 1, 1))}
                 className="px-3 py-1 rounded bg-white/5 disabled:opacity-30"
               >
-                Prev
+                {t("pagination.prev")}
               </button>
-              <span className="text-slate-500">Page {page} / {totalPages || 1}</span>
+              <span className="text-slate-500">{t("pagination.page", { page, total: totalPages || 1 })}</span>
               <button
                 disabled={page === totalPages || totalPages === 0}
                 onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
                 className="px-3 py-1 rounded bg-white/5 disabled:opacity-30"
               >
-                Next
+                {t("pagination.next")}
               </button>
             </div>
 
             <div className="flex flex-col items-center justify-center py-10 opacity-30">
               <Sparkles size={24} className="text-purple-400 mb-2" />
-              <p className="text-[10px] font-black uppercase tracking-[0.3em]">Network Frontier Reached</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em]">{t("footer.frontier")}</p>
             </div>
           </div>
         </main>
@@ -385,6 +388,7 @@ function SidebarItem({ icon, label, count }: any) {
 
 // A pending connection request card shows who wants to connect
 function PendingRequestItem({ request, token, myId, onAccept, onReject }: any) {
+  const t = useTranslations("network");
   // Determine the other user the one who sent the request if it's incoming, or the addressee if we sent it
   const otherUserId = request.requesterId === myId ? request.addresseeId : request.requesterId;
   const { data: profile } = useQuery({
@@ -394,7 +398,7 @@ function PendingRequestItem({ request, token, myId, onAccept, onReject }: any) {
   });
 
   const name = profile ? `${profile.firstName} ${profile.lastName}` : "User";
-  const headline = profile?.headline || "Aether Network Member";
+  const headline = profile?.headline || t("pending.defaultHeadline");
   const avatar = profile?.photoUrl ? (profile.photoUrl.startsWith('http') ? profile.photoUrl : `/uploads/${profile.photoUrl}`) : null;
 
   return (
@@ -413,13 +417,13 @@ function PendingRequestItem({ request, token, myId, onAccept, onReject }: any) {
           <Link href={`/profile?id=${otherUserId}`} className="text-sm font-bold hover:text-purple-400 hover:underline transition-colors block truncate">{name}</Link>
           <p className="text-[11px] text-slate-500 truncate">{headline}</p>
           <div className="flex items-center gap-1 mt-1 text-[10px] text-purple-400/60 font-bold uppercase tracking-wider">
-            <Sparkles size={10} /> Neural Match High
+            <Sparkles size={10} /> {t("pending.matchBadge")}
           </div>
         </div>
       </div>
       <div className="flex items-center gap-2">
-        <button onClick={onReject} className="px-4 py-1.5 text-xs font-bold text-slate-500 hover:text-white rounded-lg transition-colors">Ignore</button>
-        <button onClick={onAccept} className="px-6 py-1.5 text-xs font-bold bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-all shadow-lg shadow-purple-500/20 active:scale-95">Accept</button>
+        <button onClick={onReject} className="px-4 py-1.5 text-xs font-bold text-slate-500 hover:text-white rounded-lg transition-colors">{t("pending.ignore")}</button>
+        <button onClick={onAccept} className="px-6 py-1.5 text-xs font-bold bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-all shadow-lg shadow-purple-500/20 active:scale-95">{t("pending.accept")}</button>
       </div>
     </div>
   );
@@ -427,6 +431,7 @@ function PendingRequestItem({ request, token, myId, onAccept, onReject }: any) {
 
 // Suggestion card for Discover new visionaries grid
 function SuggestionCard({ user, token, onConnect }: any) {
+  const t = useTranslations("network");
   const [connecting, setConnecting] = useState(false);
   const { data: profile } = useQuery({
     queryKey: ["profile", user.id],
@@ -434,8 +439,8 @@ function SuggestionCard({ user, token, onConnect }: any) {
     enabled: !!user.id && !!token,
   });
 
-  const name = user.fullName || "Member";
-  const headline = profile?.headline || "Network Visionary";
+  const name = user.fullName || t("suggestion.defaultName");
+  const headline = profile?.headline || t("suggestion.defaultHeadline");
   const avatar = profile?.photoUrl ? (profile.photoUrl.startsWith('http') ? profile.photoUrl : `/uploads/${profile.photoUrl}`) : null;
 
   const handleConnect = () => {
@@ -464,9 +469,9 @@ function SuggestionCard({ user, token, onConnect }: any) {
         className="w-full py-1.5 border border-purple-500/50 text-purple-400 hover:bg-purple-500 hover:text-white rounded-full text-xs font-bold transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {connecting ? (
-          <><div className="w-3 h-3 border border-purple-400 border-t-transparent rounded-full animate-spin" /> Connecting...</>
+          <><div className="w-3 h-3 border border-purple-400 border-t-transparent rounded-full animate-spin" /> {t("suggestion.connecting")}</>
         ) : (
-          <><UserPlus size={14} /> Connect</>
+          <><UserPlus size={14} /> {t("suggestion.connect")}</>
         )}
       </button>
     </div>
@@ -475,6 +480,7 @@ function SuggestionCard({ user, token, onConnect }: any) {
 
 // A single connection row in the "Your Flux Connections" list
 function ConnectionRow({ connection, myId, token, onRemove }: any) {
+  const t = useTranslations("network");
   const otherUserId = connection.requesterId === myId ? connection.addresseeId : connection.requesterId;
   const { data: profile } = useQuery({
     queryKey: ["profile", otherUserId],
@@ -483,7 +489,7 @@ function ConnectionRow({ connection, myId, token, onRemove }: any) {
   });
 
   const name = profile ? `${profile.firstName} ${profile.lastName}` : "User";
-  const headline = profile?.headline || "Aether Network Member";
+  const headline = profile?.headline || t("connection.defaultHeadline");
   const avatar = profile?.photoUrl ? (profile.photoUrl.startsWith('http') ? profile.photoUrl : `/uploads/${profile.photoUrl}`) : null;
 
   return (

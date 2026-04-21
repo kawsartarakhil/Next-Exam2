@@ -39,5 +39,555 @@
     "footerBrand": "Aether",
     "footerTagline": "ОЯНДАИ ПАЙВАСТИ КАСБӢ",
     "footerRights": "© 2026 Aether. Ҳама ҳуқуқ маҳфуз аст."
+  },
+  "auth": {
+  "brand": "Aether",
+  "tagline": "ОЯНДАИ ПАЙВАСТИ КАСБӢ",
+  "tabSignIn": "Ворид шавед",
+  "tabRegister": "Сабти ном",
+  "welcomeBack": "Хуш омадед",
+  "welcomeSub": "Маълумоти худро барои дастрасӣ ба маркази касбии худ ворид кунед.",
+  "createAccount": "Ҳисоби худро эҷод кунед",
+  "createSub": "Ба ояндаи шабакасозии касбӣ ҳамроҳ шавед.",
+  "emailLabel": "СУРОҒАИ ПОЧТАИ ЭЛЕКТРОНӢ",
+  "emailPlaceholder": "name@company.com",
+  "passwordLabel": "РАМЗ",
+  "forgotPassword": "РАМЗРО ФАРОМӮШ КАРДЕД?",
+  "signInBtn": "ВОРИД ШАВЕД БА AETHER",
+  "signingIn": "ВУРУД...",
+  "orContinueWith": "ЁН БО ИСТИФОДА АЗ",
+  "google": "Google",
+  "appleId": "Apple ID",
+  "github": "GitHub",
+  "noAccount": "Ҳисоб надоред?",
+  "alreadyAccount": "Аллакай ҳисоб доред?",
+  "fullNameLabel": "НОМИ ПУРРА",
+  "fullNamePlaceholder": "Алӣ Назаров",
+  "phoneLabel": "РАҚАМИ ТЕЛЕФОН",
+  "phonePlaceholder": "+992...",
+  "passwordPlaceholder": "рамз",
+  "confirmPasswordLabel": "РАМЗРО ТАСДИҚ КУНЕД",
+  "confirmPasswordPlaceholder": "рамзро тасдиқ кунед",
+  "roleCandidate": "Номзад",
+  "roleOrganization": "Ташкилот",
+  "createBtn": "ЭҶОД КАРДАНИ ҲИСОБ",
+  "creating": "ЭҶОД МЕШАВАД..."
+},
+  "feed": {
+    "nav": {
+      "home": "Хона",
+      "network": "Шабака",
+      "jobs": "Ҷойҳои корӣ",
+      "messaging": "Паёмҳо",
+      "notifications": "Огоҳиҳо",
+      "me": "Ман",
+      "logout": "Бароид",
+      "searchPlaceholder": "Ҷустуҷӯ дар Aether"
+    },
+    "sidebar": {
+      "profileViewers": "Бинандагони профил",
+      "postAnalytics": "Таҳлили нашрияҳо",
+      "premiumLabel": "Воситаҳо ва маслиҳатҳои истисноӣ",
+      "premiumButton": "Aether Premium-ро санҷед",
+      "groups": "Гурӯҳҳо",
+      "events": "Рӯйдодҳо",
+      "hashtags": "Ҳештэгҳои пайгирӣ",
+      "discoverMore": "Маълумоти бештар"
+    },
+    "postComposer": {
+      "startPost": "Нашрия оғоз кунед",
+      "photo": "Акс",
+      "video": "Видео",
+      "event": "Рӯйдод",
+      "article": "Мақола",
+      "insightPlaceholder": "Охирин андешаи шумо чист?",
+      "clear": "Тоза кунед",
+      "post": "Нашр кунед",
+      "posting": "Нашр мешавад..."
+    },
+    "rightSidebar": {
+      "addToFeed": "Ба лента илова кунед",
+      "viewAll": "Ҳама тавсияҳо",
+      "trendingTopics": "Мавзӯъҳои рӯз"
+    },
+    "footer": {
+      "about": "Дар бораи мо",
+      "accessibility": "Дастрасӣ",
+      "helpCenter": "Маркази ёрӣ",
+      "privacyTerms": "Махфият ва шартҳо",
+      "copyright": "Aether Corporation © 2026"
+    },
+    "pagination": {
+      "prev": "Қаблӣ",
+      "next": "Баъдӣ"
+    },
+    "postCard": {
+      "expertContributor": "Коршинос дар Aether Network",
+      "reactions": "вокунишҳо",
+      "comments": "шарҳҳо",
+      "reposts": "репостҳо",
+      "like": "Писанд",
+      "comment": "Шарҳ диҳед",
+      "repost": "Репост",
+      "send": "Фиристодан",
+      "me": "Ман",
+      "commentPlaceholder": "Шарҳ илова кунед..."
+    },
+    "suggestedItem": {
+      "follow": "Пайгирӣ кунед"
+    },
+    "alt": {
+      "profilePicture": "Профил",
+      "imagePreview": "пешнамоиш",
+      "postImage": "тасвир"
+    },
+    "common": {
+      "loading": "..."
+    }
+  },
+  "jobs": {
+    "nav": {
+      "home": "Хона",
+      "network": "Шабака",
+      "jobs": "Ҷойҳои корӣ",
+      "messaging": "Паёмҳо",
+      "notifications": "Огоҳиҳо",
+      "me": "Ман",
+      "logout": "Бароид",
+      "searchPlaceholder": "Имкониятҳоро ҷустуҷӯ кунед..."
+    },
+    "stats": {
+      "activeOrganizations": "Ташкилотҳои фаъол",
+      "availablePositions": "Ҷойҳои дастрас",
+      "talentedSpecialists": "Мутахассисони боистеъдод",
+      "networkGrowth": "Афзоиши шабака"
+    },
+    "hero": {
+      "badge": "Муҳаррики кашф",
+      "titleLine1": "Беҳтарин ҷойҳоро кашф кунед",
+      "titleLine2": "дар",
+      "titleGradient": "Экосистемаи Aether",
+      "subtitle": "Бо ташкилотҳои инноватсионии Aether пайваст шавед ва интиқоли касбии орзуи худро дар шабакаи нейронӣ кашф кунед.",
+      "searchPlaceholder": "Номҳои ширкатҳо ё соҳаҳо...",
+      "exploreButton": "Омӯзед"
+    },
+    "organizations": {
+      "title": "Ташкилотҳои пешқадам",
+      "subtitle": "Қувваҳои пешбари инқилоби нейронӣ",
+      "viewAll": "Ҳамаро нишон диҳед"
+    },
+    "jobs": {
+      "title": "Интиқолҳои нейронӣ",
+      "subtitle": "Имкониятҳои нави корӣ дар экосистема пайдо мешаванд",
+      "viewAll": "Ҳама нақшҳоро дидан",
+      "emptyState": "Дар ин сектор ҳеҷ интиқоли коре ошкор нашуд."
+    },
+    "pagination": {
+      "prev": "Қаблӣ",
+      "next": "Баъдӣ"
+    },
+    "jobItem": {
+      "remote": "ДУРДАСТ",
+      "fullTime": "ПУРРА ВАҚТ",
+      "annualFlux": "Ҷараёни солона",
+      "analyzeButton": "Таҳлил кунед"
+    },
+    "organizationCard": {
+      "sector": "БАХШИ ТЕХНОЛОГИЯ",
+      "defaultLocation": "ВОДИИ СИЛИКОН",
+      "defaultDescription": "Қувваи пешқадам дар манзараи рақамӣ, ки ба пеш бурдани марзҳои нейронии технологияи Aether нигаронида шудааст.",
+      "followers": "Пайгирон",
+      "openRoles": "Нақшҳои кушода"
+    },
+    "mockOrgCard": {
+      "description": "Инфрасохтори ояндаро месозем. Мо ҷустуҷӯгарони бинишро даъват мекунем, то ба ҷустуҷӯи мо дар Aether ҳамроҳ шаванд."
+    },
+  "orgDetail": {
+    "nav": {
+      "home": "Хона",
+      "network": "Шабака",
+      "jobs": "Ҷойҳои корӣ",
+      "messaging": "Паёмҳо",
+      "notifications": "Огоҳиҳо",
+      "me": "Ман",
+      "logout": "Бароид",
+      "searchPlaceholder": "Имкониятҳоро ҷустуҷӯ кунед..."
+    },
+    "backButton": "Бозгашт ба маркази ҷойҳои корӣ",
+    "loadingMessage": "Декодирование сигнали ташкилот...",
+    "error": {
+      "title": "Сигнал гум шуд",
+      "message": "Қодир ба декодирование маълумоти ташкилот аз шабакаи Aether нест.",
+      "button": "Бозгашт ба маркази ҷойҳои корӣ"
+    },
+    "header": {
+      "global": "Глобалӣ",
+      "openPositions": "{count} ҷойи кушода"
+    },
+    "about": {
+      "title": "Дар бораи",
+      "defaultDescription": "Қувваи пешқадам дар манзараи рақамӣ, ки ба пеш бурдани марзҳои нейронии технологияи Aether нигаронида шудааст. Барои маълумоти бештар бо ташкилот тамос гиред."
+    },
+    "openPositions": {
+      "title": "Ҷойҳои кушода",
+      "empty": "Дар ин сектор ҳоло ҳеҷ ҷойи кушодае нест."
+    },
+    "jobItem": {
+      "remote": "ДУРДАСТ",
+      "fullTime": "ПУРРА ВАҚТ",
+      "annualFlux": "Ҷараёни солона"
+    },
+    "sidebar": {
+      "title": "Маълумоти ташкилот",
+      "companyName": "Номи ширкат",
+      "industry": "Соҳа",
+      "headquarters": "Маркази асосӣ",
+      "globalRemote": "Глобалӣ / Дурдаст",
+      "openPositions": "Ҷойҳои кушода",
+      "rolesSingular": "ҷой",
+      "rolesPlural": "ҷойҳо",
+      "founded": "Таъсис ёфтааст",
+      "employees": "Кормандони",
+      "contact": "Тамос",
+      "visitWebsite": "Боздид аз вебсайт"
+    }
+  },
+  "jobDetail": {
+    "nav": {
+      "home": "Хона",
+      "network": "Шабака",
+      "jobs": "Ҷойҳои корӣ",
+      "messaging": "Паёмҳо",
+      "notifications": "Огоҳиҳо",
+      "me": "Ман",
+      "logout": "Бароид",
+      "searchPlaceholder": "Имкониятҳоро ҷустуҷӯ кунед..."
+    },
+    "backButton": "Бозгашт ба ҷойҳои корӣ",
+    "loadingMessage": "Боргирии маълумоти интиқол...",
+    "error": {
+      "title": "Интиқол ноком шуд",
+      "message": "Қодир ба рамзкушоии сигнали корӣ аз шабакаи Aether нест.",
+      "button": "Бозгашт ба маркази ҷойҳои корӣ"
+    },
+    "salary": {
+      "from": "Аз",
+      "upTo": "То",
+      "competitive": "Рақобатпазир"
+    },
+    "header": {
+      "aetherNetwork": "Шабакаи Aether",
+      "remote": "Дурдаст",
+      "fullTime": "Пурра вақт"
+    },
+    "buttons": {
+      "applyNow": "Ҳозир муроҷиат кунед",
+      "save": "Захира кунед",
+      "share": "Мубодила кунед",
+      "applyForRole": "Ба ин нақш муроҷиат кунед"
+    },
+    "sections": {
+      "jobDescription": "Тавсифи ҷойи корӣ",
+      "requirements": "Талабот",
+      "responsibilities": "Масъулиятҳо",
+      "benefits": "Бартариҳо"
+    },
+    "sidebar": {
+      "detailsTitle": "Тафсилоти интиқол",
+      "salaryRange": "Диапазони маош",
+      "employmentType": "Навъи шуғл",
+      "location": "Ҷойгиршавӣ",
+      "remote": "Дурдаст",
+      "fullTime": "Пурра вақт",
+      "experienceLevel": "Сатҳи таҷриба",
+      "category": "Категория",
+      "postedOn": "Интишор шудааст",
+      "deadline": "Муҳлати ниҳоӣ",
+      "status": "Вазъият",
+      "active": "Фаъолона қабул мекунад",
+      "closed": "Пӯшида",
+      "orgTitle": "Дар бораи ташкилот",
+      "defaultIndustry": "Баxши технология",
+      "visitWebsite": "Боздид аз вебсайт"
+    },
+    "defaults": {
+      "noDescription": "Тавсифи муфассал барои ин ҷойи корӣ ҳанӯз пешниҳод нашудааст. Барои маълумоти бештар бо ташкилот тамос гиред."
+    }
+  }
+},
+"messaging": {
+    "nav": {
+      "home": "Хона",
+      "network": "Шабака",
+      "jobs": "Ҷойҳои корӣ",
+      "messaging": "Паёмҳо",
+      "notifications": "Огоҳиҳо",
+      "me": "Ман",
+      "searchPlaceholder": "Ҷустуҷӯ дар Aether"
+    },
+    "sidebar": {
+      "title": "Паёмҳо",
+      "newConversation": "Маконбадии нав",
+      "searchPlaceholder": "Ҷустуҷӯи паёмҳо",
+      "empty": "Ҳанӯз муколамае нест. Бо касе аз шабака пайваст шавед!",
+      "noResults": "Барои \"{query}\" муколамае пайдо нашуд"
+    },
+    "newConv": {
+      "title": "Паёми нав",
+      "searchPlaceholder": "Ҷустуҷӯ бо ном ё почта…",
+      "minChars": "Барои ҷустуҷӯ ҳадди ақал 2 рамз ворид кунед",
+      "noUsers": "Барои \"{search}\" корбаре пайдо нашуд",
+      "start": "Оғози муколама",
+      "starting": "Оғоз мекунад…",
+      "error": "Муколама оғоз нашуд. Боз кӯшиш кунед."
+    },
+    "chat": {
+      "empty": "Ҳанӯз паёме нест. «Салом» бигӯед!",
+      "defaultHeadline": "Узви шабакаи Aether",
+      "videoCall": "Замони видеоиро",
+      "voiceCall": "Замони садоӣ",
+      "info": "Маълумоти муколама"
+    },
+    "composer": {
+      "placeholder": "Паём нависед… (Enter – фиристодан, Shift+Enter – сатри нав)",
+      "attachFile": "Замима кардани файл",
+      "attachImage": "Замима кардани тасвир",
+      "emoji": "Эмодзи"
+    },
+    "emptyState": {
+      "title": "Интиқолеро барои оғоз интихоб кунед",
+      "description": "Яке аз муколамаҳои фаъоли худро аз панели канорӣ интихоб кунед ё",
+      "startNew": "навро оғоз кунед"
+    },
+    "rightSidebar": {
+      "title": "Маълумоти ҷомеа",
+      "description": "Бинед, ки кадом пайвандҳо инчунин Aether Messaging Pro-ро истифода мекунанд.",
+      "tryFree": "Ройгон санҷед"
+    },
+    "footer": {
+      "about": "Дар бораи мо",
+      "helpCenter": "Маркази ёрӣ",
+      "privacy": "Махфият",
+      "copyright": "Aether Corporation © 2026"
+    },
+    "conversation": {
+      "noMessages": "Ҳанӯз паёме нест."
+    },
+    "sendError": "Паём фиристода нашуд. Лутфан боз кӯшиш кунед.",
+    "fileTooLarge": "Файл хеле калон аст. Ҳадди аксар 10 МБ.",
+    "comingSoon": "Занги видеоӣ ба зудӣ дастрас хоҳад шуд."
+  },
+   "network": {
+    "nav": {
+      "home": "Хона",
+      "network": "Шабака",
+      "jobs": "Ҷойҳои корӣ",
+      "messaging": "Паёмҳо",
+      "notifications": "Огоҳиҳо",
+      "me": "Ман",
+      "searchPlaceholder": "Ҷустуҷӯ дар Aether"
+    },
+    "sidebar": {
+      "manageNetwork": "Идоракунии шабакаи ман",
+      "connections": "Пайвастҳо",
+      "pending": "Дар интизорӣ",
+      "following": "Пайгирӣ",
+      "pages": "Саҳифаҳо",
+      "quote": "\"Фазои торик бузург аст, аммо шабакаи мо пул мебошад.\""
+    },
+    "pending": {
+      "title": "Даъватномаҳои дар интизорӣ",
+      "manage": "Идоракунӣ",
+      "ignore": "Нодида гирифтан",
+      "accept": "Қабул кардан",
+      "defaultHeadline": "Узви шабакаи Aether",
+      "matchBadge": "Мутобиқати баланди нейронӣ"
+    },
+    "discover": {
+      "title": "Бинандагоро кашф кунед",
+      "subtitle": "Дар асоси миссияи муштараки шумо дар фазои Aether.",
+      "searchPlaceholder": "Ҷустуҷӯи аъзоён...",
+      "empty": "Дар ин сектор аъзои нав пайдо нашуд."
+    },
+    "connections": {
+      "title": "Пайвастҳои ҷараёни шумо",
+      "empty": "Шумо ҳанӯз ҳеҷ пайванди нейронии барқарор накардаед."
+    },
+    "pagination": {
+      "prev": "Қаблӣ",
+      "next": "Баъдӣ",
+      "page": "Саҳифаи {page} аз {total}"
+    },
+    "suggestion": {
+      "defaultName": "Узв",
+      "defaultHeadline": "Бинандаи шабака",
+      "connect": "Пайваст шавед",
+      "connecting": "Пайвастшавӣ..."
+    },
+    "connection": {
+      "defaultHeadline": "Узви шабакаи Aether"
+    },
+    "footer": {
+      "about": "Дар бораи мо",
+      "privacy": "Махфият",
+      "terms": "Шартҳо",
+      "copyright": "Aether Corp © 2026",
+      "frontier": "Сари шабака расид"
+    }
+  },
+  "notifications": {
+    "nav": {
+      "home": "Хона",
+      "network": "Шабака",
+      "jobs": "Ҷойҳои корӣ",
+      "messaging": "Паёмҳо",
+      "notifications": "Огоҳиҳо",
+      "me": "Ман",
+      "searchPlaceholder": "Ҷустуҷӯ дар Aether"
+    },
+    "sidebar": {
+      "alertControls": "Идоракунии огоҳиҳо",
+      "alertSubtitle": "Ҷараёни интиқоли нейронии худро танзим кунед.",
+      "preferences": "Афзалиятҳо",
+      "allStreams": "Ҳама ҷараёнҳо",
+      "unreadFlux": "Ҷараёни хонданашуда",
+      "neuralMentions": "Зикрҳои нейронӣ",
+      "coreVersion": "Aether Core v4.0"
+    },
+    "main": {
+      "title": "Интиқолҳо",
+      "subtitle": "Импулсҳои воқеӣ аз шабакаи нейронии шумо.",
+      "markRead": "Ҳамчун хондашуда қайд кунед",
+      "syncing": "Ҳамоҳангсозӣ...",
+      "sequenceTerminated": "Пайдарпаӣ қатъ шуд"
+    },
+    "empty": {
+      "title": "Фазои торик хомӯш аст",
+      "message": "Дар ин координатаи Aether ҳеҷ интиқоли наве ошкор нашуд."
+    },
+    "rightSidebar": {
+      "neuralTrends": "Трендҳои нейронӣ",
+      "viewInsights": "Таҳлили секторро бинед",
+      "jobFluxTitle": "Ҷараёни корӣ ошкор шуд",
+      "jobFluxMessage": "Мутобиқсозии нейронӣ 4 лоиҳаи нави афзалиятноки баландро дар сектори шумо муайян кард.",
+      "exploreVentures": "Лоиҳаҳоро омӯзед"
+    },
+    "trendItem": {
+      "visionariesDiscussing": "бинандагон муҳокима мекунанд"
+    },
+    "notification": {
+      "activePulse": "Импулси фаъол",
+      "markAsRead": "Ҳамчун хондашуда қайд кунед",
+      "delete": "Нест кардани огоҳӣ"
+    }
+  },
+   "profile": {
+    "nav": {
+      "home": "Хона",
+      "network": "Шабака",
+      "jobs": "Ҷойҳои корӣ",
+      "messaging": "Паёмҳо",
+      "notifications": "Огоҳиҳо",
+      "me": "Ман",
+      "searchPlaceholder": "Ҷустуҷӯ дар Aether"
+    },
+    "defaults": {
+      "headline": "Узви касбӣ | Шабакаи Aether",
+      "location": "Водии Силикон, Калифорния"
+    },
+    "header": {
+      "proBadge": "PRO",
+      "contactInfo": "Маълумоти тамос",
+      "connections": "{count} пайваст",
+      "aetherNetwork": "Шабакаи Aether",
+      "openTo": "Ошкор ба",
+      "addSection": "Иловаи бахш",
+      "more": "Бештар"
+    },
+    "suggested": {
+      "title": "Барои шумо пешниҳод шудааст",
+      "privateBadge": "Танҳо барои шумо",
+      "intermediate": "Миёна",
+      "summaryTitle": "Барои таъкид кардани шахсият ё таҷрибаи кории худ хулоса нависед",
+      "summaryDescription": "Узвоне, ки хулоса доранд, то 3,9 маротиба бештар дидани профилро мегиранд.",
+      "addSummary": "Иловаи хулоса"
+    },
+    "analytics": {
+      "title": "Таҳлил",
+      "privateBadge": "Танҳо барои шумо",
+      "profileViews": "дидани профил",
+      "trend90days": "90 рӯзи охир",
+      "postImpressions": "таассуроти нашрия",
+      "trend7days": "7 рӯзи охир",
+      "searchAppearances": "пайдошавӣ дар ҷустуҷӯ",
+      "trendThisWeek": "Дар ин ҳафта"
+    },
+    "about": {
+      "title": "Дар бораи ман",
+      "default": "Дар бахши 'Дар бораи ман' ҳеҷ сабти интиқоли нейронӣ пайдо нашуд."
+    },
+    "activity": {
+      "title": "Фаъолият",
+      "followers": "{count} пайгир",
+      "createPost": "Нашрия эҷод кунед",
+      "postsTab": "Нашрияҳо",
+      "imagesTab": "Тасвирҳо",
+      "postedThis": "инро нашр кард",
+      "likes": "Писанд",
+      "comments": "Шарҳҳо",
+      "empty": "Интизори аввалин интиқоли шумо...",
+      "showAll": "Ҳамаи фаъолиятро нишон диҳед"
+    },
+    "experience": {
+      "title": "Таҷрибаи корӣ",
+      "present": "Ҳозир",
+      "empty": "Ҳеҷ сабти ҷараёни касбӣ ошкор нашуд."
+    },
+    "education": {
+      "title": "Маълумот",
+      "empty": "Дар журналҳои нейронӣ ҳеҷ таърихи академӣ вуҷуд надорад."
+    },
+    "skills": {
+      "title": "Маҳоратҳо",
+      "demonstrate": "Намоиши маҳоратҳо",
+      "empty": "Бо илова кардани маҳоратҳои нейронӣ профили худро беҳтар кунед.",
+      "showAll": "Ҳамаи {count} маҳоратҳоро нишон диҳед",
+      "endorsements": "тавсияҳо"
+    },
+    "languages": {
+      "title": "Забонҳо",
+      "empty": "Дар интиқоли ҷорӣ ҳеҷ модули забоншиносӣ ошкор нашуд."
+    },
+    "recommendations": {
+      "title": "Тавсияҳо",
+      "defaultName": "Бинандаи тавсиядиҳанда",
+      "noContent": "Мазмун пешниҳод нашудааст.",
+      "empty": "Дар шабакаи нейронӣ ҳеҷ сабти тавсия вуҷуд надорад.",
+      "request": "Интиқолро дархост кунед"
+    },
+    "sidebar": {
+      "adLabel": "Реклама •••",
+      "adMessage": "{name}, имкониятҳои навро бо Aether Premium кушоед",
+      "tryFree": "Ройгон санҷед",
+      "profileLanguage": "Забони профил",
+      "english": "Англисӣ",
+      "publicUrl": "Профили оммавӣ ва URL",
+      "peopleAlsoViewed": "Одамон инчунин диданд",
+      "showAll": "Ҳамаро нишон диҳед"
+    },
+    "editModal": {
+      "title": "Таҳрири профил",
+      "firstName": "Ном",
+      "lastName": "Насаб",
+      "headline": "Сарлавҳа",
+      "location": "Ҷойгиршавӣ",
+      "aboutMe": "Дар бораи ман",
+      "deletePhoto": "Нест кардани акси ҷорӣ",
+      "cancel": "Бекор кардан",
+      "save": "Захира кардани тағйирот"
+    },
+    "suggested": {
+      "connect": "Пайваст шавед"
+    }
   }
 }

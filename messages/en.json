@@ -45,5 +45,557 @@
     "footerBrand": "Aether",
     "footerTagline": "THE FUTURE OF PROFESSIONAL NEXUS",
     "footerRights": "© 2026 Aether. All rights reserved."
+  },
+  "auth": {
+  "brand": "Aether",
+  "tagline": "THE FUTURE OF PROFESSIONAL NEXUS",
+  "tabSignIn": "Sign In",
+  "tabRegister": "Register",
+  "welcomeBack": "Welcome back",
+  "welcomeSub": "Enter your credentials to access your professional hub.",
+  "createAccount": "Create your account",
+  "createSub": "Join the future of professional networking.",
+  "emailLabel": "EMAIL ADDRESS",
+  "emailPlaceholder": "name@company.com",
+  "passwordLabel": "PASSWORD",
+  "forgotPassword": "FORGOT PASSWORD?",
+  "signInBtn": "SIGN IN TO AETHER",
+  "signingIn": "SIGNING IN...",
+  "orContinueWith": "OR CONTINUE WITH",
+  "google": "Google",
+  "appleId": "Apple ID",
+  "github": "GitHub",
+  "noAccount": "Don't have an account?",
+  "alreadyAccount": "Already have an account?",
+  "fullNameLabel": "FULL NAME",
+  "fullNamePlaceholder": "John Doe",
+  "phoneLabel": "PHONE NUMBER",
+  "phonePlaceholder": "+992...",
+  "passwordPlaceholder": "password",
+  "confirmPasswordLabel": "CONFIRM PASSWORD",
+  "confirmPasswordPlaceholder": "confirm password",
+  "roleCandidate": "Candidate",
+  "roleOrganization": "Organization",
+  "createBtn": "CREATE ACCOUNT",
+  "creating": "CREATING..."
+},
+"feed": {
+    "nav": {
+      "home": "Home",
+      "network": "Network",
+      "jobs": "Jobs",
+      "messaging": "Messaging",
+      "notifications": "Notifications",
+      "me": "Me",
+      "logout": "Logout",
+      "searchPlaceholder": "Search Aether"
+    },
+    "sidebar": {
+      "profileViewers": "Profile viewers",
+      "postAnalytics": "Post analytics",
+      "premiumLabel": "Exclusive tools & insights",
+      "premiumButton": "Try Aether Premium",
+      "groups": "Groups",
+      "events": "Events",
+      "hashtags": "Followed Hashtags",
+      "discoverMore": "Discover more"
+    },
+    "postComposer": {
+      "startPost": "Start a post",
+      "photo": "Photo",
+      "video": "Video",
+      "event": "Event",
+      "article": "Article",
+      "insightPlaceholder": "What's your latest insight?",
+      "clear": "Clear",
+      "post": "Post",
+      "posting": "Posting..."
+    },
+    "rightSidebar": {
+      "addToFeed": "Add to your feed",
+      "viewAll": "View all recommendations",
+      "trendingTopics": "Trending topics"
+    },
+    "footer": {
+      "about": "About",
+      "accessibility": "Accessibility",
+      "helpCenter": "Help Center",
+      "privacyTerms": "Privacy & Terms",
+      "copyright": "Aether Corporation © 2026"
+    },
+    "pagination": {
+      "prev": "Prev",
+      "next": "Next"
+    },
+    "postCard": {
+      "expertContributor": "Expert Contributor at Aether Network",
+      "reactions": "reactions",
+      "comments": "comments",
+      "reposts": "reposts",
+      "like": "Like",
+      "comment": "Comment",
+      "repost": "Repost",
+      "send": "Send",
+      "me": "Me",
+      "commentPlaceholder": "Add a comment..."
+    },
+    "suggestedItem": {
+      "follow": "Follow"
+    },
+    "alt": {
+      "profilePicture": "Profile",
+      "imagePreview": "preview",
+      "postImage": "post"
+    },
+    "common": {
+      "loading": "..."
+    }
+  },
+  "jobs": {
+    "nav": {
+      "home": "Home",
+      "network": "Network",
+      "jobs": "Jobs",
+      "messaging": "Messaging",
+      "notifications": "Notifications",
+      "me": "Me",
+      "logout": "Logout",
+      "searchPlaceholder": "Find opportunities..."
+    },
+    "stats": {
+      "activeOrganizations": "Active Organizations",
+      "availablePositions": "Available Positions",
+      "talentedSpecialists": "Talented Specialists",
+      "networkGrowth": "Network Growth"
+    },
+    "hero": {
+      "badge": "Discovery Engine",
+      "titleLine1": "Uncover the Best Positions",
+      "titleLine2": "in the",
+      "titleGradient": "Aether Ecosystem",
+      "subtitle": "Connect with innovative Aether organizations and discover the professional transmission of your dreams in the neural network.",
+      "searchPlaceholder": "Company names or industries...",
+      "exploreButton": "Explore"
+    },
+    "organizations": {
+      "title": "Vanguard Organizations",
+      "subtitle": "Leading forces in the neural revolution",
+      "viewAll": "Expose all"
+    },
+    "jobs": {
+      "title": "Neural Transmissions",
+      "subtitle": "New job opportunities appearing in the ecosystem",
+      "viewAll": "Browse all roles",
+      "emptyState": "No job transmissions detected in the current sector."
+    },
+    "pagination": {
+      "prev": "Prev",
+      "next": "Next"
+    },
+    "jobItem": {
+      "remote": "REMOTE",
+      "fullTime": "FULL-TIME",
+      "annualFlux": "Annual Flux",
+      "analyzeButton": "Analyze Detail"
+    },
+    "organizationCard": {
+      "sector": "TECH SECTOR",
+      "defaultLocation": "SILICON VALLEY",
+      "defaultDescription": "A pioneering force in the digital landscape, focused on pushing the neural boundaries of Aether technology.",
+      "followers": "Followers",
+      "openRoles": "Open Roles"
+    },
+    "mockOrgCard": {
+      "description": "Building the infrastructure of tomorrow. We are seeking visionaries to join our quest in the Aether."
+    }
+  },
+  "orgDetail": {
+    "nav": {
+      "home": "Home",
+      "network": "Network",
+      "jobs": "Jobs",
+      "messaging": "Messaging",
+      "notifications": "Notifications",
+      "me": "Me",
+      "logout": "Logout",
+      "searchPlaceholder": "Find opportunities..."
+    },
+    "backButton": "Back to Jobs Hub",
+    "loadingMessage": "Decoding organization signal...",
+    "error": {
+      "title": "Signal Lost",
+      "message": "Unable to decode the organization data from the Aether network.",
+      "button": "Return to Jobs Hub"
+    },
+    "header": {
+      "global": "Global",
+      "openPositions": "Open Position{count, plural, one {} other {s}}"
+    },
+    "about": {
+      "title": "About",
+      "defaultDescription": "A pioneering force in the digital landscape, focused on pushing the neural boundaries of Aether technology. Contact the organization for more details."
+    },
+    "openPositions": {
+      "title": "Open Positions",
+      "empty": "No open positions detected in this sector at the moment."
+    },
+    "jobItem": {
+      "remote": "REMOTE",
+      "fullTime": "FULL-TIME",
+      "annualFlux": "Annual Flux"
+    },
+    "sidebar": {
+      "title": "Organization Intel",
+      "companyName": "Company Name",
+      "industry": "Industry",
+      "headquarters": "Headquarters",
+      "globalRemote": "Global / Remote",
+      "openPositions": "Open Positions",
+      "rolesSingular": "role",
+      "rolesPlural": "roles",
+      "founded": "Founded",
+      "employees": "Employees",
+      "contact": "Contact",
+      "visitWebsite": "Visit Website"
+    },
+  "jobDetail": {
+    "nav": {
+      "home": "Home",
+      "network": "Network",
+      "jobs": "Jobs",
+      "messaging": "Messaging",
+      "notifications": "Notifications",
+      "me": "Me",
+      "logout": "Logout",
+      "searchPlaceholder": "Find opportunities..."
+    },
+    "backButton": "Back to Jobs",
+    "loadingMessage": "Loading transmission data...",
+    "error": {
+      "title": "Transmission Failed",
+      "message": "Unable to decode the job signal from the Aether network.",
+      "button": "Return to Jobs Hub"
+    },
+    "salary": {
+      "from": "From",
+      "upTo": "Up to",
+      "competitive": "Competitive"
+    },
+    "header": {
+      "aetherNetwork": "Aether Network",
+      "remote": "Remote",
+      "fullTime": "Full-Time"
+    },
+    "buttons": {
+      "applyNow": "Apply Now",
+      "save": "Save",
+      "share": "Share",
+      "applyForRole": "Apply for this Role"
+    },
+    "sections": {
+      "jobDescription": "Job Description",
+      "requirements": "Requirements",
+      "responsibilities": "Responsibilities",
+      "benefits": "Benefits"
+    },
+    "sidebar": {
+      "detailsTitle": "Transmission Details",
+      "salaryRange": "Salary Range",
+      "employmentType": "Employment Type",
+      "location": "Location",
+      "remote": "Remote",
+      "fullTime": "Full-Time",
+      "experienceLevel": "Experience Level",
+      "category": "Category",
+      "postedOn": "Posted On",
+      "deadline": "Application Deadline",
+      "status": "Status",
+      "active": "Actively Hiring",
+      "closed": "Closed",
+      "orgTitle": "About the Organization",
+      "defaultIndustry": "Technology Sector",
+      "visitWebsite": "Visit Website"
+    },
+    "defaults": {
+      "noDescription": "No detailed description has been provided for this position yet. Contact the organization for more information."
+    }
+  }
+},
+"messaging": {
+    "nav": {
+      "home": "Home",
+      "network": "Network",
+      "jobs": "Jobs",
+      "messaging": "Messaging",
+      "notifications": "Notifications",
+      "me": "Me",
+      "searchPlaceholder": "Search Aether"
+    },
+    "sidebar": {
+      "title": "Messaging",
+      "newConversation": "New conversation",
+      "searchPlaceholder": "Search messages",
+      "empty": "No conversations yet. Connect with someone from the network!",
+      "noResults": "No conversations matching \"{query}\""
+    },
+    "newConv": {
+      "title": "New Message",
+      "searchPlaceholder": "Search by name or email…",
+      "minChars": "Type at least 2 characters to search",
+      "noUsers": "No users found for \"{search}\"",
+      "start": "Start Conversation",
+      "starting": "Starting…",
+      "error": "Could not start conversation. Try again."
+    },
+    "chat": {
+      "empty": "No messages yet. Say hello!",
+      "defaultHeadline": "Aether Network Member",
+      "videoCall": "Video call",
+      "voiceCall": "Voice call",
+      "info": "Conversation info"
+    },
+    "composer": {
+      "placeholder": "Write a message… (Enter to send, Shift+Enter for new line)",
+      "attachFile": "Attach file",
+      "attachImage": "Attach image",
+      "emoji": "Emoji"
+    },
+    "emptyState": {
+      "title": "Select a transmission to begin",
+      "description": "Choose one of your active conversations from the sidebar or",
+      "startNew": "start a new one"
+    },
+    "rightSidebar": {
+      "title": "Community Insights",
+      "description": "See which connections are also using Aether Messaging Pro.",
+      "tryFree": "Try for free"
+    },
+    "footer": {
+      "about": "About",
+      "helpCenter": "Help Center",
+      "privacy": "Privacy",
+      "copyright": "Aether Corporation © 2026"
+    },
+    "conversation": {
+      "noMessages": "No messages yet."
+    },
+    "sendError": "Failed to send message. Please try again.",
+    "fileTooLarge": "File too large. Maximum size is 10 MB.",
+    "comingSoon": "Video calls coming soon."
+  },
+  "network": {
+    "nav": {
+      "home": "Home",
+      "network": "Network",
+      "jobs": "Jobs",
+      "messaging": "Messaging",
+      "notifications": "Notifications",
+      "me": "Me",
+      "searchPlaceholder": "Search Aether"
+    },
+    "sidebar": {
+      "manageNetwork": "Manage my network",
+      "connections": "Connections",
+      "pending": "Pending",
+      "following": "Following",
+      "pages": "Pages",
+      "quote": "\"The void is vast, but our network is the bridge.\""
+    },
+    "pending": {
+      "title": "Pending Invitations",
+      "manage": "Manage",
+      "ignore": "Ignore",
+      "accept": "Accept",
+      "defaultHeadline": "Aether Network Member",
+      "matchBadge": "Neural Match High"
+    },
+    "discover": {
+      "title": "Discover new visionaries",
+      "subtitle": "Based on your shared mission in the Aether void.",
+      "searchPlaceholder": "Search members...",
+      "empty": "No new members found in the immediate sector."
+    },
+    "connections": {
+      "title": "Your Flux Connections",
+      "empty": "You haven't established any neural links yet."
+    },
+    "pagination": {
+      "prev": "Prev",
+      "next": "Next",
+      "page": "Page {page} / {total}"
+    },
+    "suggestion": {
+      "defaultName": "Member",
+      "defaultHeadline": "Network Visionary",
+      "connect": "Connect",
+      "connecting": "Connecting..."
+    },
+    "connection": {
+      "defaultHeadline": "Aether Network Member"
+    },
+    "footer": {
+      "about": "About",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "copyright": "Aether Corp © 2026",
+      "frontier": "Network Frontier Reached"
+    }
+  },
+  "notifications": {
+    "nav": {
+      "home": "Home",
+      "network": "Network",
+      "jobs": "Jobs",
+      "messaging": "Messaging",
+      "notifications": "Notifications",
+      "me": "Me",
+      "searchPlaceholder": "Search Aether"
+    },
+    "sidebar": {
+      "alertControls": "Alert Controls",
+      "alertSubtitle": "Customize your neural transmission stream.",
+      "preferences": "Preferences",
+      "allStreams": "All Streams",
+      "unreadFlux": "Unread Flux",
+      "neuralMentions": "Neural Mentions",
+      "coreVersion": "Aether Core v4.0"
+    },
+    "main": {
+      "title": "Transmissions",
+      "subtitle": "Real-time pulses from your neural network.",
+      "markRead": "Mark read",
+      "syncing": "Syncing...",
+      "sequenceTerminated": "Sequence Terminated"
+    },
+    "empty": {
+      "title": "The void is silent",
+      "message": "No new transmissions detected in this coordinate of the Aether."
+    },
+    "rightSidebar": {
+      "neuralTrends": "Neural Trends",
+      "viewInsights": "View sector insights",
+      "jobFluxTitle": "Job flux detected",
+      "jobFluxMessage": "Neural matching has identified 4 new high-priority ventures in your sector.",
+      "exploreVentures": "Explore Ventures"
+    },
+    "trendItem": {
+      "visionariesDiscussing": "visionaries discussing"
+    },
+    "notification": {
+      "activePulse": "Active Pulse",
+      "markAsRead": "Mark as read",
+      "delete": "Delete notification"
+    }
+  },
+  "profile": {
+    "nav": {
+      "home": "Home",
+      "network": "Network",
+      "jobs": "Jobs",
+      "messaging": "Messaging",
+      "notifications": "Notifications",
+      "me": "Me",
+      "searchPlaceholder": "Search Aether"
+    },
+    "defaults": {
+      "headline": "Professional Member | Aether Network",
+      "location": "Silicon Valley, California"
+    },
+    "header": {
+      "proBadge": "PRO",
+      "contactInfo": "Contact info",
+      "connections": "{count} connections",
+      "aetherNetwork": "Aether Network",
+      "openTo": "Open to",
+      "addSection": "Add profile section",
+      "more": "More"
+    },
+    "suggested": {
+      "title": "Suggested for you",
+      "privateBadge": "Private to you",
+      "intermediate": "Intermediate",
+      "summaryTitle": "Write a summary to highlight your personality or work experience",
+      "summaryDescription": "Members who include a summary receive up to 3.9 times more profile views.",
+      "addSummary": "Add a summary"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "privateBadge": "Private to you",
+      "profileViews": "profile views",
+      "trend90days": "Past 90 days",
+      "postImpressions": "post impressions",
+      "trend7days": "Past 7 days",
+      "searchAppearances": "search appearances",
+      "trendThisWeek": "This week"
+    },
+    "about": {
+      "title": "About",
+      "default": "No neural transmission records found for your 'About' section."
+    },
+    "activity": {
+      "title": "Activity",
+      "followers": "{count} followers",
+      "createPost": "Create a post",
+      "postsTab": "Posts",
+      "imagesTab": "Images",
+      "postedThis": "posted this",
+      "likes": "Likes",
+      "comments": "Comments",
+      "empty": "Waiting for your first transmission...",
+      "showAll": "Show all activity"
+    },
+    "experience": {
+      "title": "Experience",
+      "present": "Present",
+      "empty": "No professional flux records detected."
+    },
+    "education": {
+      "title": "Education",
+      "empty": "No academic history in the neural logs."
+    },
+    "skills": {
+      "title": "Skills",
+      "demonstrate": "Demonstrate skills",
+      "empty": "Enhance your profile by adding neural skills.",
+      "showAll": "Show all {count} skills",
+      "endorsements": "endorsements"
+    },
+    "languages": {
+      "title": "Languages",
+      "empty": "No linguistics modules detected in current transmission."
+    },
+    "recommendations": {
+      "title": "Recommendations",
+      "defaultName": "Visionary Reviewer",
+      "noContent": "No content provided.",
+      "empty": "No commendations recorded in the neural network.",
+      "request": "Request a transmission"
+    },
+    "sidebar": {
+      "adLabel": "Ad •••",
+      "adMessage": "{name}, unlock new opportunities with Aether Premium",
+      "tryFree": "Try for free",
+      "profileLanguage": "Profile language",
+      "english": "English",
+      "publicUrl": "Public profile & URL",
+      "peopleAlsoViewed": "People also viewed",
+      "showAll": "Show all"
+    },
+    "editModal": {
+      "title": "Edit Profile",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "headline": "Headline",
+      "location": "Location",
+      "aboutMe": "About Me",
+      "deletePhoto": "Delete Current Photo",
+      "cancel": "Cancel",
+      "save": "Save Changes"
+    },
+    "suggested": {
+      "connect": "Connect"
+    }
   }
 }
+
+

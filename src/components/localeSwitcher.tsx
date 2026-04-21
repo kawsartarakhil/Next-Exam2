@@ -1,16 +1,29 @@
-"use client";
-export default function LocaleSwitcher({ locale }: { locale: string }) {
+'use client';
+
+import { useLocale } from 'next-intl';
+import { useRouter, usePathname } from '@/src/i18n/navigation';
+import { routing } from '@/src/i18n/routing';
+
+export default function LocaleSwitcher() {
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    router.replace(pathname, { locale: e.target.value });
+  };
+
   return (
     <select
-      defaultValue={locale}
-      onChange={(e) => {
-        window.location.href = `/${e.target.value}`;
-      }}
-      className="text-sm border border-gray-200 rounded-full px-3 py-1.5 text-gray-700 outline-none cursor-pointer"
+      value={locale}
+      onChange={handleChange}
+      className="bg-[#1f2029] text-slate-400 text-xs rounded px-2 py-1 border border-white/10 outline-none"
     >
-      <option value="en">EN</option>
-      <option value="ru">RU</option>
-      <option value="tj">TJ</option>
+      {routing.locales.map((loc) => (
+        <option key={loc} value={loc}>
+          {loc.toUpperCase()}
+        </option>
+      ))}
     </select>
   );
 }

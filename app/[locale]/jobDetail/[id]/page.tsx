@@ -29,11 +29,14 @@ import {
 } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
 import { useAuthStore } from "@/src/authStore/page";
+import { useTranslations } from "next-intl";
+import LocaleSwitcher from "@/src/components/localeSwitcher";
 
 // API base – empty means relative URLs, works when backend is on same origin
 const API_BASE = "";
 
 export default function JobDetailPage() {
+  const t = useTranslations("jobDetail");
   // pulling auth state (token + user info) from global store
   const { token, user: authUser, clearSession, refreshToken } = useAuthStore();
   const router = useRouter();
@@ -94,9 +97,9 @@ export default function JobDetailPage() {
     const fmtMin = min ? `$${min.toLocaleString()}` : null;
     const fmtMax = max ? `$${max.toLocaleString()}` : null;
     if (fmtMin && fmtMax) return `${fmtMin} – ${fmtMax}`;
-    if (fmtMin) return `From ${fmtMin}`;
-    if (fmtMax) return `Up to ${fmtMax}`;
-    return "Competitive";
+    if (fmtMin) return `${t("salary.from")} ${fmtMin}`;
+    if (fmtMax) return `${t("salary.upTo")} ${fmtMax}`;
+    return t("salary.competitive");
   };
 
   return (
@@ -119,7 +122,7 @@ export default function JobDetailPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-purple-400 transition-colors" />
               <input
                 type="text"
-                placeholder="Find opportunities..."
+                placeholder={t("nav.searchPlaceholder")}
                 className="bg-[#1f2029] rounded w-64 h-8 pl-10 pr-4 text-sm focus:w-80 transition-all outline-none border border-transparent focus:border-purple-500/30 font-medium text-slate-200"
               />
             </div>
@@ -127,21 +130,21 @@ export default function JobDetailPage() {
 
           {/* Navigation icons */}
           <div className="flex items-center gap-1 sm:gap-6 h-full">
-            <NavIcon icon={<Home />} label="Home" href="/feed" />
-            <NavIcon icon={<Users />} label="Network" href="/network" />
-            <NavIcon icon={<Briefcase />} label="Jobs" active href="/job" />
-            <NavIcon icon={<MessageSquare />} label="Messaging" href="/messages" />
-            <NavIcon icon={<Bell />} label="Notifications" href="/notifications" />
+            <NavIcon icon={<Home />} label={t("nav.home")} href="/feed" />
+            <NavIcon icon={<Users />} label={t("nav.network")} href="/network" />
+            <NavIcon icon={<Briefcase />} label={t("nav.jobs")} active href="/job" />
+            <NavIcon icon={<MessageSquare />} label={t("nav.messaging")} href="/messages" />
+            <NavIcon icon={<Bell />} label={t("nav.notifications")} href="/notifications" />
 
             <div className="h-full border-l border-white/5 mx-2 hidden sm:block" />
-
+             <LocaleSwitcher/>
             {/* logout button */}
             <button
               onClick={handleLogout}
               className="flex flex-col items-center justify-center cursor-pointer group text-slate-500 hover:text-rose-400 transition-colors p-1"
             >
               <LogOut size={20} className="group-hover:scale-110 transition-transform" />
-              <span className="hidden lg:block text-[10px] mt-1 font-medium">Logout</span>
+              <span className="hidden lg:block text-[10px] mt-1 font-medium">{t("nav.logout")}</span>
             </button>
 
             <div className="h-full border-l border-white/5 mx-2 hidden sm:block" />
@@ -152,7 +155,7 @@ export default function JobDetailPage() {
                 <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center text-[10px] font-bold border border-white/10 shadow-lg">
                   {authUser?.name?.[0] || "U"}
                 </div>
-                <span className="text-[11px] text-slate-500 group-hover:text-white flex items-center mt-0.5">Me <ChevronDown className="w-3 h-3 ml-0.5" /></span>
+                <span className="text-[11px] text-slate-500 group-hover:text-white flex items-center mt-0.5">{t("nav.me")} <ChevronDown className="w-3 h-3 ml-0.5" /></span>
               </div>
             </Link>
           </div>
@@ -169,14 +172,14 @@ export default function JobDetailPage() {
             className="flex items-center gap-2 text-slate-500 hover:text-purple-400 transition-colors mb-6 group"
           >
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-            <span className="text-sm font-bold uppercase tracking-widest">Back to Jobs</span>
+            <span className="text-sm font-bold uppercase tracking-widest">{t("backButton")}</span>
           </button>
 
           {/* Loading state */}
           {isLoading && (
             <div className="flex flex-col items-center justify-center py-32 gap-4">
               <div className="w-12 h-12 border-2 border-purple-500 border-t-transparent rounded-full animate-spin shadow-lg shadow-purple-500/20" />
-              <p className="text-xs font-bold text-slate-600 uppercase tracking-widest animate-pulse">Loading transmission data...</p>
+              <p className="text-xs font-bold text-slate-600 uppercase tracking-widest animate-pulse">{t("loadingMessage")}</p>
             </div>
           )}
 
@@ -184,10 +187,10 @@ export default function JobDetailPage() {
           {isError && !isLoading && (
             <div className="bg-[#15161a] border border-red-500/20 rounded-3xl p-16 text-center shadow-2xl">
               <Sparkles size={48} className="mx-auto mb-6 text-red-500/30" />
-              <h3 className="text-lg font-bold text-red-400 mb-2">Transmission Failed</h3>
-              <p className="text-sm text-slate-500 mb-6">Unable to decode the job signal from the Aether network.</p>
+              <h3 className="text-lg font-bold text-red-400 mb-2">{t("error.title")}</h3>
+              <p className="text-sm text-slate-500 mb-6">{t("error.message")}</p>
               <button onClick={() => router.push("/job")} className="px-6 py-2 bg-purple-600 hover:bg-purple-500 rounded-xl text-white font-bold text-sm transition-colors">
-                Return to Jobs Hub
+                {t("error.button")}
               </button>
             </div>
           )}
@@ -224,27 +227,27 @@ export default function JobDetailPage() {
                       )}
                       {!organization && job.organizationId && (
                         <span className="flex items-center gap-1.5 text-xs font-black text-purple-400 uppercase tracking-widest bg-purple-500/10 px-3 py-1.5 rounded-lg border border-purple-500/20">
-                          <Building2 size={14} /> Aether Network
+                          <Building2 size={14} /> {t("header.aetherNetwork")}
                         </span>
                       )}
                       <span className="flex items-center gap-1.5 text-xs font-black text-slate-400 uppercase tracking-widest bg-white/5 px-3 py-1.5 rounded-lg">
-                        <MapPin size={14} className="text-pink-400" /> {job.location || "Remote"}
+                        <MapPin size={14} className="text-pink-400" /> {job.location || t("header.remote")}
                       </span>
                       <span className="flex items-center gap-1.5 text-xs font-black text-pink-400 uppercase tracking-widest bg-pink-500/10 px-3 py-1.5 rounded-lg border border-pink-500/20">
-                        <Briefcase size={14} /> {job.jobType || "Full-Time"}
+                        <Briefcase size={14} /> {job.jobType || t("header.fullTime")}
                       </span>
                     </div>
 
                     {/* Action buttons */}
                     <div className="flex flex-wrap gap-3 mt-6">
                       <button className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-black uppercase tracking-widest rounded-xl hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-purple-500/20 text-sm">
-                        <Send size={16} /> Apply Now
+                        <Send size={16} /> {t("buttons.applyNow")}
                       </button>
                       <button className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white font-bold rounded-xl transition-all text-sm border border-white/5">
-                        <Bookmark size={16} /> Save
+                        <Bookmark size={16} /> {t("buttons.save")}
                       </button>
                       <button className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white font-bold rounded-xl transition-all text-sm border border-white/5">
-                        <Share2 size={16} /> Share
+                        <Share2 size={16} /> {t("buttons.share")}
                       </button>
                     </div>
                   </div>
@@ -253,10 +256,10 @@ export default function JobDetailPage() {
                 {/* Job description */}
                 <div className="bg-[#15161a] border border-white/5 rounded-3xl p-8 shadow-xl">
                   <h2 className="text-xl font-black text-white mb-5 flex items-center gap-2 uppercase tracking-tight">
-                    <Sparkles size={20} className="text-purple-400" /> Job Description
+                    <Sparkles size={20} className="text-purple-400" /> {t("sections.jobDescription")}
                   </h2>
                   <div className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap">
-                    {job.description || "No detailed description has been provided for this position yet. Contact the organization for more information."}
+                    {job.description || t("defaults.noDescription")}
                   </div>
                 </div>
 
@@ -264,7 +267,7 @@ export default function JobDetailPage() {
                 {job.requirements && (
                   <div className="bg-[#15161a] border border-white/5 rounded-3xl p-8 shadow-xl">
                     <h2 className="text-xl font-black text-white mb-5 flex items-center gap-2 uppercase tracking-tight">
-                      <CheckCircle2 size={20} className="text-green-400" /> Requirements
+                      <CheckCircle2 size={20} className="text-green-400" /> {t("sections.requirements")}
                     </h2>
                     <div className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap">
                       {job.requirements}
@@ -276,7 +279,7 @@ export default function JobDetailPage() {
                 {job.responsibilities && (
                   <div className="bg-[#15161a] border border-white/5 rounded-3xl p-8 shadow-xl">
                     <h2 className="text-xl font-black text-white mb-5 flex items-center gap-2 uppercase tracking-tight">
-                      <Briefcase size={20} className="text-blue-400" /> Responsibilities
+                      <Briefcase size={20} className="text-blue-400" /> {t("sections.responsibilities")}
                     </h2>
                     <div className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap">
                       {job.responsibilities}
@@ -288,7 +291,7 @@ export default function JobDetailPage() {
                 {job.benefits && (
                   <div className="bg-[#15161a] border border-white/5 rounded-3xl p-8 shadow-xl">
                     <h2 className="text-xl font-black text-white mb-5 flex items-center gap-2 uppercase tracking-tight">
-                      <Globe size={20} className="text-cyan-400" /> Benefits
+                      <Globe size={20} className="text-cyan-400" /> {t("sections.benefits")}
                     </h2>
                     <div className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap">
                       {job.benefits}
@@ -302,35 +305,35 @@ export default function JobDetailPage() {
 
                 {/* Key details card */}
                 <div className="bg-[#15161a] border border-white/5 rounded-3xl p-6 shadow-xl sticky top-20">
-                  <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-6">Transmission Details</h3>
+                  <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-6">{t("sidebar.detailsTitle")}</h3>
 
                   <div className="space-y-5">
                     {/* Salary */}
                     <DetailRow
                       icon={<DollarSign size={18} className="text-green-400" />}
-                      label="Salary Range"
+                      label={t("sidebar.salaryRange")}
                       value={formatSalary(job.salaryMin, job.salaryMax)}
                     />
 
                     {/* Job type */}
                     <DetailRow
                       icon={<Briefcase size={18} className="text-purple-400" />}
-                      label="Employment Type"
-                      value={job.jobType || "Full-Time"}
+                      label={t("sidebar.employmentType")}
+                      value={job.jobType || t("sidebar.fullTime")}
                     />
 
                     {/* Location */}
                     <DetailRow
                       icon={<MapPin size={18} className="text-pink-400" />}
-                      label="Location"
-                      value={job.location || "Remote"}
+                      label={t("sidebar.location")}
+                      value={job.location || t("sidebar.remote")}
                     />
 
                     {/* Experience level */}
                     {job.experienceLevel && (
                       <DetailRow
                         icon={<Users size={18} className="text-blue-400" />}
-                        label="Experience Level"
+                        label={t("sidebar.experienceLevel")}
                         value={job.experienceLevel}
                       />
                     )}
@@ -339,7 +342,7 @@ export default function JobDetailPage() {
                     {job.category && (
                       <DetailRow
                         icon={<Globe size={18} className="text-cyan-400" />}
-                        label="Category"
+                        label={t("sidebar.category")}
                         value={job.category}
                       />
                     )}
@@ -347,7 +350,7 @@ export default function JobDetailPage() {
                     {/* Posted date */}
                     <DetailRow
                       icon={<Calendar size={18} className="text-amber-400" />}
-                      label="Posted On"
+                      label={t("sidebar.postedOn")}
                       value={formatDate(job.createdAt || job.postedAt)}
                     />
 
@@ -355,7 +358,7 @@ export default function JobDetailPage() {
                     {(job.deadline || job.expiresAt || job.closingDate) && (
                       <DetailRow
                         icon={<Clock size={18} className="text-red-400" />}
-                        label="Application Deadline"
+                        label={t("sidebar.deadline")}
                         value={formatDate(job.deadline || job.expiresAt || job.closingDate)}
                       />
                     )}
@@ -364,29 +367,29 @@ export default function JobDetailPage() {
                     {job.isActive !== undefined && (
                       <DetailRow
                         icon={<CheckCircle2 size={18} className={job.isActive ? "text-green-400" : "text-red-400"} />}
-                        label="Status"
-                        value={job.isActive ? "Actively Hiring" : "Closed"}
+                        label={t("sidebar.status")}
+                        value={job.isActive ? t("sidebar.active") : t("sidebar.closed")}
                       />
                     )}
                   </div>
 
                   {/* Apply button */}
                   <button className="w-full mt-8 py-3.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-black uppercase tracking-widest rounded-xl hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-purple-500/20 text-sm flex items-center justify-center gap-2">
-                    <Send size={16} /> Apply for this Role
+                    <Send size={16} /> {t("buttons.applyForRole")}
                   </button>
                 </div>
 
                 {/* Organization card */}
                 {organization && (
                   <div className="bg-[#15161a] border border-white/5 rounded-3xl p-6 shadow-xl group">
-                    <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-5">About the Organization</h3>
+                    <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-5">{t("sidebar.orgTitle")}</h3>
                     <div className="flex items-center gap-4 mb-4">
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-white/10 flex items-center justify-center text-2xl font-black text-purple-400 shadow-inner group-hover:scale-105 transition-transform">
                         {organization.name?.[0]?.toUpperCase() || "O"}
                       </div>
                       <div>
                         <h4 className="font-bold text-white group-hover:text-purple-400 transition-colors">{organization.name}</h4>
-                        <p className="text-[11px] text-slate-500 uppercase tracking-wider">{organization.industry || "Technology Sector"}</p>
+                        <p className="text-[11px] text-slate-500 uppercase tracking-wider">{organization.industry || t("sidebar.defaultIndustry")}</p>
                       </div>
                     </div>
                     {organization.description && (
@@ -401,7 +404,7 @@ export default function JobDetailPage() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors"
                       >
-                        <ExternalLink size={12} /> Visit Website
+                        <ExternalLink size={12} /> {t("sidebar.visitWebsite")}
                       </a>
                     )}
                   </div>

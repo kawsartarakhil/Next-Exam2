@@ -39,5 +39,554 @@
     "footerBrand": "Aether",
     "footerTagline": "БУДУЩЕЕ ПРОФЕССИОНАЛЬНОЙ СВЯЗИ",
     "footerRights": "© 2026 Aether. Все права защищены."
+  },
+  "auth": {
+  "brand": "Aether",
+  "tagline": "БУДУЩЕЕ ПРОФЕССИОНАЛЬНОЙ СВЯЗИ",
+  "tabSignIn": "Войти",
+  "tabRegister": "Регистрация",
+  "welcomeBack": "С возвращением",
+  "welcomeSub": "Введите данные для входа в ваш профессиональный центр.",
+  "createAccount": "Создайте аккаунт",
+  "createSub": "Присоединяйтесь к будущему профессионального нетворкинга.",
+  "emailLabel": "ЭЛЕКТРОННАЯ ПОЧТА",
+  "emailPlaceholder": "name@company.com",
+  "passwordLabel": "ПАРОЛЬ",
+  "forgotPassword": "ЗАБЫЛИ ПАРОЛЬ?",
+  "signInBtn": "ВОЙТИ В AETHER",
+  "signingIn": "ВХОД...",
+  "orContinueWith": "ИЛИ ПРОДОЛЖИТЬ С",
+  "google": "Google",
+  "appleId": "Apple ID",
+  "github": "GitHub",
+  "noAccount": "Нет аккаунта?",
+  "alreadyAccount": "Уже есть аккаунт?",
+  "fullNameLabel": "ПОЛНОЕ ИМЯ",
+  "fullNamePlaceholder": "Иван Иванов",
+  "phoneLabel": "НОМЕР ТЕЛЕФОНА",
+  "phonePlaceholder": "+992...",
+  "passwordPlaceholder": "пароль",
+  "confirmPasswordLabel": "ПОДТВЕРДИТЕ ПАРОЛЬ",
+  "confirmPasswordPlaceholder": "подтвердите пароль",
+  "roleCandidate": "Кандидат",
+  "roleOrganization": "Организация",
+  "createBtn": "СОЗДАТЬ АККАУНТ",
+  "creating": "СОЗДАЁТСЯ..."
+},
+ "feed": {
+    "nav": {
+      "home": "Главная",
+      "network": "Сеть",
+      "jobs": "Вакансии",
+      "messaging": "Сообщения",
+      "notifications": "Уведомления",
+      "me": "Я",
+      "logout": "Выйти",
+      "searchPlaceholder": "Поиск в Aether"
+    },
+    "sidebar": {
+      "profileViewers": "Кто смотрел профиль",
+      "postAnalytics": "Аналитика записей",
+      "premiumLabel": "Эксклюзивные инструменты и идеи",
+      "premiumButton": "Попробовать Aether Premium",
+      "groups": "Группы",
+      "events": "События",
+      "hashtags": "Отслеживаемые хэштеги",
+      "discoverMore": "Узнать больше"
+    },
+    "postComposer": {
+      "startPost": "Начать запись",
+      "photo": "Фото",
+      "video": "Видео",
+      "event": "Событие",
+      "article": "Статья",
+      "insightPlaceholder": "Чем хотите поделиться?",
+      "clear": "Очистить",
+      "post": "Опубликовать",
+      "posting": "Публикация..."
+    },
+    "rightSidebar": {
+      "addToFeed": "Добавить в ленту",
+      "viewAll": "Все рекомендации",
+      "trendingTopics": "Актуальные темы"
+    },
+    "footer": {
+      "about": "О нас",
+      "accessibility": "Доступность",
+      "helpCenter": "Центр помощи",
+      "privacyTerms": "Конфиденциальность и условия",
+      "copyright": "Aether Corporation © 2026"
+    },
+    "pagination": {
+      "prev": "Назад",
+      "next": "Вперёд"
+    },
+    "postCard": {
+      "expertContributor": "Эксперт в Aether Network",
+      "reactions": "реакций",
+      "comments": "комментариев",
+      "reposts": "репостов",
+      "like": "Нравится",
+      "comment": "Комментировать",
+      "repost": "Репост",
+      "send": "Отправить",
+      "me": "Я",
+      "commentPlaceholder": "Добавить комментарий..."
+    },
+    "suggestedItem": {
+      "follow": "Подписаться"
+    },
+    "alt": {
+      "profilePicture": "Профиль",
+      "imagePreview": "предпросмотр",
+      "postImage": "изображение"
+    },
+    "common": {
+      "loading": "..."
+    },
+    
+  "jobs": {
+    "nav": {
+      "home": "Главная",
+      "network": "Сеть",
+      "jobs": "Вакансии",
+      "messaging": "Сообщения",
+      "notifications": "Уведомления",
+      "me": "Я",
+      "logout": "Выйти",
+      "searchPlaceholder": "Найти возможности..."
+    },
+    "stats": {
+      "activeOrganizations": "Активных организаций",
+      "availablePositions": "Доступных позиций",
+      "talentedSpecialists": "Талантливых специалистов",
+      "networkGrowth": "Рост сети"
+    },
+    "hero": {
+      "badge": "Двигатель открытий",
+      "titleLine1": "Откройте лучшие позиции",
+      "titleLine2": "в",
+      "titleGradient": "Экосистеме Aether",
+      "subtitle": "Свяжитесь с инновационными организациями Aether и найдите профессиональную передачу вашей мечты в нейронной сети.",
+      "searchPlaceholder": "Названия компаний или отрасли...",
+      "exploreButton": "Исследовать"
+    },
+    "organizations": {
+      "title": "Передовые организации",
+      "subtitle": "Лидирующие силы нейронной революции",
+      "viewAll": "Показать все"
+    },
+    "jobs": {
+      "title": "Нейронные передачи",
+      "subtitle": "Новые вакансии появляются в экосистеме",
+      "viewAll": "Просмотреть все роли",
+      "emptyState": "В текущем секторе не обнаружено вакансий."
+    },
+    "pagination": {
+      "prev": "Назад",
+      "next": "Вперёд"
+    },
+    "jobItem": {
+      "remote": "УДАЛЁННО",
+      "fullTime": "ПОЛНЫЙ ДЕНЬ",
+      "annualFlux": "Годовой поток",
+      "analyzeButton": "Анализировать"
+    },
+    "organizationCard": {
+      "sector": "ТЕХ СЕКТОР",
+      "defaultLocation": "СИЛИКОНОВАЯ ДОЛИНА",
+      "defaultDescription": "Пионерская сила в цифровом ландшафте, сосредоточенная на расширении нейронных границ технологии Aether.",
+      "followers": "Подписчиков",
+      "openRoles": "Открытых ролей"
+    },
+    "mockOrgCard": {
+      "description": "Строим инфраструктуру будущего. Мы ищем visionary, чтобы присоединиться к нашему поиску в Aether."
+    }
+  }
+ },
+  "orgDetail": {
+    "nav": {
+      "home": "Главная",
+      "network": "Сеть",
+      "jobs": "Вакансии",
+      "messaging": "Сообщения",
+      "notifications": "Уведомления",
+      "me": "Я",
+      "logout": "Выйти",
+      "searchPlaceholder": "Найти возможности..."
+    },
+    "backButton": "Назад в центр вакансий",
+    "loadingMessage": "Декодирование сигнала организации...",
+    "error": {
+      "title": "Сигнал потерян",
+      "message": "Не удалось декодировать данные организации из сети Aether.",
+      "button": "Вернуться в центр вакансий"
+    },
+    "header": {
+      "global": "Глобально",
+      "openPositions": "Открытых позиций: {count}"
+    },
+    "about": {
+      "title": "О компании",
+      "defaultDescription": "Пионерская сила в цифровом ландшафте, сосредоточенная на расширении нейронных границ технологии Aether. Свяжитесь с организацией для получения дополнительной информации."
+    },
+    "openPositions": {
+      "title": "Открытые позиции",
+      "empty": "В этом секторе пока нет открытых позиций."
+    },
+    "jobItem": {
+      "remote": "УДАЛЁННО",
+      "fullTime": "ПОЛНЫЙ ДЕНЬ",
+      "annualFlux": "Годовой поток"
+    },
+    "sidebar": {
+      "title": "Информация об организации",
+      "companyName": "Название компании",
+      "industry": "Отрасль",
+      "headquarters": "Штаб-квартира",
+      "globalRemote": "Глобально / Удалённо",
+      "openPositions": "Открытые позиции",
+      "rolesSingular": "позиция",
+      "rolesPlural": "позиций",
+      "founded": "Основана",
+      "employees": "Сотрудников",
+      "contact": "Контакты",
+      "visitWebsite": "Посетить сайт"
+    },
+  "jobDetail": {
+    "nav": {
+      "home": "Главная",
+      "network": "Сеть",
+      "jobs": "Вакансии",
+      "messaging": "Сообщения",
+      "notifications": "Уведомления",
+      "me": "Я",
+      "logout": "Выйти",
+      "searchPlaceholder": "Найти возможности..."
+    },
+    "backButton": "Назад к вакансиям",
+    "loadingMessage": "Загрузка данных передачи...",
+    "error": {
+      "title": "Передача не удалась",
+      "message": "Не удалось декодировать сигнал вакансии из сети Aether.",
+      "button": "Вернуться в центр вакансий"
+    },
+    "salary": {
+      "from": "От",
+      "upTo": "До",
+      "competitive": "Конкурентная"
+    },
+    "header": {
+      "aetherNetwork": "Сеть Aether",
+      "remote": "Удалённо",
+      "fullTime": "Полный день"
+    },
+    "buttons": {
+      "applyNow": "Откликнуться",
+      "save": "Сохранить",
+      "share": "Поделиться",
+      "applyForRole": "Откликнуться на эту роль"
+    },
+    "sections": {
+      "jobDescription": "Описание вакансии",
+      "requirements": "Требования",
+      "responsibilities": "Обязанности",
+      "benefits": "Преимущества"
+    },
+    "sidebar": {
+      "detailsTitle": "Детали передачи",
+      "salaryRange": "Зарплатный диапазон",
+      "employmentType": "Тип занятости",
+      "location": "Местоположение",
+      "remote": "Удалённо",
+      "fullTime": "Полный день",
+      "experienceLevel": "Уровень опыта",
+      "category": "Категория",
+      "postedOn": "Опубликовано",
+      "deadline": "Дедлайн",
+      "status": "Статус",
+      "active": "Активный набор",
+      "closed": "Закрыта",
+      "orgTitle": "Об организации",
+      "defaultIndustry": "Технологический сектор",
+      "visitWebsite": "Посетить сайт"
+    },
+    "defaults": {
+      "noDescription": "Подробное описание этой позиции пока не предоставлено. Свяжитесь с организацией для получения дополнительной информации."
+    }
+  }
+},
+"messaging": {
+    "nav": {
+      "home": "Главная",
+      "network": "Сеть",
+      "jobs": "Вакансии",
+      "messaging": "Сообщения",
+      "notifications": "Уведомления",
+      "me": "Я",
+      "searchPlaceholder": "Поиск в Aether"
+    },
+    "sidebar": {
+      "title": "Сообщения",
+      "newConversation": "Новый диалог",
+      "searchPlaceholder": "Поиск сообщений",
+      "empty": "Пока нет диалогов. Свяжитесь с кем-нибудь из сети!",
+      "noResults": "Нет диалогов, соответствующих \"{query}\""
+    },
+    "newConv": {
+      "title": "Новое сообщение",
+      "searchPlaceholder": "Поиск по имени или email…",
+      "minChars": "Введите не менее 2 символов для поиска",
+      "noUsers": "Пользователей по запросу \"{search}\" не найдено",
+      "start": "Начать диалог",
+      "starting": "Начинаем…",
+      "error": "Не удалось начать диалог. Попробуйте снова."
+    },
+    "chat": {
+      "empty": "Пока нет сообщений. Скажите «Привет»!",
+      "defaultHeadline": "Участник сети Aether",
+      "videoCall": "Видеозвонок",
+      "voiceCall": "Голосовой звонок",
+      "info": "Информация о диалоге"
+    },
+    "composer": {
+      "placeholder": "Напишите сообщение… (Enter – отправить, Shift+Enter – новая строка)",
+      "attachFile": "Прикрепить файл",
+      "attachImage": "Прикрепить изображение",
+      "emoji": "Эмодзи"
+    },
+    "emptyState": {
+      "title": "Выберите передачу для начала",
+      "description": "Выберите один из ваших активных диалогов на боковой панели или",
+      "startNew": "начните новый"
+    },
+    "rightSidebar": {
+      "title": "Инсайты сообщества",
+      "description": "Узнайте, какие из ваших контактов также используют Aether Messaging Pro.",
+      "tryFree": "Попробовать бесплатно"
+    },
+    "footer": {
+      "about": "О нас",
+      "helpCenter": "Центр помощи",
+      "privacy": "Конфиденциальность",
+      "copyright": "Aether Corporation © 2026"
+    },
+    "conversation": {
+      "noMessages": "Пока нет сообщений."
+    },
+    "sendError": "Не удалось отправить сообщение. Попробуйте снова.",
+    "fileTooLarge": "Файл слишком большой. Максимальный размер — 10 МБ.",
+    "comingSoon": "Видеозвонки скоро появятся."
+  },
+  "network": {
+    "nav": {
+      "home": "Главная",
+      "network": "Сеть",
+      "jobs": "Вакансии",
+      "messaging": "Сообщения",
+      "notifications": "Уведомления",
+      "me": "Я",
+      "searchPlaceholder": "Поиск в Aether"
+    },
+    "sidebar": {
+      "manageNetwork": "Управление сетью",
+      "connections": "Связи",
+      "pending": "Ожидающие",
+      "following": "Читаемые",
+      "pages": "Страницы",
+      "quote": "\"Бездна огромна, но наша сеть — это мост.\""
+    },
+    "pending": {
+      "title": "Приглашения в ожидании",
+      "manage": "Управлять",
+      "ignore": "Игнорировать",
+      "accept": "Принять",
+      "defaultHeadline": "Участник сети Aether",
+      "matchBadge": "Высокое нейронное совпадение"
+    },
+    "discover": {
+      "title": "Откройте новых визионеров",
+      "subtitle": "Основано на вашей общей миссии в пустоте Aether.",
+      "searchPlaceholder": "Поиск участников...",
+      "empty": "В этом секторе не найдено новых участников."
+    },
+    "connections": {
+      "title": "Ваши потоковые связи",
+      "empty": "Вы ещё не установили нейронные связи."
+    },
+    "pagination": {
+      "prev": "Назад",
+      "next": "Вперёд",
+      "page": "Страница {page} из {total}"
+    },
+    "suggestion": {
+      "defaultName": "Участник",
+      "defaultHeadline": "Сетевой визионер",
+      "connect": "Подключиться",
+      "connecting": "Подключение..."
+    },
+    "connection": {
+      "defaultHeadline": "Участник сети Aether"
+    },
+    "footer": {
+      "about": "О нас",
+      "privacy": "Конфиденциальность",
+      "terms": "Условия",
+      "copyright": "Aether Corp © 2026",
+      "frontier": "Достигнут сетевой рубеж"
+    }
+  },
+  "notifications": {
+    "nav": {
+      "home": "Главная",
+      "network": "Сеть",
+      "jobs": "Вакансии",
+      "messaging": "Сообщения",
+      "notifications": "Уведомления",
+      "me": "Я",
+      "searchPlaceholder": "Поиск в Aether"
+    },
+    "sidebar": {
+      "alertControls": "Управление оповещениями",
+      "alertSubtitle": "Настройте поток нейронных передач.",
+      "preferences": "Настройки",
+      "allStreams": "Все потоки",
+      "unreadFlux": "Непрочитанный поток",
+      "neuralMentions": "Нейронные упоминания",
+      "coreVersion": "Aether Core v4.0"
+    },
+    "main": {
+      "title": "Передачи",
+      "subtitle": "Импульсы реального времени из вашей нейронной сети.",
+      "markRead": "Отметить прочитанными",
+      "syncing": "Синхронизация...",
+      "sequenceTerminated": "Последовательность завершена"
+    },
+    "empty": {
+      "title": "Бездна молчит",
+      "message": "В этой координате Aether не обнаружено новых передач."
+    },
+    "rightSidebar": {
+      "neuralTrends": "Нейронные тренды",
+      "viewInsights": "Посмотреть аналитику сектора",
+      "jobFluxTitle": "Обнаружен поток вакансий",
+      "jobFluxMessage": "Нейронное сопоставление выявило 4 новых высокоприоритетных проекта в вашем секторе.",
+      "exploreVentures": "Исследовать проекты"
+    },
+    "trendItem": {
+      "visionariesDiscussing": "визионеров обсуждают"
+    },
+    "notification": {
+      "activePulse": "Активный импульс",
+      "markAsRead": "Отметить прочитанным",
+      "delete": "Удалить уведомление"
+    }
+  },
+  "profile": {
+    "nav": {
+      "home": "Главная",
+      "network": "Сеть",
+      "jobs": "Вакансии",
+      "messaging": "Сообщения",
+      "notifications": "Уведомления",
+      "me": "Я",
+      "searchPlaceholder": "Поиск в Aether"
+    },
+    "defaults": {
+      "headline": "Профессиональный участник | Сеть Aether",
+      "location": "Силиконовая долина, Калифорния"
+    },
+    "header": {
+      "proBadge": "PRO",
+      "contactInfo": "Контактная информация",
+      "connections": "{count} связей",
+      "aetherNetwork": "Сеть Aether",
+      "openTo": "Открыт к",
+      "addSection": "Добавить раздел",
+      "more": "Ещё"
+    },
+      "suggested": {
+    "title": "Рекомендуется для вас",
+    "privateBadge": "Только для вас",
+    "intermediate": "Средний",
+    "summaryTitle": "Напишите краткое описание, чтобы подчеркнуть свою личность или опыт работы",
+    "summaryDescription": "Участники, добавившие описание, получают до 3,9 раз больше просмотров профиля.",
+    "addSummary": "Добавить описание",
+    "connect": "Подключиться"
+  },
+    "analytics": {
+      "title": "Аналитика",
+      "privateBadge": "Только для вас",
+      "profileViews": "просмотров профиля",
+      "trend90days": "Последние 90 дней",
+      "postImpressions": "показов записей",
+      "trend7days": "Последние 7 дней",
+      "searchAppearances": "появлений в поиске",
+      "trendThisWeek": "На этой неделе"
+    },
+    "about": {
+      "title": "О себе",
+      "default": "В разделе «О себе» не найдено записей нейронных передач."
+    },
+    "activity": {
+      "title": "Активность",
+      "followers": "{count} подписчиков",
+      "createPost": "Создать запись",
+      "postsTab": "Записи",
+      "imagesTab": "Изображения",
+      "postedThis": "опубликовал(а)",
+      "likes": "Нравится",
+      "comments": "Комментарии",
+      "empty": "Ожидание вашей первой передачи...",
+      "showAll": "Показать всю активность"
+    },
+    "experience": {
+      "title": "Опыт работы",
+      "present": "Настоящее время",
+      "empty": "Не обнаружено записей о профессиональной деятельности."
+    },
+    "education": {
+      "title": "Образование",
+      "empty": "В нейронных журналах нет академической истории."
+    },
+    "skills": {
+      "title": "Навыки",
+      "demonstrate": "Продемонстрировать навыки",
+      "empty": "Улучшите свой профиль, добавив нейронные навыки.",
+      "showAll": "Показать все {count} навыков",
+      "endorsements": "рекомендаций"
+    },
+    "languages": {
+      "title": "Языки",
+      "empty": "В текущей передаче не обнаружено лингвистических модулей."
+    },
+    "recommendations": {
+      "title": "Рекомендации",
+      "defaultName": "Визионер-рецензент",
+      "noContent": "Содержание не указано.",
+      "empty": "В нейронной сети нет записей о рекомендациях.",
+      "request": "Запросить передачу"
+    },
+    "sidebar": {
+      "adLabel": "Реклама •••",
+      "adMessage": "{name}, откройте новые возможности с Aether Premium",
+      "tryFree": "Попробовать бесплатно",
+      "profileLanguage": "Язык профиля",
+      "english": "Английский",
+      "publicUrl": "Публичный профиль и URL",
+      "peopleAlsoViewed": "Люди также просматривали",
+      "showAll": "Показать все"
+    },
+    "editModal": {
+      "title": "Редактировать профиль",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "headline": "Заголовок",
+      "location": "Местоположение",
+      "aboutMe": "О себе",
+      "deletePhoto": "Удалить текущее фото",
+      "cancel": "Отмена",
+      "save": "Сохранить изменения"
+    }
   }
 }

@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
 import { useRegisterFormStore } from "@/src/authStore/page"
+import { useTranslations } from "next-intl"
+import LocaleSwitcher from "@/src/components/localeSwitcher"
 
 const registerRequest = async (payload) => {
   const { data } = await  axios.post("/api/Auth/register", payload)
@@ -12,6 +14,7 @@ const registerRequest = async (payload) => {
 }
 const Register = () => {
   const router = useRouter()
+  const t = useTranslations("auth")
   const {
     fullName, email, phoneNumber, password, confirmPassword,
     role, fieldErrors, serverError, successMsg,
@@ -50,29 +53,30 @@ const Register = () => {
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-pink-500 rounded-full blur-3xl opacity-40"></div>
 
       <div className="bg-[#111] w-[490px] rounded-3xl p-8 shadow-2xl">
-
+        <LocaleSwitcher/>
         <div className="text-center mb-6">
-          <h1 className="text-3xl font-semibold text-purple-400">Aether</h1>
+          <h1 className="text-3xl font-semibold text-purple-400">{t("brand")}</h1>
           <p className="text-[12px] text-gray-400">
-            THE FUTURE OF PROFESSIONAL NEXUS
+            {t("tagline")}
           </p>
+          
         </div>
 
         <div className=" w-70 bg-black rounded-full p-1 mb-6 flex justify-center gap-3 ml-18 p-2">
           <Link href="/auth/login">
             <button className="text-gray-400">
-              Sign In
+              {t("tabSignIn")}
             </button>
           </Link>
           <button className="rounded-full bg-gray-800 w-30">
-            Register
+            {t("tabRegister")}
           </button>
         </div>
 
         <div className="mb-4">
-          <h2 className="text-lg">Create your account</h2>
+          <h2 className="text-lg">{t("createAccount")}</h2>
           <p className="text-xs text-gray-400">
-            Join the future of professional networking.
+            {t("createSub")}
           </p>
         </div>
 
@@ -95,14 +99,14 @@ const Register = () => {
             onClick={() => setRole("Candidate")}
             className={`flex-1 bg-gray-900 rounded-xl p-2 text-xs ${role === "Candidate" ? "border border-purple-500" : "text-gray-400"}`}
           >
-            Candidate
+            {t("roleCandidate")}
           </button>
           <button
             type="button"
             onClick={() => setRole("Organization")}
             className={`flex-1 bg-gray-900 rounded-xl p-2 text-xs ${role === "Organization" ? "border border-purple-500" : "text-gray-400"}`}
           >
-            Organization
+            {t("roleOrganization")}
           </button>
         </div>
 
@@ -110,10 +114,10 @@ const Register = () => {
           <div className="grid grid-cols-2 gap-5">
 
             <div className="mb-3">
-              <p className="text-xs mb-1 text-gray-400">FULL NAME</p>
+              <p className="text-xs mb-1 text-gray-400">{t("fullNameLabel")}</p>
               <input
                 type="text"
-                placeholder="John Doe"
+                placeholder={t("fullNamePlaceholder")}
                 value={fullName}
                 onChange={(e) => setField("fullName", e.target.value)}
                 className="w-full p-3 rounded-xl bg-gray-800 text-sm outline-none"
@@ -124,10 +128,10 @@ const Register = () => {
             </div>
 
             <div className="mb-3">
-              <p className="text-xs mb-1 text-gray-400">EMAIL ADDRESS</p>
+              <p className="text-xs mb-1 text-gray-400">{t("emailLabel")}</p>
               <input
                 type="email"
-                placeholder="name@company.com"
+                placeholder={t("emailPlaceholder")}
                 value={email}
                 onChange={(e) => setField("email", e.target.value)}
                 className="w-full p-3 rounded-xl bg-gray-800 text-sm outline-none"
@@ -138,10 +142,10 @@ const Register = () => {
             </div>
 
             <div className="mb-3">
-              <p className="text-xs mb-1 text-gray-400">PHONE NUMBER</p>
+              <p className="text-xs mb-1 text-gray-400">{t("phoneLabel")}</p>
               <input
                 type="text"
-                placeholder="+992..."
+                placeholder={t("phonePlaceholder")}
                 value={phoneNumber}
                 onChange={(e) => setField("phoneNumber", e.target.value)}
                 className="w-full p-3 rounded-xl bg-gray-800 text-sm outline-none"
@@ -152,10 +156,10 @@ const Register = () => {
             </div>
 
             <div className="mb-3">
-              <p className="text-xs mb-1 text-gray-400">PASSWORD</p>
+              <p className="text-xs mb-1 text-gray-400">{t("passwordLabel")}</p>
               <input
                 type="password"
-                placeholder="password"
+                placeholder={t("passwordPlaceholder")}
                 value={password}
                 onChange={(e) => setField("password", e.target.value)}
                 className="w-full p-3 rounded-xl bg-gray-800 text-sm outline-none"
@@ -166,10 +170,10 @@ const Register = () => {
             </div>
 
             <div className="mb-4">
-              <p className="text-xs mb-1 text-gray-400">CONFIRM PASSWORD</p>
+              <p className="text-xs mb-1 text-gray-400">{t("confirmPasswordLabel")}</p>
               <input
                 type="password"
-                placeholder="confirm password"
+                placeholder={t("confirmPasswordPlaceholder")}
                 value={confirmPassword}
                 onChange={(e) => setField("confirmPassword", e.target.value)}
                 className="w-full p-3 rounded-xl bg-gray-800 text-sm outline-none"
@@ -185,31 +189,31 @@ const Register = () => {
             disabled={isPending}
             className="w-full py-3 rounded-full bg-gradient-to-r from-purple-400 to-pink-300 text-black font-semibold mb-4 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {isPending ? "CREATING..." : "CREATE ACCOUNT"}
+            {isPending ? t("creating") : t("createBtn")}
           </button>
         </form>
 
         <p className="text-center text-xs text-gray-500 mb-3">
-          OR CONTINUE WITH
+          {t("orContinueWith")}
         </p>
 
         <div className="flex gap-2 mb-4">
           <button
             className="flex-1 bg-gray-900 p-2 rounded-xl text-sm"
           >
-            Google
+            {t("google")}
           </button>
           <button
             className="flex-1 bg-gray-900 p-2 rounded-xl text-sm"
           >
-            GitHub
+            {t("github")}
           </button>
         </div>
 
         <p className="text-center text-xs text-gray-400">
-          Already have an account?
+          {t("alreadyAccount")}
           <Link href="/auth/login">
-            <span className="text-purple-400 cursor-pointer">Sign In</span>
+            <span className="text-purple-400 cursor-pointer">{t("tabSignIn")}</span>
           </Link>
         </p>
       </div>

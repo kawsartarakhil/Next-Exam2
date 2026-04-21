@@ -23,6 +23,8 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/src/authStore/page";
+import { useTranslations } from "next-intl";
+import LocaleSwitcher from "@/src/components/localeSwitcher";
 
 // API base – empty means relative URLs, works when backend is on same origin
 const API_BASE = "";
@@ -36,6 +38,7 @@ const api = axios.create({
 });
 
 export default function JobsHubPage() {
+  const t = useTranslations("jobs");
   // Grab auth state: token, user, and logout helpers
   const { token, user: authUser, clearSession, refreshToken } = useAuthStore();
   const router = useRouter();
@@ -86,10 +89,10 @@ export default function JobsHubPage() {
 
   // These numbers are partially static + dynamic (orgs.length, jobs.length)
   const stats = [
-    { label: "Active Organizations", value: organizations.length + 1200, icon: <Building2 className="text-blue-400" /> },
-    { label: "Available Positions", value: jobs.length + 450, icon: <Briefcase className="text-purple-400" /> },
-    { label: "Talented Specialists", value: "15k+", icon: <Users className="text-green-400" /> },
-    { label: "Network Growth", value: "24%", icon: <TrendingUp className="text-pink-400" /> },
+    { label: t("stats.activeOrganizations"), value: organizations.length + 1200, icon: <Building2 className="text-blue-400" /> },
+    { label: t("stats.availablePositions"), value: jobs.length + 450, icon: <Briefcase className="text-purple-400" /> },
+    { label: t("stats.talentedSpecialists"), value: "15k+", icon: <Users className="text-green-400" /> },
+    { label: t("stats.networkGrowth"), value: "24%", icon: <TrendingUp className="text-pink-400" /> },
   ];
 
   // Logout: call backend to invalidate refresh token, then clear local store and redirect
@@ -122,18 +125,18 @@ export default function JobsHubPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-purple-400 transition-colors" />
               <input 
                 type="text" 
-                placeholder="Find opportunities..." 
+                placeholder={t("nav.searchPlaceholder")} 
                 className="bg-[#1f2029] rounded w-64 h-8 pl-10 pr-4 text-sm focus:w-80 transition-all outline-none border border-transparent focus:border-purple-500/30 font-medium text-slate-200"
               />
             </div>
           </div>
 
           <div className="flex items-center gap-1 sm:gap-6 h-full">
-            <NavIcon icon={<Home />} label="Home" href="/feed" />
-            <NavIcon icon={<Users />} label="Network" href="/network" />
-            <NavIcon icon={<Briefcase />} label="Jobs" active={true} href="/job" />
-            <NavIcon icon={<MessageSquare />} label="Messaging" href="/messages" />
-            <NavIcon icon={<Bell />} label="Notifications" href="/notifications" />
+            <NavIcon icon={<Home />} label={t("nav.home")} href="/feed" />
+            <NavIcon icon={<Users />} label={t("nav.network")} href="/network" />
+            <NavIcon icon={<Briefcase />} label={t("nav.jobs")} active={true} href="/job" />
+            <NavIcon icon={<MessageSquare />} label={t("nav.messaging")} href="/messages" />
+            <NavIcon icon={<Bell />} label={t("nav.notifications")} href="/notifications" />
             
             <div className="h-full border-l border-white/5 mx-2 hidden sm:block" />
 
@@ -142,17 +145,17 @@ export default function JobsHubPage() {
               className="flex flex-col items-center justify-center cursor-pointer group text-slate-500 hover:text-rose-400 transition-colors p-1"
             >
               <LogOut size={20} className="group-hover:scale-110 transition-transform" />
-              <span className="hidden lg:block text-[10px] mt-1 font-medium">Logout</span>
+              <span className="hidden lg:block text-[10px] mt-1 font-medium">{t("nav.logout")}</span>
             </button>
 
             <div className="h-full border-l border-white/5 mx-2 hidden sm:block" />
-
+            <LocaleSwitcher/>
             <Link href="/profile">
               <div className="flex flex-col items-center justify-center cursor-pointer group px-2">
                 <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center text-[10px] font-bold border border-white/10 shadow-lg">
                   {authUser?.name?.[0] || "U"}
                 </div>
-                <span className="text-[11px] text-slate-500 group-hover:text-white flex items-center mt-0.5">Me <ChevronDown className="w-3 h-3 ml-0.5" /></span>
+                <span className="text-[11px] text-slate-500 group-hover:text-white flex items-center mt-0.5">{t("nav.me")} <ChevronDown className="w-3 h-3 ml-0.5" /></span>
               </div>
             </Link>
           </div>
@@ -162,13 +165,13 @@ export default function JobsHubPage() {
       <div className="pt-24 pb-12 px-4">
         <div className="max-w-[1128px] mx-auto text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold uppercase tracking-widest animate-pulse">
-            <Sparkles size={14} /> Discovery Engine
+            <Sparkles size={14} /> {t("hero.badge")}
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter leading-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
-            Uncover the Best Positions <br /> in the <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">Aether Ecosystem</span>
+            {t("hero.titleLine1")} <br /> {t("hero.titleLine2")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">{t("hero.titleGradient")}</span>
           </h1>
           <p className="max-w-2xl mx-auto text-slate-400 text-lg font-medium leading-relaxed">
-            Connect with innovative Aether organizations and discover the professional transmission of your dreams in the neural network.
+            {t("hero.subtitle")}
           </p>
 
           {/* Search Box – currently only frontend filtering, no backend call yet */}
@@ -180,11 +183,11 @@ export default function JobsHubPage() {
                  type="text"
                  value={searchQuery}
                  onChange={(e) => setSearchQuery(e.target.value)}
-                 placeholder="Company names or industries..."
+                 placeholder={t("hero.searchPlaceholder")}
                  className="flex-1 bg-transparent px-4 py-3 outline-none text-slate-200 border-none placeholder:text-slate-600"
                />
                <button className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-black uppercase tracking-widest rounded-xl hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-purple-500/20">
-                 Explore
+                 {t("hero.exploreButton")}
                </button>
             </div>
           </div>
@@ -208,11 +211,11 @@ export default function JobsHubPage() {
       <div className="max-w-[1128px] mx-auto px-4 pb-12">
         <div className="flex justify-between items-end mb-8 border-l-4 border-purple-500 pl-6">
           <div>
-            <h2 className="text-3xl font-black tracking-tight text-white">Vanguard Organizations</h2>
-            <p className="text-slate-500 font-medium">Leading forces in the neural revolution</p>
+            <h2 className="text-3xl font-black tracking-tight text-white">{t("organizations.title")}</h2>
+            <p className="text-slate-500 font-medium">{t("organizations.subtitle")}</p>
           </div>
           <Link href="#" className="flex items-center gap-2 text-purple-400 font-black text-sm uppercase tracking-widest hover:gap-4 transition-all">
-            Expose all <ArrowRight size={18} />
+            {t("organizations.viewAll")} <ArrowRight size={18} />
           </Link>
         </div>
 
@@ -235,11 +238,11 @@ export default function JobsHubPage() {
       <div id="jobs-section" className="max-w-[1128px] mx-auto px-4 pb-24">
         <div className="flex justify-between items-end mb-8 border-l-4 border-pink-500 pl-6">
           <div>
-            <h2 className="text-3xl font-black tracking-tight text-white">Neural Transmissions</h2>
-            <p className="text-slate-500 font-medium">New job opportunities appearing in the ecosystem</p>
+            <h2 className="text-3xl font-black tracking-tight text-white">{t("jobs.title")}</h2>
+            <p className="text-slate-500 font-medium">{t("jobs.subtitle")}</p>
           </div>
           <Link href="#" className="flex items-center gap-2 text-pink-400 font-black text-sm uppercase tracking-widest hover:gap-4 transition-all">
-            Browse all roles <ArrowRight size={18} />
+            {t("jobs.viewAll")} <ArrowRight size={18} />
           </Link>
         </div>
 
@@ -250,7 +253,7 @@ export default function JobsHubPage() {
              ))
            ) : (
              <div className="text-center py-20 bg-[#15161a] rounded-3xl border border-white/5 border-dashed">
-                <p className="text-slate-500 italic">No job transmissions detected in the current sector.</p>
+                <p className="text-slate-500 italic">{t("jobs.emptyState")}</p>
              </div>
            )}
         </div>
@@ -262,10 +265,10 @@ export default function JobsHubPage() {
             disabled={currentPage === 1}
             className="px-4 py-2 rounded-lg bg-[#15161a] border border-white/10 text-sm font-bold disabled:opacity-40"
           >
-            Prev
+            {t("pagination.prev")}
           </button>
 
-          {Array.from({ length: totalPages }, (_, i) => ( //he Array.from({ length: totalPages }, (_, i) => ...) is a concise way to generate an array of a given length (totalPages) and then map over it to create pagination buttons
+          {Array.from({ length: totalPages }, (_, i) => (
             <button
               key={i}
               onClick={() => setCurrentPage(i + 1)}
@@ -284,7 +287,7 @@ export default function JobsHubPage() {
             disabled={currentPage === totalPages}
             className="px-4 py-2 rounded-lg bg-[#15161a] border border-white/10 text-sm font-bold disabled:opacity-40"
           >
-            Next
+            {t("pagination.next")}
           </button>
         </div>
       )}
@@ -298,6 +301,7 @@ export default function JobsHubPage() {
 
 // Individual job item in the list – shows title, location, salary, and a "Analyze Detail" button
 function JobListItem({ job }: { job: any }) {
+  const t = useTranslations("jobs");
   const router = useRouter();
 
   return (
@@ -313,24 +317,24 @@ function JobListItem({ job }: { job: any }) {
                 <Building2 size={12} className="text-slate-600" /> Aether Network
              </span>
              <span className="flex items-center gap-1 text-[10px] font-black text-slate-500 uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded-md">
-                <MapPin size={12} className="text-slate-600" /> {job.location || "REMOTE"}
+                <MapPin size={12} className="text-slate-600" /> {job.location || t("jobItem.remote")}
              </span>
              <span className="flex items-center gap-1 text-[10px] font-black text-pink-500 uppercase tracking-widest bg-pink-500/10 px-2 py-0.5 rounded-md border border-pink-500/20">
-                {job.jobType || "FULL-TIME"}
+                {job.jobType || t("jobItem.fullTime")}
              </span>
           </div>
        </div>
 
        <div className="text-right hidden md:block px-6 border-x border-white/5">
           <div className="text-sm font-black text-slate-200">${job.salaryMin?.toLocaleString() || "80k"} - ${job.salaryMax?.toLocaleString() || "120k"}</div>
-          <div className="text-[10px] text-slate-600 uppercase font-bold tracking-widest">Annual Flux</div>
+          <div className="text-[10px] text-slate-600 uppercase font-bold tracking-widest">{t("jobItem.annualFlux")}</div>
        </div>
 
        <button 
          onClick={() => router.push(`/jobDetail/${job.id}`)}
          className="w-full md:w-auto px-8 py-3 bg-white/5 hover:bg-pink-600 text-slate-400 hover:text-white rounded-xl font-black text-xs uppercase tracking-widest transition-all shadow-sm active:scale-95"
        >
-          Analyze Detail
+          {t("jobItem.analyzeButton")}
        </button>
        
     </div>
@@ -354,6 +358,7 @@ function NavIcon({ icon, label, active = false, href = "#" }: any) {
 
 // Card for a real organization (from backend)
 function OrganizationCard({ org }: { org: any }) {
+  const t = useTranslations("jobs");
   const router = useRouter();
   
   return (
@@ -371,25 +376,25 @@ function OrganizationCard({ org }: { org: any }) {
           <div>
             <h3 className="text-xl font-bold line-clamp-1 group-hover:text-purple-400 transition-colors uppercase tracking-tight">{org.name}</h3>
             <div className="flex items-center gap-3 text-[10px] font-black text-slate-500 tracking-wider">
-               <span className="flex items-center gap-1 uppercase"><Globe size={12} className="text-purple-500" /> TECH SECTOR</span>
+               <span className="flex items-center gap-1 uppercase"><Globe size={12} className="text-purple-500" /> {t("organizationCard.sector")}</span>
                <span className="mx-1">•</span>
-               <span className="flex items-center gap-1 uppercase"><MapPin size={12} className="text-pink-500" /> {org.location || "SILICON VALLEY"}</span>
+               <span className="flex items-center gap-1 uppercase"><MapPin size={12} className="text-pink-500" /> {org.location || t("organizationCard.defaultLocation")}</span>
             </div>
           </div>
 
           <p className="text-sm text-slate-400 line-clamp-2 leading-relaxed min-h-[40px]">
-            {org.description || "A pioneering force in the digital landscape, focused on pushing the neural boundaries of Aether technology."}
+            {org.description || t("organizationCard.defaultDescription")}
           </p>
 
           <div className="flex justify-between items-center pt-4 border-t border-white/5">
              <div className="flex gap-4">
                 <div className="text-center">
                    <div className="text-sm font-black text-slate-200">1.2k</div>
-                   <div className="text-[9px] text-slate-500 uppercase tracking-widest font-bold">Followers</div>
+                   <div className="text-[9px] text-slate-500 uppercase tracking-widest font-bold">{t("organizationCard.followers")}</div>
                 </div>
                 <div className="text-center">
                    <div className="text-sm font-black text-slate-200">12</div>
-                   <div className="text-[9px] text-slate-500 uppercase tracking-widest font-bold">Open Roles</div>
+                   <div className="text-[9px] text-slate-500 uppercase tracking-widest font-bold">{t("organizationCard.openRoles")}</div>
                 </div>
              </div>
              <button 
@@ -406,6 +411,7 @@ function OrganizationCard({ org }: { org: any }) {
 
 // Mock organization card – used when backend returns no orgs (for demo/empty state)
 function MockOrgCard({ name, industry, location, banner, initial }: any) {
+  const t = useTranslations("jobs");
   return (
     <div className="group bg-[#15161a] border border-white/5 rounded-3xl overflow-hidden hover:border-pink-500/40 transition-all duration-500 shadow-xl hover:shadow-pink-500/10">
        <div className="h-32 bg-slate-900 relative">
@@ -428,18 +434,18 @@ function MockOrgCard({ name, industry, location, banner, initial }: any) {
           </div>
 
           <p className="text-sm text-slate-400 line-clamp-2 leading-relaxed min-h-[40px]">
-            Building the infrastructure of tomorrow. We are seeking visionaries to join our quest in the Aether.
+            {t("mockOrgCard.description")}
           </p>
 
           <div className="flex justify-between items-center pt-4 border-t border-white/5">
              <div className="flex gap-4">
                 <div className="text-center">
                    <div className="text-sm font-black text-slate-200">850</div>
-                   <div className="text-[9px] text-slate-500 uppercase tracking-widest font-bold">Followers</div>
+                   <div className="text-[9px] text-slate-500 uppercase tracking-widest font-bold">{t("organizationCard.followers")}</div>
                 </div>
                 <div className="text-center">
                    <div className="text-sm font-black text-slate-200">5</div>
-                   <div className="text-[9px] text-slate-500 uppercase tracking-widest font-bold">Open Roles</div>
+                   <div className="text-[9px] text-slate-500 uppercase tracking-widest font-bold">{t("organizationCard.openRoles")}</div>
                 </div>
              </div>
              <button className="p-3 bg-white/5 hover:bg-pink-600 hover:text-white rounded-2xl text-slate-400 transition-all group/btn shadow-inner">

@@ -6,6 +6,8 @@ import React from "react"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
 import { useAuthStore, useLoginFormStore } from "@/src/authStore/page"
+import { useTranslations } from "next-intl"
+import LocaleSwitcher from "@/src/components/localeSwitcher"
 
 
 const loginRequest = async (payload: { email: string; password: string }) => {
@@ -16,6 +18,7 @@ const loginRequest = async (payload: { email: string; password: string }) => {
 const Login = () => {
   const router = useRouter()
   const { setSession } = useAuthStore()
+  const t = useTranslations("auth")
 
   const {
     email, password,
@@ -60,29 +63,29 @@ const Login = () => {
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-pink-500 rounded-full blur-3xl opacity-40"></div>
 
       <div className="bg-[#111] w-[400px] rounded-3xl p-8 shadow-2xl">
-
+         <LocaleSwitcher/>
         <div className="text-center mb-6">
-          <h1 className="text-3xl font-semibold text-purple-400">Aether</h1>
+          <h1 className="text-3xl font-semibold text-purple-400">{t("brand")}</h1>
           <p className="text-[12px] text-gray-400">
-            THE FUTURE OF PROFESSIONAL NEXUS
+            {t("tagline")}
           </p>
         </div>
 
         <div className="w-70 bg-black rounded-full p-1 mb-6 flex justify-center gap-3 ml-5 p-2">
           <button className="rounded-full bg-gray-800 w-30">
-            Sign In
+            {t("tabSignIn")}
           </button>
           <Link href="/auth/register">
             <button className="text-gray-400">
-              Register
+              {t("tabRegister")}
             </button>
           </Link>
         </div>
 
         <div className="mb-4">
-          <h2 className="text-lg">Welcome back</h2>
+          <h2 className="text-lg">{t("welcomeBack")}</h2>
           <p className="text-xs text-gray-400">
-            Enter your credentials to access your professional hub.
+            {t("welcomeSub")}
           </p>
         </div>
 
@@ -95,10 +98,10 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
 
           <div className="mb-3">
-            <p className="text-xs mb-1 text-gray-400">EMAIL ADDRESS</p>
+            <p className="text-xs mb-1 text-gray-400">{t("emailLabel")}</p>
             <input
               type="text"
-              placeholder="name@company.com"
+              placeholder={t("emailPlaceholder")}
               value={email}
               onChange={(e) => setField("email", e.target.value)}
               className="w-full p-3 rounded-xl bg-gray-800 text-sm outline-none"
@@ -110,9 +113,9 @@ const Login = () => {
 
           <div className="mb-4">
             <div className="flex justify-between text-xs text-gray-400 mb-1">
-              <span>PASSWORD</span>
+              <span>{t("passwordLabel")}</span>
               <Link href="/auth/forgot-password">
-                <span className="text-purple-400 cursor-pointer">FORGOT PASSWORD?</span>
+                <span className="text-purple-400 cursor-pointer">{t("forgotPassword")}</span>
               </Link>
             </div>
             <input
@@ -132,31 +135,31 @@ const Login = () => {
             disabled={isPending}
             className="w-full py-3 rounded-full bg-gradient-to-r from-purple-400 to-pink-300 text-black font-semibold mb-4 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {isPending ? "SIGNING IN..." : "SIGN IN TO AETHER"}
+            {isPending ? t("signingIn") : t("signInBtn")}
           </button>
         </form>
 
         <p className="text-center text-xs text-gray-500 mb-3">
-          OR CONTINUE WITH
+          {t("orContinueWith")}
         </p>
 
         <div className="flex gap-2 mb-4">
           <button
             className="flex-1 bg-gray-900 p-2 rounded-xl text-sm"
           >
-            Google
+            {t("google")}
           </button>
           <button
             className="flex-1 bg-gray-900 p-2 rounded-xl text-sm"
           >
-            Apple ID
+            {t("appleId")}
           </button>
         </div>
 
         <p className="text-center text-xs text-gray-400">
-          Dont have an account?
+          {t("noAccount")}
           <Link href="/auth/register">
-            <span className="text-purple-400 cursor-pointer">Sign In</span>
+            <span className="text-purple-400 cursor-pointer">{t("tabRegister")}</span>
           </Link>
         </p>
       </div>

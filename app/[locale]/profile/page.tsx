@@ -26,10 +26,13 @@ import {
   Bookmark
 } from "lucide-react";
 import { useAuthStore } from "@/src/authStore/page";
+import { useTranslations } from "next-intl";
+import LocaleSwitcher from "@/src/components/localeSwitcher";
 
 const API_BASE = "";
 
 export default function ProfilePage() {
+  const t = useTranslations("profile");
   const { token, user: authUser } = useAuthStore();
   const queryClient = useQueryClient();
 
@@ -148,9 +151,9 @@ export default function ProfilePage() {
     authUser?.name ||
     "User";
   const initials = nameValue.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2);
-  const headline = userProfile?.headline || "Professional Member | Aether Network";
+  const headline = userProfile?.headline || t("defaults.headline");
   const avatar = userProfile?.photoUrl ? (userProfile.photoUrl.startsWith('http') ? userProfile.photoUrl : `${API_BASE}/uploads/${userProfile.photoUrl}`) : null;
-  const location = userProfile?.location || "Silicon Valley, California";
+  const location = userProfile?.location || t("defaults.location");
 
   const [editOpen, setEditOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -230,19 +233,19 @@ export default function ProfilePage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-purple-400 transition-colors" />
               <input 
                 type="text" 
-                placeholder="Search Aether" 
+                placeholder={t("nav.searchPlaceholder")} 
                 className="bg-[#1f2029] rounded w-64 h-8 pl-10 pr-4 text-sm focus:w-80 transition-all outline-none border border-transparent focus:border-purple-500/30 font-medium text-slate-200"
               />
             </div>
           </div>
 
           <div className="flex items-center gap-1 sm:gap-6 h-full">
-            <NavIcon icon={<Home />} label="Home" href="/feed" />
-            <NavIcon icon={<Users />} label="Network" href="/network" />
-            <NavIcon icon={<Briefcase />} label="Jobs" href="/job" />
-            <NavIcon icon={<MessageSquare />} label="Messaging" href="/messages" />
-            <NavIcon icon={<Bell />} label="Notifications" href="/notifications" />
-            
+            <NavIcon icon={<Home />} label={t("nav.home")} href="/feed" />
+            <NavIcon icon={<Users />} label={t("nav.network")} href="/network" />
+            <NavIcon icon={<Briefcase />} label={t("nav.jobs")} href="/job" />
+            <NavIcon icon={<MessageSquare />} label={t("nav.messaging")} href="/messages" />
+            <NavIcon icon={<Bell />} label={t("nav.notifications")} href="/notifications" />
+            <LocaleSwitcher/>
             <div className="h-full border-l border-white/5 mx-2 hidden sm:block" />
 
             <Link href="/profile">
@@ -252,7 +255,7 @@ export default function ProfilePage() {
                 ) : (
                   <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold">{initials}</div>
                 )}
-                <span className="text-[11px] flex items-center mt-0.5">Me <ChevronDown className="w-3 h-3 ml-0.5" /></span>
+                <span className="text-[11px] flex items-center mt-0.5">{t("nav.me")} <ChevronDown className="w-3 h-3 ml-0.5" /></span>
               </div>
             </Link>
           </div>
@@ -292,34 +295,34 @@ export default function ProfilePage() {
                  <div>
                     <div className="flex items-center gap-2">
                        <h1 className="text-2xl font-bold mt-15">{nameValue}</h1>
-                       <span className="text-xs px-1.5 py-0.5 bg-purple-500/20 text-purple-400 rounded border border-purple-500/30">PRO</span>
+                       <span className="text-xs px-1.5 py-0.5 bg-purple-500/20 text-purple-400 rounded border border-purple-500/30">{t("header.proBadge")}</span>
                     </div>
                     <p className="text-lg text-slate-300 mt-1">{headline}</p>
                     <div className="flex items-center gap-1 mt-2 text-slate-500 text-sm">
                        <MapPin size={14} />
                        <span>{location}</span>
                        <span className="mx-2">•</span>
-                       <button className="text-purple-400 font-bold hover:underline">Contact info</button>
+                       <button className="text-purple-400 font-bold hover:underline">{t("header.contactInfo")}</button>
                     </div>
                     <div className="mt-3 flex items-center gap-1">
-                       <Link href="#" className="text-purple-400 font-bold text-sm hover:underline">500+ connections</Link>
+                       <Link href="#" className="text-purple-400 font-bold text-sm hover:underline">{t("header.connections", { count: "500+" })}</Link>
                     </div>
                  </div>
                  <div className="flex items-center gap-2 px-4 py-2 border border-white/5 rounded-lg bg-[#1f2029]/50 shadow-inner group">
                     <div className="w-8 h-8 bg-purple-600 rounded flex items-center justify-center font-bold text-xs shadow-lg group-hover:scale-110 transition-transform">A</div>
-                    <span className="text-sm font-bold truncate max-w-[150px]">Aether Network</span>
+                    <span className="text-sm font-bold truncate max-w-[150px]">{t("header.aetherNetwork")}</span>
                  </div>
               </div>
 
               <div className="mt-4 flex flex-wrap gap-2">
                  <button className="px-5 py-1.5 bg-purple-600 hover:bg-purple-500 text-white rounded-full font-bold transition-colors">
-                    Open to
+                    {t("header.openTo")}
                  </button>
                  <button className="px-5 py-1.5 border border-purple-400 text-purple-400 hover:bg-purple-400/10 rounded-full font-bold transition-all">
-                    Add profile section
+                    {t("header.addSection")}
                  </button>
                  <button className="px-5 py-1.5 border border-slate-500 text-slate-500 hover:bg-white/5 rounded-full font-bold transition-all">
-                    More
+                    {t("header.more")}
                  </button>
               </div>
             </div>
@@ -344,52 +347,52 @@ export default function ProfilePage() {
 
           <section className="bg-[#15161a] rounded-xl p-6 border border-white/5 shadow-lg">
              <div className="flex justify-between items-center mb-1">
-                <h2 className="text-xl font-bold">Suggested for you</h2>
-                <span className="text-sm text-slate-500 flex items-center gap-1">Private to you <Notebook size={12} /></span>
+                <h2 className="text-xl font-bold">{t("suggested.title")}</h2>
+                <span className="text-sm text-slate-500 flex items-center gap-1">{t("suggested.privateBadge")} <Notebook size={12} /></span>
              </div>
-             <p className="text-sm text-slate-500 mb-4">Intermediate</p>
+             <p className="text-sm text-slate-500 mb-4">{t("suggested.intermediate")}</p>
              
              <div className="bg-[#0a0a0c] border border-white/10 rounded-lg p-4 flex gap-4">
                 <div className="w-12 h-12 shrink-0 bg-blue-500/20 text-blue-400 flex items-center justify-center rounded">
                    <Users size={24} />
                 </div>
                 <div className="flex-1">
-                   <h3 className="font-bold mb-1 border-b border-white/5 pb-1">Write a summary to highlight your personality or work experience</h3>
-                   <p className="text-sm text-slate-400">Members who include a summary receive up to 3.9 times more profile views.</p>
-                   <button className="mt-3 px-4 py-1 border border-white/40 rounded-full text-sm font-bold hover:bg-white/5 transition-all">Add a summary</button>
+                   <h3 className="font-bold mb-1 border-b border-white/5 pb-1">{t("suggested.summaryTitle")}</h3>
+                   <p className="text-sm text-slate-400">{t("suggested.summaryDescription")}</p>
+                   <button className="mt-3 px-4 py-1 border border-white/40 rounded-full text-sm font-bold hover:bg-white/5 transition-all">{t("suggested.addSummary")}</button>
                 </div>
              </div>
           </section>
 
           <section className="bg-[#15161a] rounded-xl p-6 border border-white/5 border shadow-lg">
-             <h2 className="text-xl font-bold mb-1">Analytics</h2>
-             <span className="text-sm text-slate-500 flex items-center gap-1 mb-4">Private to you <Notebook size={12} /></span>
+             <h2 className="text-xl font-bold mb-1">{t("analytics.title")}</h2>
+             <span className="text-sm text-slate-500 flex items-center gap-1 mb-4">{t("analytics.privateBadge")} <Notebook size={12} /></span>
              
              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <AnalyticsItem icon={<Users size={20}/>} count="1,240" label="profile views" trend="Past 90 days" />
-                <AnalyticsItem icon={<TrendingUp size={20}/>} count="452" label="post impressions" trend="Past 7 days" />
-                <AnalyticsItem icon={<Search size={20}/>} count="89" label="search appearances" trend="This week" />
+                <AnalyticsItem icon={<Users size={20}/>} count="1,240" label={t("analytics.profileViews")} trend={t("analytics.trend90days")} />
+                <AnalyticsItem icon={<TrendingUp size={20}/>} count="452" label={t("analytics.postImpressions")} trend={t("analytics.trend7days")} />
+                <AnalyticsItem icon={<Search size={20}/>} count="89" label={t("analytics.searchAppearances")} trend={t("analytics.trendThisWeek")} />
              </div>
           </section>
 
           <section className="bg-[#15161a] rounded-xl p-6 border border-white/5 relative shadow-lg">
              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">About</h2>
+                <h2 className="text-xl font-bold">{t("about.title")}</h2>
                 <button className="p-2 text-slate-400 hover:bg-white/5 rounded-full transition-all"><Pencil size={20} /></button>
              </div>
              <p className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap">
-                {userProfile?.aboutMe || "No neural transmission records found for your 'About' section."}
+                {userProfile?.aboutMe || t("about.default")}
              </p>
           </section>
 
           <section className="bg-[#15161a] rounded-xl border border-white/5 overflow-hidden shadow-lg">
              <div className="p-6 pb-0 flex justify-between items-center">
                 <div>
-                   <h2 className="text-xl font-bold">Activity</h2>
-                   <Link href="#" className="text-purple-400 font-bold text-sm hover:underline">542 followers</Link>
+                   <h2 className="text-xl font-bold">{t("activity.title")}</h2>
+                   <Link href="#" className="text-purple-400 font-bold text-sm hover:underline">{t("activity.followers", { count: "542" })}</Link>
                 </div>
                 <div className="flex gap-2">
-                   <button className="px-4 py-1.5 border border-purple-400 text-purple-400 rounded-full font-bold text-sm hover:bg-purple-400/10 transition-all">Create a post</button>
+                   <button className="px-4 py-1.5 border border-purple-400 text-purple-400 rounded-full font-bold text-sm hover:bg-purple-400/10 transition-all">{t("activity.createPost")}</button>
                    <button className="p-2 text-slate-400 hover:bg-white/5 rounded-full transition-all"><Pencil size={20} /></button>
                 </div>
              </div>
@@ -398,14 +401,14 @@ export default function ProfilePage() {
                 {myPosts.length > 0 ? (
                   <>
                     <div className="flex gap-2 mb-4">
-                       <button className="px-3 py-1 bg-green-700 text-white rounded-full text-xs font-bold font-mono shadow-md">Posts</button>
-                       <button className="px-3 py-1 border border-white/20 text-slate-400 rounded-full text-xs font-bold font-mono">Images</button>
+                       <button className="px-3 py-1 bg-green-700 text-white rounded-full text-xs font-bold font-mono shadow-md">{t("activity.postsTab")}</button>
+                       <button className="px-3 py-1 border border-white/20 text-slate-400 rounded-full text-xs font-bold font-mono">{t("activity.imagesTab")}</button>
                     </div>
 
                     {/* Show only the 2 most recent posts – the rest are hidden behind "Show all" button */}
                     {myPosts.slice(0, 2).map((post: any) => (
                        <div key={post.id} className="pb-4 border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors -mx-6 px-6 cursor-pointer group">
-                          <p className="text-xs text-slate-500 mb-1">{nameValue} posted this • {new Date(post.createdAt).toLocaleDateString()}</p>
+                          <p className="text-xs text-slate-500 mb-1">{nameValue} {t("activity.postedThis")} • {new Date(post.createdAt).toLocaleDateString()}</p>
                           <div className="flex gap-3">
                              {post.imageUrl && (
                                 <img src={post.imageUrl.startsWith('http') ? post.imageUrl : `${API_BASE}/uploads/${post.imageUrl}`} className="w-16 h-16 rounded object-cover border border-white/5 shadow-inner group-hover:scale-105 transition-transform" alt="post" />
@@ -413,27 +416,27 @@ export default function ProfilePage() {
                              <p className="text-sm text-slate-300 line-clamp-3 leading-relaxed">{post.content}</p>
                           </div>
                           <div className="mt-2 flex gap-4 text-xs text-slate-500 font-bold font-mono">
-                             <span className="flex items-center gap-1 hover:text-purple-400 transition-colors cursor-pointer"><TrendingUp size={12} /> {post.likesCount || 0} Likes</span>
-                             <span className="flex items-center gap-1 hover:text-purple-400 transition-colors cursor-pointer"><MessageSquare size={12} /> {post.commentsCount || 0} Comments</span>
+                             <span className="flex items-center gap-1 hover:text-purple-400 transition-colors cursor-pointer"><TrendingUp size={12} /> {post.likesCount || 0} {t("activity.likes")}</span>
+                             <span className="flex items-center gap-1 hover:text-purple-400 transition-colors cursor-pointer"><MessageSquare size={12} /> {post.commentsCount || 0} {t("activity.comments")}</span>
                           </div>
                        </div>
                     ))}
                   </>
                 ) : (
                    <div className="text-center py-6 opacity-60 italic text-slate-500 text-sm">
-                      Waiting for your first transmission...
+                      {t("activity.empty")}
                    </div>
                 )}
              </div>
              
              <button className="w-full text-center py-3 border-t border-white/5 text-slate-400 font-bold hover:bg-white/5 transition-colors group flex items-center justify-center gap-1 font-mono tracking-wider">
-                Show all activity <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                {t("activity.showAll")} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
              </button>
           </section>
 
           <section className="bg-[#15161a] rounded-xl p-6 border border-white/5 shadow-inner">
              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold flex items-center gap-2">Experience <Briefcase size={18} className="text-purple-400" /></h2>
+                <h2 className="text-xl font-bold flex items-center gap-2">{t("experience.title")} <Briefcase size={18} className="text-purple-400" /></h2>
                 <div className="flex gap-2">
                    <button className="p-2 text-slate-400 hover:bg-white/5 rounded-full hover:scale-110 transition-transform"><Plus size={24} /></button>
                    <button className="p-2 text-slate-400 hover:bg-white/5 rounded-full hover:scale-110 transition-transform"><Pencil size={20} /></button>
@@ -448,13 +451,13 @@ export default function ProfilePage() {
                       logo={<Briefcase className="text-slate-500 group-hover:text-purple-400 transition-colors" />}
                       title={exp.position}
                       subtitle={exp.companyName}
-                      date={`${new Date(exp.startDate).getFullYear()} - ${exp.endDate ? new Date(exp.endDate).getFullYear() : 'Present'}`}
+                      date={`${new Date(exp.startDate).getFullYear()} - ${exp.endDate ? new Date(exp.endDate).getFullYear() : t("experience.present")}`}
                       location="Remote Hub"
                     />
                   ))
                 ) : (
                   <div className="text-center py-4 border border-dashed border-white/10 rounded-lg opacity-60 text-sm">
-                    No professional flux records detected.
+                    {t("experience.empty")}
                   </div>
                 )}
              </div>
@@ -462,7 +465,7 @@ export default function ProfilePage() {
 
           <section className="bg-[#15161a] rounded-xl p-6 border border-white/5 shadow-inner">
              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold flex items-center gap-2">Education <Globe size={18} className="text-purple-400" /></h2>
+                <h2 className="text-xl font-bold flex items-center gap-2">{t("education.title")} <Globe size={18} className="text-purple-400" /></h2>
                 <div className="flex gap-2">
                    <button className="p-2 text-slate-400 hover:bg-white/5 rounded-full hover:scale-110 transition-transform"><Plus size={24} /></button>
                    <button className="p-2 text-slate-400 hover:bg-white/5 rounded-full hover:scale-110 transition-transform"><Pencil size={20} /></button>
@@ -482,7 +485,7 @@ export default function ProfilePage() {
                   ))
                 ) : (
                   <div className="text-center py-4 border border-dashed border-white/10 rounded-lg opacity-60 text-sm">
-                    No academic history in the neural logs.
+                    {t("education.empty")}
                   </div>
                 )}
              </div>
@@ -490,9 +493,9 @@ export default function ProfilePage() {
 
           <section className="bg-[#15161a] rounded-xl p-6 border border-white/5 shadow-lg">
              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">Skills</h2>
+                <h2 className="text-xl font-bold">{t("skills.title")}</h2>
                 <div className="flex gap-2">
-                   <button className="px-5 py-1.5 border border-purple-400 text-purple-400 hover:bg-purple-400/10 rounded-full font-bold text-sm transition-all shadow-lg hover:shadow-purple-500/10">Demonstrate skills</button>
+                   <button className="px-5 py-1.5 border border-purple-400 text-purple-400 hover:bg-purple-400/10 rounded-full font-bold text-sm transition-all shadow-lg hover:shadow-purple-500/10">{t("skills.demonstrate")}</button>
                    <button className="p-2 text-slate-400 hover:bg-white/5 rounded-full hover:scale-110 transition-transform"><Plus size={24} /></button>
                    <button className="p-2 text-slate-400 hover:bg-white/5 rounded-full hover:scale-110 transition-transform"><Pencil size={20} /></button>
                 </div>
@@ -502,18 +505,18 @@ export default function ProfilePage() {
                 {skills.length > 0 ? skills.map((s: any, i: number) => (
                    <SkillItem key={i} name={s.skillName} endorsements={s.endorsementsCount} />
                 )) : (
-                   <p className="text-sm text-slate-600 italic">Enhance your profile by adding neural skills.</p>
+                   <p className="text-sm text-slate-600 italic">{t("skills.empty")}</p>
                 )}
              </div>
              
              <button className="w-full text-center py-3 border-t border-white/5 mt-4 text-slate-400 font-bold hover:bg-white/5 transition-colors rounded-b-xl flex items-center justify-center gap-1 group font-mono">
-                Show all {skills.length || 0} skills <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                {t("skills.showAll", { count: skills.length || 0 })} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
              </button>
           </section>
 
           <section className="bg-[#15161a] rounded-xl p-6 border border-white/5 relative shadow-lg">
              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold flex items-center gap-2">Languages <Globe size={18} className="text-purple-400" /></h2>
+                <h2 className="text-xl font-bold flex items-center gap-2">{t("languages.title")} <Globe size={18} className="text-purple-400" /></h2>
                 <div className="flex gap-2">
                    <button className="p-2 text-slate-400 hover:bg-white/5 rounded-full transition-transform hover:scale-110"><Plus size={24} /></button>
                    <button className="p-2 text-slate-400 hover:bg-white/5 rounded-full transition-transform hover:scale-110"><Pencil size={20} /></button>
@@ -526,14 +529,14 @@ export default function ProfilePage() {
                       <p className="text-sm text-slate-500 mt-1">{l.level}</p>
                    </div>
                 )) : (
-                   <p className="text-sm text-slate-600 italic">No linguistics modules detected in current transmission.</p>
+                   <p className="text-sm text-slate-600 italic">{t("languages.empty")}</p>
                 )}
              </div>
           </section>
 
           <section className="bg-[#15161a] rounded-xl p-6 border border-white/5 shadow-inner">
              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold flex items-center gap-2">Recommendations <Users size={18} className="text-purple-400" /></h2>
+                <h2 className="text-xl font-bold flex items-center gap-2">{t("recommendations.title")} <Users size={18} className="text-purple-400" /></h2>
                 <div className="flex gap-2">
                    <button className="p-2 text-slate-400 hover:bg-white/5 rounded-full transition-transform hover:scale-110"><Plus size={24} /></button>
                    <button className="p-2 text-slate-400 hover:bg-white/5 rounded-full transition-transform hover:scale-110"><Pencil size={20} /></button>
@@ -548,20 +551,20 @@ export default function ProfilePage() {
                                {r.senderName?.[0] || r.authorId?.toString()?.[0] || "R"}
                             </div>
                             <div>
-                               <h4 className="font-bold text-sm text-slate-200 group-hover:text-purple-400 transition-colors">{r.senderName || "Visionary Reviewer"}</h4>
+                               <h4 className="font-bold text-sm text-slate-200 group-hover:text-purple-400 transition-colors">{r.senderName || t("recommendations.defaultName")}</h4>
                                <p className="text-[10px] text-slate-500 uppercase tracking-widest">{new Date(r.createdAt || Date.now()).toLocaleDateString()}</p>
                             </div>
                          </div>
                          <p className="text-sm text-slate-300 leading-relaxed italic border-l-2 border-purple-500/20 pl-4 py-1.5 shadow-sm overflow-hidden text-ellipsis">
-                            "{r.content || r.recommendationText || "No content provided."}"
+                            "{r.content || r.recommendationText || t("recommendations.noContent")}"
                          </p>
                       </div>
                    ))}
                 </div>
              ) : (
                 <div className="text-center py-8 bg-[#0a0a0c]/40 rounded-lg border border-white/5 border-dashed">
-                   <p className="text-sm text-slate-600 italic mb-4">No commendations recorded in the neural network.</p>
-                   <button className="text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors uppercase tracking-[0.2em] font-mono">Request a transmission</button>
+                   <p className="text-sm text-slate-600 italic mb-4">{t("recommendations.empty")}</p>
+                   <button className="text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors uppercase tracking-[0.2em] font-mono">{t("recommendations.request")}</button>
                 </div>
              )}
           </section>
@@ -572,15 +575,15 @@ export default function ProfilePage() {
         
 
            <div className="bg-[#15161a] rounded-xl p-4 border border-white/5 text-center shadow-lg">
-              <p className="text-[11px] text-slate-500 text-right uppercase tracking-wider mb-2">Ad •••</p>
-              <p className="text-xs text-slate-400 mb-4 px-6">{authUser?.name || 'Kawsar'}, unlock new opportunities with Aether Premium</p>
+              <p className="text-[11px] text-slate-500 text-right uppercase tracking-wider mb-2">{t("sidebar.adLabel")}</p>
+              <p className="text-xs text-slate-400 mb-4 px-6">{t("sidebar.adMessage", { name: authUser?.name || 'Kawsar' })}</p>
               <div className="flex justify-center mb-4">
                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-3xl font-black text-white shadow-xl">
                     {initials}
                  </div>
               </div>
               <button className="w-full py-1.5 border border-purple-400 text-purple-400 rounded-full font-bold text-sm hover:bg-purple-400/10 transition-all shadow-lg hover:shadow-purple-500/10">
-                 Try for free
+                 {t("sidebar.tryFree")}
               </button>
            </div>
 
@@ -588,14 +591,14 @@ export default function ProfilePage() {
            <div className="bg-[#15161a] rounded-xl divide-y divide-white/5 border border-white/5 shadow-lg">
               <div className="p-4 flex justify-between items-center group cursor-pointer hover:bg-white/5 transition-colors rounded-t-xl">
                  <div>
-                    <h3 className="text-sm font-bold">Profile language</h3>
-                    <p className="text-xs text-slate-500">English</p>
+                    <h3 className="text-sm font-bold">{t("sidebar.profileLanguage")}</h3>
+                    <p className="text-xs text-slate-500">{t("sidebar.english")}</p>
                  </div>
                  <Pencil size={14} className="text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               <div className="p-4 flex justify-between items-center group cursor-pointer hover:bg-white/5 transition-colors rounded-b-xl">
                  <div>
-                    <h3 className="text-sm font-bold">Public profile & URL</h3>
+                    <h3 className="text-sm font-bold">{t("sidebar.publicUrl")}</h3>
                     <p className="text-xs text-slate-500">aether.io/in/{userId || 'profile'}</p>
                  </div>
                  <Pencil size={14} className="text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -604,14 +607,14 @@ export default function ProfilePage() {
 
            {/* People you may know  */}
            <div className="bg-[#15161a] rounded-xl border border-white/5 p-4 shadow-lg">
-              <h2 className="text-sm font-bold mb-4">People also viewed</h2>
+              <h2 className="text-sm font-bold mb-4">{t("sidebar.peopleAlsoViewed")}</h2>
               <div className="space-y-4">
                  <SuggestedMember name="Xavier Thorne" title="Founder @ NeuralAether" avatar="https://picsum.photos/seed/Xavier/100" />
                  <SuggestedMember name="Elena Rodriguez" title="Design Lead at Prism Labs" avatar="https://picsum.photos/seed/Elena/100" />
                  <SuggestedMember name="Marcus Miller" title="Senior Dev @ TechCloud" avatar="https://picsum.photos/seed/Marcus/100" />
               </div>
               <button className="w-full text-center text-slate-400 font-bold text-sm mt-4 pt-4 border-t border-white/5 hover:text-slate-300 transition-colors">
-                 Show all
+                 {t("sidebar.showAll")}
               </button>
            </div>
         </aside>
@@ -620,7 +623,7 @@ export default function ProfilePage() {
       {editOpen && (
         <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
           <div className="bg-[#15161a] w-full max-w-2xl rounded-xl p-6 border border-white/10">
-            <h2 className="text-xl font-bold mb-6">Edit Profile</h2>
+            <h2 className="text-xl font-bold mb-6">{t("editModal.title")}</h2>
 
             <div className="grid grid-cols-2 gap-4">
               <input
@@ -628,7 +631,7 @@ export default function ProfilePage() {
                 onChange={(e) =>
                   setFormData({ ...formData, firstName: e.target.value })
                 }
-                placeholder="First Name"
+                placeholder={t("editModal.firstName")}
                 className="bg-[#1f2029] p-3 rounded"
               />
               <input
@@ -636,7 +639,7 @@ export default function ProfilePage() {
                 onChange={(e) =>
                   setFormData({ ...formData, lastName: e.target.value })
                 }
-                placeholder="Last Name"
+                placeholder={t("editModal.lastName")}
                 className="bg-[#1f2029] p-3 rounded"
               />
             </div>
@@ -646,7 +649,7 @@ export default function ProfilePage() {
               onChange={(e) =>
                 setFormData({ ...formData, headline: e.target.value })
               }
-              placeholder="Headline"
+              placeholder={t("editModal.headline")}
               className="bg-[#1f2029] p-3 rounded w-full mt-4"
             />
 
@@ -655,7 +658,7 @@ export default function ProfilePage() {
               onChange={(e) =>
                 setFormData({ ...formData, location: e.target.value })
               }
-              placeholder="Location"
+              placeholder={t("editModal.location")}
               className="bg-[#1f2029] p-3 rounded w-full mt-4"
             />
 
@@ -664,7 +667,7 @@ export default function ProfilePage() {
               onChange={(e) =>
                 setFormData({ ...formData, aboutMe: e.target.value })
               }
-              placeholder="About Me"
+              placeholder={t("editModal.aboutMe")}
               rows={4}
               className="bg-[#1f2029] p-3 rounded w-full mt-4"
             />
@@ -684,7 +687,7 @@ export default function ProfilePage() {
                   onClick={() => deleteProfilePhoto.mutate()}
                   className="px-4 py-2 bg-red-600 rounded text-white"
                 >
-                  Delete Current Photo
+                  {t("editModal.deletePhoto")}
                 </button>
               )}
             </div>
@@ -694,13 +697,13 @@ export default function ProfilePage() {
                 onClick={() => setEditOpen(false)}
                 className="px-4 py-2 border border-white/20 rounded"
               >
-                Cancel
+                {t("editModal.cancel")}
               </button>
               <button
                 onClick={() => updateProfile.mutate()}
                 className="px-4 py-2 bg-purple-600 rounded text-white"
               >
-                Save Changes
+                {t("editModal.save")}
               </button>
             </div>
           </div>
@@ -758,12 +761,13 @@ function TimelineItem({ logo, title, subtitle, date, location, description }: an
 
 // Skill item in the skills grid
 function SkillItem({ name, endorsements }: any) {
+  const t = useTranslations("profile");
    return (
       <div className="pb-4 border-b border-white/5 group cursor-pointer hover:bg-white/[0.02] px-2 -mx-2 rounded transition-all">
          <h4 className="font-bold text-slate-200 group-hover:text-purple-400 transition-colors">{name}</h4>
          <div className="flex items-center gap-2 mt-2">
             <Users size={12} className="text-slate-500" />
-            <span className="text-[11px] text-slate-400 font-medium">{endorsements} endorsements</span>
+            <span className="text-[11px] text-slate-400 font-medium">{endorsements} {t("skills.endorsements")}</span>
          </div>
       </div>
    );
@@ -771,6 +775,7 @@ function SkillItem({ name, endorsements }: any) {
 
 // Suggested member card in the right sidebar
 function SuggestedMember({ name, title, avatar }: any) {
+  const t = useTranslations("profile");
    return (
       <div className="flex gap-2 group">
          <img src={avatar} className="w-12 h-12 rounded-full border border-white/5 shrink-0 group-hover:scale-110 transition-transform" alt="suggested" />
@@ -778,7 +783,7 @@ function SuggestedMember({ name, title, avatar }: any) {
             <h4 className="text-xs font-bold text-slate-200 hover:text-purple-400 transition-colors truncate cursor-pointer">{name}</h4>
             <p className="text-[11px] text-slate-500 leading-tight mt-0.5 truncate">{title}</p>
             <button className="mt-2 px-3 py-1 border border-slate-500 text-slate-400 rounded-full text-xs font-bold hover:border-white hover:text-white transition-all shadow-md">
-               Connect
+               {t("suggested.connect")}
             </button>
          </div>
          

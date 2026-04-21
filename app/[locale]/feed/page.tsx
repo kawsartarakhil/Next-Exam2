@@ -29,9 +29,12 @@ import {
 } from "lucide-react";
 import { useAuthStore } from "@/src/authStore/page";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl"; // i18n
+import LocaleSwitcher from "@/src/components/localeSwitcher";
 
 
 export default function FeedPage() {
+  const t = useTranslations("feed");
   const queryClient = useQueryClient(); // This guy lets us manually refetch data after mutations
 
   // State for the "what's on your mind?" post creator
@@ -216,29 +219,29 @@ export default function FeedPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-purple-400 transition-colors" />
               <input 
                 type="text" 
-                placeholder="Search Aether" 
+                placeholder={t("nav.searchPlaceholder")}
                 className="bg-[#1f2029] rounded w-64 h-8 pl-10 pr-4 text-sm focus:w-80 transition-all outline-none border border-transparent focus:border-purple-500/30 font-medium"
               />
             </div>
           </div>
 
           <div className="flex items-center gap-1 sm:gap-6 h-full">
-            <NavIcon icon={<Home />} label="Home" active={true} />
-            <Link href="/network"><NavIcon icon={<Users />} label="Network" /></Link>
-            <Link href="/job"><NavIcon icon={<Briefcase />} label="Jobs" /></Link>
-            <Link href='/messages'><NavIcon icon={<MessageSquare />} label="Messaging" /></Link>
-            <Link href="notifications"><NavIcon icon={<Bell />} label="Notifications" /></Link>
+            <NavIcon icon={<Home />} label={t("nav.home")} active={true} />
+            <Link href="/network"><NavIcon icon={<Users />} label={t("nav.network")} /></Link>
+            <Link href="/job"><NavIcon icon={<Briefcase />} label={t("nav.jobs")} /></Link>
+            <Link href='/messages'><NavIcon icon={<MessageSquare />} label={t("nav.messaging")} /></Link>
+            <Link href="notifications"><NavIcon icon={<Bell />} label={t("nav.notifications")} /></Link>
             
             <div className="h-full border-l border-white/5 mx-2 hidden sm:block" />
-
+             <LocaleSwitcher/>
             <Link href='/profile'>
               <div className="flex flex-col items-center justify-center cursor-pointer group">
                 {photo ? (
-                  <img src={photo} className="w-6 h-6 rounded-full border border-white/10" alt="me" />
+                  <img src={photo} className="w-6 h-6 rounded-full border border-white/10" alt={t("alt.profilePicture")} />
                 ) : (
                   <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold">{initials}</div>
                 )}
-                <span className="text-[11px] text-slate-500 group-hover:text-white flex items-center mt-0.5">Me <ChevronDown className="w-3 h-3 ml-0.5" /></span>
+                <span className="text-[11px] text-slate-500 group-hover:text-white flex items-center mt-0.5">{t("nav.me")} <ChevronDown className="w-3 h-3 ml-0.5" /></span>
               </div>
             </Link>
             <button
@@ -247,7 +250,7 @@ export default function FeedPage() {
               className="flex flex-col items-center text-slate-400 hover:text-red-400 text-xs"
             >
               <LogOut size={18} />
-              <span>{isLoggingOut ? "..." : "Logout"}</span>
+              <span>{isLoggingOut ? t("common.loading") : t("nav.logout")}</span>
             </button>
           </div>
         </div>
@@ -276,34 +279,34 @@ export default function FeedPage() {
             </div>
             <div className="border-t border-white/5 p-3 space-y-3">
               <div className="flex justify-between items-center group cursor-pointer">
-                <span className="text-xs text-slate-500 font-bold">Profile viewers</span>
+                <span className="text-xs text-slate-500 font-bold">{t("sidebar.profileViewers")}</span>
                 <span className="text-xs text-purple-400 font-bold">351</span>
               </div>
               <div className="flex justify-between items-center group cursor-pointer">
-                <span className="text-xs text-slate-500 font-bold">Post analytics</span>
+                <span className="text-xs text-slate-500 font-bold">{t("sidebar.postAnalytics")}</span>
                 <span className="text-xs text-purple-400 font-bold">1.2k</span>
               </div>
             </div>
             <div className="p-3 border-t border-white/5 bg-[#1a1b21] cursor-pointer hover:bg-[#202129] transition-colors rounded-b-xl group">
-              <p className="text-[11px] text-slate-500 font-medium">Exclusive tools & insights</p>
+              <p className="text-[11px] text-slate-500 font-medium">{t("sidebar.premiumLabel")}</p>
               <div className="flex items-center gap-1.5 mt-1 text-xs font-bold group-hover:text-purple-400">
                 <div className="w-3 h-3 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-sm" />
-                Try Aether Premium
+                {t("sidebar.premiumButton")}
               </div>
             </div>
           </div>
 
           <div className="bg-[#15161a] rounded-xl border border-white/5 p-3 sticky top-20">
             <div className="space-y-4">
-              <Link href="#" className="block text-xs font-bold text-slate-400 hover:text-purple-400 transition-colors">Groups</Link>
+              <Link href="#" className="block text-xs font-bold text-slate-400 hover:text-purple-400 transition-colors">{t("sidebar.groups")}</Link>
               <Link href="#" className="flex justify-between items-center text-xs font-bold text-slate-400 hover:text-purple-400 group transition-colors">
-                Events <Plus className="w-3 h-3 text-slate-600 group-hover:text-purple-400" />
+                {t("sidebar.events")} <Plus className="w-3 h-3 text-slate-600 group-hover:text-purple-400" />
               </Link>
-              <Link href="#" className="block text-xs font-bold text-slate-400 hover:text-purple-400 transition-colors">Followed Hashtags</Link>
+              <Link href="#" className="block text-xs font-bold text-slate-400 hover:text-purple-400 transition-colors">{t("sidebar.hashtags")}</Link>
             </div>
             
             <button className="w-full mt-4 pt-4 border-t border-white/5 text-xs font-bold text-slate-600 hover:text-slate-400 text-center py-2 transition-colors">
-              Discover more
+              {t("sidebar.discoverMore")}
             </button>
           </div>
         </aside>
@@ -322,15 +325,15 @@ export default function FeedPage() {
                 onClick={() => fileInputRef.current?.click()}
                 className="flex-grow bg-[#1f2029] hover:bg-[#252631] border border-white/10 rounded-full px-4 text-left text-sm font-bold text-slate-500 transition-all shadow-inner"
               >
-                Start a post
+                {t("postComposer.startPost")}
               </button>
             </div>
             
             <div className="flex justify-between mt-3 px-1">
-              <PostBoxAction icon={<ImageIcon className="text-blue-500" />} label="Photo" onClick={() => fileInputRef.current?.click()} />
-              <PostBoxAction icon={<Video className="text-green-500" />} label="Video" onClick={() => {}} />
-              <PostBoxAction icon={<Calendar className="text-orange-500" />} label="Event" onClick={() => {}} />
-              <PostBoxAction icon={<Newspaper className="text-rose-500" />} label="Article" onClick={() => {}} />
+              <PostBoxAction icon={<ImageIcon className="text-blue-500" />} label={t("postComposer.photo")} onClick={() => fileInputRef.current?.click()} />
+              <PostBoxAction icon={<Video className="text-green-500" />} label={t("postComposer.video")} onClick={() => {}} />
+              <PostBoxAction icon={<Calendar className="text-orange-500" />} label={t("postComposer.event")} onClick={() => {}} />
+              <PostBoxAction icon={<Newspaper className="text-rose-500" />} label={t("postComposer.article")} onClick={() => {}} />
             </div>
 
             {/* Expanded post editor – appears when user starts typing or adds an image */}
@@ -340,12 +343,12 @@ export default function FeedPage() {
                   value={postContent}
                   onChange={(e) => setPostContent(e.target.value)}
                   className="w-full bg-transparent outline-none resize-none min-h-[100px] text-sm text-slate-300 placeholder-slate-600"
-                  placeholder="What's your latest insight?"
+                  placeholder={t("postComposer.insightPlaceholder")}
                 />
                 
                 {imagePreview && (
                   <div className="relative group rounded-xl overflow-hidden border border-white/10">
-                    <img src={imagePreview} className="w-full max-h-96 object-cover" alt="preview" />
+                    <img src={imagePreview} className="w-full max-h-96 object-cover" alt={t("alt.imagePreview")} />
                     <button 
                       onClick={() => { setSelectedImage(null); setImagePreview(null); }}
                       className="absolute top-2 right-2 bg-black/60 p-1.5 rounded-full hover:bg-black transition-colors"
@@ -360,14 +363,14 @@ export default function FeedPage() {
                     onClick={() => { setPostContent(""); setSelectedImage(null); setImagePreview(null); }}
                     className="px-4 py-1.5 rounded-full text-sm font-bold text-slate-400 hover:bg-white/5"
                   >
-                    Clear
+                    {t("postComposer.clear")}
                   </button>
                   <button 
                     disabled={isPosting || isUploading}
                     onClick={handlePost}
                     className="px-6 py-1.5 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 text-white font-bold text-sm shadow-lg shadow-purple-500/20 hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
                   >
-                    {isPosting || isUploading ? "Posting..." : "Post"}
+                    {isPosting || isUploading ? t("postComposer.posting") : t("postComposer.post")}
                   </button>
                 </div>
               </div>
@@ -401,7 +404,7 @@ export default function FeedPage() {
         <aside className="space-y-2 hidden lg:block">
           <div className="bg-[#15161a] rounded-xl border border-white/5 p-3">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-sm font-bold">Add to your feed</h2>
+              <h2 className="text-sm font-bold">{t("rightSidebar.addToFeed")}</h2>
               <MoreHorizontal className="w-4 h-4 text-slate-500 cursor-pointer" />
             </div>
             
@@ -412,12 +415,12 @@ export default function FeedPage() {
             </div>
 
             <button className="flex items-center gap-1 mt-4 px-2 text-xs font-bold text-slate-500 hover:text-slate-300 transition-colors">
-              View all recommendations <Users className="w-3 h-3" />
+              {t("rightSidebar.viewAll")} <Users className="w-3 h-3" />
             </button>
           </div>
 
           <div className="bg-[#15161a] rounded-xl border border-white/5 p-3 sticky top-20">
-            <h2 className="text-sm font-bold mb-4">Trending topics</h2>
+            <h2 className="text-sm font-bold mb-4">{t("rightSidebar.trendingTopics")}</h2>
             <div className="space-y-4">
               <TrendingItem tag="#NeuralNetworks" count="42.5k posts" />
               <TrendingItem tag="#AetherNetwork" count="18.2k posts" />
@@ -426,12 +429,12 @@ export default function FeedPage() {
             </div>
             
             <div className="mt-8 pt-4 border-t border-white/5 flex flex-wrap justify-center gap-x-3 gap-y-1 opacity-50 px-2">
-              <FooterLink label="About" />
-              <FooterLink label="Accessibility" />
-              <FooterLink label="Help Center" />
-              <FooterLink label="Privacy & Terms" />
+              <FooterLink label={t("footer.about")} />
+              <FooterLink label={t("footer.accessibility")} />
+              <FooterLink label={t("footer.helpCenter")} />
+              <FooterLink label={t("footer.privacyTerms")} />
             </div>
-            <p className="mt-4 text-[10px] font-bold text-center text-slate-700">Aether Corporation © 2026</p>
+            <p className="mt-4 text-[10px] font-bold text-center text-slate-700">{t("footer.copyright")}</p>
           </div>
         </aside>
       </div>
@@ -444,7 +447,7 @@ export default function FeedPage() {
             disabled={currentPage === 1}
             className="px-4 py-2 rounded-lg bg-[#15161a] border border-white/10 text-sm font-bold disabled:opacity-40"
           >
-            Prev
+            {t("pagination.prev")}
           </button>
 
           {Array.from({ length: totalPages }, (_, i) => ( //he Array.from({ length: totalPages }, (_, i) => ...) is a concise way to generate an array of a given length (totalPages) and then map over it to create pagination buttons
@@ -466,7 +469,7 @@ export default function FeedPage() {
             disabled={currentPage === totalPages}
             className="px-4 py-2 rounded-lg bg-[#15161a] border border-white/10 text-sm font-bold disabled:opacity-40"
           >
-            Next
+            {t("pagination.next")}
           </button>
         </div>
       )}
@@ -497,6 +500,7 @@ const PostBoxAction = ({ icon, label, onClick }: any) => (
 
 // One single post card – includes author info, content, image, like/comment/repost buttons, and comments section
 const PostCard = ({ post, token, onLike, onRepost, onComment }: any) => {
+  const t = useTranslations("feed");
   const [showComments, setShowComments] = useState(false);
   const [commentText, setCommentText] = useState("");
 
@@ -547,7 +551,7 @@ const PostCard = ({ post, token, onLike, onRepost, onComment }: any) => {
               <h3 className="text-sm font-bold group-hover:text-purple-400 group-hover:underline underline-offset-2">{authorName}</h3>
               <span className="text-xs text-slate-600 font-medium">• 2nd</span>
             </div>
-            <p className="text-[11px] text-slate-500">Expert Contributor at Aether Network</p>
+            <p className="text-[11px] text-slate-500">{t("postCard.expertContributor")}</p>
             <p className="text-[10px] text-slate-700 mt-1 uppercase tracking-tighter">4h • <Home size={10} className="inline ml-0.5"/></p>
           </div>
         </div>
@@ -573,7 +577,7 @@ const PostCard = ({ post, token, onLike, onRepost, onComment }: any) => {
                 : `/uploads/${post.imageUrl}`
             }
             className="w-full object-cover"
-            alt="post"
+            alt={t("alt.postImage")}
           />
         </div>
       )}
@@ -585,22 +589,22 @@ const PostCard = ({ post, token, onLike, onRepost, onComment }: any) => {
             <div className="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center ring-1 ring-[#15161a]"><ThumbsUp size={10} className="text-white" /></div>
             <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center ring-1 ring-[#15161a]"><Bell size={10} className="text-white" /></div>
           </div>
-          {post.likeCount || 0} reactions
+          {post.likeCount || 0} {t("postCard.reactions")}
         </div>
         <div
           className="hover:text-purple-400 cursor-pointer transition-colors"
           onClick={() => setShowComments(!showComments)}
         >
-          {commentsData.length || 0} comments • {post.repostCount || 0} reposts
+          {commentsData.length || 0} {t("postCard.comments")} • {post.repostCount || 0} {t("postCard.reposts")}
         </div>
       </div>
 
       {/* Action buttons: Like, Comment, Repost, Send */}
       <div className="flex px-1 py-1">
-        <PostAction icon={<ThumbsUp />} label="Like" onClick={onLike} color="blue" />
-        <PostAction icon={<MessageSquare />} label="Comment" onClick={() => setShowComments(!showComments)} color="slate" />
-        <PostAction icon={<Repeat2 />} label="Repost" onClick={onRepost} color="green" />
-        <PostAction icon={<Send />} label="Send" onClick={() => {}} color="slate" />
+        <PostAction icon={<ThumbsUp />} label={t("postCard.like")} onClick={onLike} color="blue" />
+        <PostAction icon={<MessageSquare />} label={t("postCard.comment")} onClick={() => setShowComments(!showComments)} color="slate" />
+        <PostAction icon={<Repeat2 />} label={t("postCard.repost")} onClick={onRepost} color="green" />
+        <PostAction icon={<Send />} label={t("postCard.send")} onClick={() => {}} color="slate" />
       </div>
 
       {/* Comments section – only rendered if showComments is true */}
@@ -619,14 +623,14 @@ const PostCard = ({ post, token, onLike, onRepost, onComment }: any) => {
           {/* Input to add a new comment */}
           <div className="flex gap-2 items-center">
             <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold shrink-0">
-              Me
+              {t("postCard.me")}
             </div>
             <div className="flex-1 flex items-center gap-2 bg-[#1f2029] rounded-full px-4 border border-white/10 focus-within:border-purple-500/40 transition-colors">
               <input
                 value={commentText}
                 onChange={(e) => setCommentText(e.target.value)}
                 onKeyDown={(e) => { if (e.key === "Enter") handleComment(); }}
-                placeholder="Add a comment..."
+                placeholder={t("postCard.commentPlaceholder")}
                 className="flex-1 bg-transparent outline-none text-xs py-2 text-slate-300 placeholder-slate-600"
               />
               <button onClick={handleComment} disabled={!commentText.trim()}>
@@ -643,6 +647,7 @@ const PostCard = ({ post, token, onLike, onRepost, onComment }: any) => {
 
 // A single comment – fetches the commenter's profile lazily (again, to show their name)
 const CommentItem = ({ comment, token }: { comment: any; token: string }) => {
+  const t = useTranslations("feed");
   const authHeaders = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -684,29 +689,32 @@ const PostAction = ({ icon, label, onClick, color }: any) => {
       onClick={onClick}
       className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-md transition-all text-slate-500 font-bold text-xs hover:bg-white/5 ${colorMap[color] || ""}`}
     >
-       {React.cloneElement(icon, { size: 18 })}{/* creates a modified copy of a React element  */}
+       {React.cloneElement(icon, { size: 18 })} {/* creates a modified copy of a React element  */}
       <span className="hidden sm:inline">{label}</span>
     </button>
   );
 };
 
 // A suggested user to follow in the right sidebar
-const SuggestedItem = ({ name, bio }: any) => (
-  <div className="flex gap-2 items-start justify-between group">
-    <div className="flex gap-2">
-      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-400 flex items-center justify-center font-bold text-sm shadow-xl">
-        {name.slice(0, 2).toUpperCase()}
-      </div>
-      <div>
-        <h4 className="text-xs font-bold hover:underline cursor-pointer decoration-slate-400">{name}</h4>
-        <p className="text-[10px] text-slate-500 leading-tight mt-0.5">{bio}</p>
-        <button className="mt-2 flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-600 hover:border-slate-300 hover:bg-white/5 text-[11px] font-bold text-slate-400 hover:text-white transition-all">
-          <UserPlus size={14} /> Follow
-        </button>
+const SuggestedItem = ({ name, bio }: any) => {
+  const t = useTranslations("feed");
+  return (
+    <div className="flex gap-2 items-start justify-between group">
+      <div className="flex gap-2">
+        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-400 flex items-center justify-center font-bold text-sm shadow-xl">
+          {name.slice(0, 2).toUpperCase()}
+        </div>
+        <div>
+          <h4 className="text-xs font-bold hover:underline cursor-pointer decoration-slate-400">{name}</h4>
+          <p className="text-[10px] text-slate-500 leading-tight mt-0.5">{bio}</p>
+          <button className="mt-2 flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-600 hover:border-slate-300 hover:bg-white/5 text-[11px] font-bold text-slate-400 hover:text-white transition-all">
+            <UserPlus size={14} /> {t("suggestedItem.follow")}
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 // A trending topic / hashtag item
 const TrendingItem = ({ tag, count }: any) => (
